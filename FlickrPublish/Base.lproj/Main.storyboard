@@ -19,8 +19,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="QdZ-Ja-UP4"/>
                     <connections>
-                        <segue destination="Rmp-yK-LjD" kind="show" identifier="AuthSegue" id="jJh-sl-aud"/>
-                        <segue destination="lMj-8h-hH1" kind="show" identifier="MainSegue" id="and-CU-PxC"/>
+                        <segue destination="Rmp-yK-LjD" kind="custom" identifier="AuthSegue" customClass="StartupSegue" id="jJh-sl-aud"/>
+                        <segue destination="lMj-8h-hH1" kind="custom" identifier="MainSegue" customClass="StartupSegue" id="and-CU-PxC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -45,20 +45,33 @@
                                     <constraint firstAttribute="width" constant="300" id="XWT-hE-Jaj"/>
                                     <constraint firstAttribute="height" constant="30" id="hkH-Tk-Rl4"/>
                                 </constraints>
-                                <state key="normal" title="Authorize FlicktPublish!">
+                                <state key="normal" title="Authorize FlickrPublish!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="handleAuthClick:" destination="Rmp-yK-LjD" eventType="touchUpInside" id="iG3-kN-z4q"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9fq-JX-GZ2">
+                                <rect key="frame" x="280" y="280" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="0MD-pu-oaT"/>
+                                    <constraint firstAttribute="height" constant="40" id="0Qm-IP-ccZ"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="eBY-bB-E1e" secondAttribute="centerY" id="Ocn-fA-eUi"/>
+                            <constraint firstAttribute="centerY" secondItem="9fq-JX-GZ2" secondAttribute="centerY" id="QCo-mv-IIq"/>
                             <constraint firstAttribute="centerX" secondItem="eBY-bB-E1e" secondAttribute="centerX" id="akM-yB-bdJ"/>
+                            <constraint firstAttribute="centerX" secondItem="9fq-JX-GZ2" secondAttribute="centerX" id="nVK-Lb-I8f"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="9fq-JX-GZ2" id="6Sg-t0-uww"/>
+                        <segue destination="lMj-8h-hH1" kind="custom" identifier="AfterAuth" customClass="StartupSegue" id="NmL-Sr-huR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0u-iM-411" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -101,4 +114,7 @@
             <point key="canvasLocation" x="456" y="725"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="NmL-Sr-huR"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RequestTokenOperation.h"
+#import "AccessTokenOperation.h"
 
-@interface OAuthController : UIViewController
+@interface OAuthController : UIViewController <RequestTokenResponseHandler, AccessTokenResponseHandler>
+
+- (void) receivedRequestToken: (NSString *) token Secret: (NSString *) secret;
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+- (void) handleKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token Verifier: (NSString *) verifier;
+
+- (void) receivedRequestToken: (NSString *) token Secret: (NSString *) secret FullName: (NSString *) fullName UserNSID: (NSString *) userNSID UserName: (NSString *) userName;
 
 @end

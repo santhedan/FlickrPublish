@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "Constants.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
@@ -17,11 +19,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+
     // Do we have authentication token?
-    NSString* authToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"authToken"];
+    AppDelegate *delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
     
-    if (authToken)
+    if (delegate.isAuthenticated)
     {
         [self performSegueWithIdentifier:@"MainSegue" sender:nil];
     }
@@ -29,8 +31,6 @@
     {
         [self performSegueWithIdentifier:@"AuthSegue" sender:nil];
     }
-    // Dismiss self
-    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)didReceiveMemoryWarning {

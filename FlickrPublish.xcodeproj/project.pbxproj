@@ -17,6 +17,14 @@
 		067C2F621B4E93CE004A7E55 /* OAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F611B4E93CE004A7E55 /* OAuthController.m */; };
 		067C2F651B4E93EB004A7E55 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F641B4E93EB004A7E55 /* MainController.m */; };
 		067C2F671B4E9866004A7E55 /* flickr.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 067C2F661B4E9866004A7E55 /* flickr.jpg */; };
+		06A027981B4F7A550000ED81 /* StartupSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027971B4F7A550000ED81 /* StartupSegue.m */; };
+		06A0279D1B4F7AFE0000ED81 /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A0279C1B4F7AFE0000ED81 /* BaseRequest.m */; };
+		06A027A11B4F80220000ED81 /* FlickrBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027A01B4F80220000ED81 /* FlickrBaseRequest.m */; };
+		06A027A41B4F80560000ED81 /* RequestToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027A31B4F80560000ED81 /* RequestToken.m */; };
+		06A027A71B4F81480000ED81 /* AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027A61B4F81480000ED81 /* AccessToken.m */; };
+		06A027AA1B4F82370000ED81 /* RequestTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027A91B4F82370000ED81 /* RequestTokenOperation.m */; };
+		06A027B11B4F8E520000ED81 /* OFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027B01B4F8E520000ED81 /* OFUtilities.m */; };
+		06A027B51B4FDE760000ED81 /* AccessTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027B41B4FDE760000ED81 /* AccessTokenOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +56,23 @@
 		067C2F631B4E93EB004A7E55 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		067C2F641B4E93EB004A7E55 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		067C2F661B4E9866004A7E55 /* flickr.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flickr.jpg; sourceTree = "<group>"; };
+		06A027961B4F7A550000ED81 /* StartupSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartupSegue.h; sourceTree = "<group>"; };
+		06A027971B4F7A550000ED81 /* StartupSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartupSegue.m; sourceTree = "<group>"; };
+		06A0279B1B4F7AFE0000ED81 /* BaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRequest.h; sourceTree = "<group>"; };
+		06A0279C1B4F7AFE0000ED81 /* BaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRequest.m; sourceTree = "<group>"; };
+		06A0279F1B4F80220000ED81 /* FlickrBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrBaseRequest.h; sourceTree = "<group>"; };
+		06A027A01B4F80220000ED81 /* FlickrBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrBaseRequest.m; sourceTree = "<group>"; };
+		06A027A21B4F80560000ED81 /* RequestToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestToken.h; sourceTree = "<group>"; };
+		06A027A31B4F80560000ED81 /* RequestToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestToken.m; sourceTree = "<group>"; };
+		06A027A51B4F81480000ED81 /* AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessToken.h; sourceTree = "<group>"; };
+		06A027A61B4F81480000ED81 /* AccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessToken.m; sourceTree = "<group>"; };
+		06A027A81B4F82370000ED81 /* RequestTokenOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestTokenOperation.h; sourceTree = "<group>"; };
+		06A027A91B4F82370000ED81 /* RequestTokenOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestTokenOperation.m; sourceTree = "<group>"; };
+		06A027AF1B4F8E520000ED81 /* OFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFUtilities.h; sourceTree = "<group>"; };
+		06A027B01B4F8E520000ED81 /* OFUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OFUtilities.m; sourceTree = "<group>"; };
+		06A027B21B4FA3DB0000ED81 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		06A027B31B4FDE760000ED81 /* AccessTokenOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessTokenOperation.h; sourceTree = "<group>"; };
+		06A027B41B4FDE760000ED81 /* AccessTokenOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessTokenOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +114,9 @@
 		067C2F351B4E927C004A7E55 /* FlickrPublish */ = {
 			isa = PBXGroup;
 			children = (
+				06A027AB1B4F8DEF0000ED81 /* OF */,
+				06A027991B4F7AD00000ED81 /* Flickr */,
+				06A027951B4F7A0B0000ED81 /* Segue */,
 				067C2F5F1B4E9320004A7E55 /* Utilities */,
 				067C2F5E1B4E9311004A7E55 /* Operations */,
 				067C2F5D1B4E92AF004A7E55 /* Resources */,
@@ -96,6 +124,7 @@
 				067C2F3A1B4E927C004A7E55 /* AppDelegate.h */,
 				067C2F3B1B4E927C004A7E55 /* AppDelegate.m */,
 				067C2F361B4E927C004A7E55 /* Supporting Files */,
+				06A027B21B4FA3DB0000ED81 /* Constants.h */,
 			);
 			path = FlickrPublish;
 			sourceTree = "<group>";
@@ -153,6 +182,10 @@
 		067C2F5E1B4E9311004A7E55 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				06A027A81B4F82370000ED81 /* RequestTokenOperation.h */,
+				06A027A91B4F82370000ED81 /* RequestTokenOperation.m */,
+				06A027B31B4FDE760000ED81 /* AccessTokenOperation.h */,
+				06A027B41B4FDE760000ED81 /* AccessTokenOperation.m */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -162,6 +195,55 @@
 			children = (
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		06A027951B4F7A0B0000ED81 /* Segue */ = {
+			isa = PBXGroup;
+			children = (
+				06A027961B4F7A550000ED81 /* StartupSegue.h */,
+				06A027971B4F7A550000ED81 /* StartupSegue.m */,
+			);
+			name = Segue;
+			sourceTree = "<group>";
+		};
+		06A027991B4F7AD00000ED81 /* Flickr */ = {
+			isa = PBXGroup;
+			children = (
+				06A0279B1B4F7AFE0000ED81 /* BaseRequest.h */,
+				06A0279C1B4F7AFE0000ED81 /* BaseRequest.m */,
+				06A0279E1B4F7FDC0000ED81 /* OAuth */,
+				06A0279A1B4F7AD90000ED81 /* Request */,
+			);
+			name = Flickr;
+			sourceTree = "<group>";
+		};
+		06A0279A1B4F7AD90000ED81 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				06A0279F1B4F80220000ED81 /* FlickrBaseRequest.h */,
+				06A027A01B4F80220000ED81 /* FlickrBaseRequest.m */,
+			);
+			name = Request;
+			sourceTree = "<group>";
+		};
+		06A0279E1B4F7FDC0000ED81 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				06A027A21B4F80560000ED81 /* RequestToken.h */,
+				06A027A31B4F80560000ED81 /* RequestToken.m */,
+				06A027A51B4F81480000ED81 /* AccessToken.h */,
+				06A027A61B4F81480000ED81 /* AccessToken.m */,
+			);
+			name = OAuth;
+			sourceTree = "<group>";
+		};
+		06A027AB1B4F8DEF0000ED81 /* OF */ = {
+			isa = PBXGroup;
+			children = (
+				06A027AF1B4F8E520000ED81 /* OFUtilities.h */,
+				06A027B01B4F8E520000ED81 /* OFUtilities.m */,
+			);
+			name = OF;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,9 +348,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				067C2F3F1B4E927C004A7E55 /* ViewController.m in Sources */,
+				06A027981B4F7A550000ED81 /* StartupSegue.m in Sources */,
 				067C2F621B4E93CE004A7E55 /* OAuthController.m in Sources */,
+				06A027AA1B4F82370000ED81 /* RequestTokenOperation.m in Sources */,
 				067C2F3C1B4E927C004A7E55 /* AppDelegate.m in Sources */,
+				06A0279D1B4F7AFE0000ED81 /* BaseRequest.m in Sources */,
+				06A027A11B4F80220000ED81 /* FlickrBaseRequest.m in Sources */,
+				06A027B51B4FDE760000ED81 /* AccessTokenOperation.m in Sources */,
 				067C2F651B4E93EB004A7E55 /* MainController.m in Sources */,
+				06A027A71B4F81480000ED81 /* AccessToken.m in Sources */,
+				06A027B11B4F8E520000ED81 /* OFUtilities.m in Sources */,
+				06A027A41B4F80560000ED81 /* RequestToken.m in Sources */,
 				067C2F391B4E927C004A7E55 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +556,7 @@
 				067C2F581B4E927C004A7E55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		067C2F591B4E927C004A7E55 /* Build configuration list for PBXNativeTarget "FlickrPublishTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +565,7 @@
 				067C2F5B1B4E927C004A7E55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
