@@ -14,9 +14,11 @@
 
 @implementation OAuthController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"Authorize App";
 }
 
 - (void)didReceiveMemoryWarning {

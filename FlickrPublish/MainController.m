@@ -12,12 +12,15 @@
 #import "AppDelegate.h"
 #import "PhotosetCell.h"
 #import "PhotoSet.h"
+#import "PhotoCollectionController.h"
 
 @interface MainController ()
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @property (nonatomic, strong) NSArray* photosets;
+
+@property (nonatomic, strong) PhotoSet* selectedSet;
 
 @end
 
@@ -55,15 +58,16 @@
     });
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    PhotoCollectionController* ctrl = segue.destinationViewController;
+    ctrl.set = self.selectedSet;
 }
-*/
 
 #pragma mark UITableViewDataSource
 
@@ -84,7 +88,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    PhotoSet* set = [self.photosets objectAtIndex:indexPath.item];
+    self.selectedSet = set;
+    [self performSegueWithIdentifier:@"ShowPhotos" sender:self];
 }
 
 @end

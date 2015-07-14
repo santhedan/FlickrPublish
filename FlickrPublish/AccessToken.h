@@ -10,21 +10,7 @@
 
 @interface AccessToken : BaseRequest
 
-@property (nonatomic, strong) NSString* nonce;
-
-@property (nonatomic, strong) NSString* timeStamp;
-
-@property (nonatomic, strong) NSString* consumerKey;
-
-@property (nonatomic, strong) NSString* consumerSecret;
-
-@property (nonatomic, strong) NSString* signatureMethod;
-
-@property (nonatomic, strong) NSString* version;
-
 @property (nonatomic, strong) NSString* callbaclUrl;
-
-@property (nonatomic, strong) NSString* signature;
 
 @property (nonatomic, strong) NSString* verifier;
 

@@ -1,14 +1,14 @@
 //
-//  PhotosetGetList.h
+//  PhotosetGetPhotos.h
 //  FlickrPublish
 //
-//  Created by Sanjay Dandekar on 13/07/15.
+//  Created by Sanjay Dandekar on 14/07/15.
 //  Copyright (c) 2015 Sanjay Dandekar. All rights reserved.
 //
 
 #import "BaseRequest.h"
 
-@interface PhotosetGetList : BaseRequest
+@interface PhotosetGetPhotos : BaseRequest
 
 @property (nonatomic, strong) NSString* authToken;
 
@@ -20,8 +20,13 @@
 
 @property (nonatomic, strong) NSString* format;
 
-- (instancetype) initWithKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token UserID: (NSString *) userId;
+@property (nonatomic, strong) NSString* photosetId;
+
+@property (nonatomic, strong) NSString* extras;
+
+- (instancetype) initWithKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token UserID: (NSString *) userId PhotosetId: (NSString *) photosetId;
 
 - (NSString *) getUrl;
+
 
 @end
