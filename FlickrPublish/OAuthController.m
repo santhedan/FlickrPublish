@@ -29,7 +29,6 @@
     [self.activityIndicator startAnimating];
     RequestToken* request = [[RequestToken alloc] initWithKey:API_KEY Secret: SECRET CallbackUrl:CALLBACK_URL];
     NSLog(@"request.signature -> %@", request.signature);
-    NSLog(@"request.URL -> %@", [request getUrl]);
     // Now create operation
     RequestTokenOperation* op = [[RequestTokenOperation alloc] initWithRequest:request Handler:self];
     // Get application delegate and queue the operation
@@ -67,6 +66,13 @@
 
 - (void) receivedRequestToken: (NSString *) token Secret: (NSString *) secret FullName: (NSString *) fullName UserNSID: (NSString *) userNSID UserName: (NSString *) userName
 {
+    NSLog(@"======================================");
+    NSLog(@"token -> %@", token);
+    NSLog(@"secret -> %@", secret);
+    NSLog(@"fullName -> %@", fullName);
+    NSLog(@"userNSID -> %@", userNSID);
+    NSLog(@"userName -> %@", userName);
+    NSLog(@"======================================");
     [[NSUserDefaults standardUserDefaults] setObject:token forKey:AUTHTOKEN_KEY];
     [[NSUserDefaults standardUserDefaults] setObject:secret forKey:SECRET_KEY];
     [[NSUserDefaults standardUserDefaults] setObject:fullName forKey:FULLNAME_KEY];

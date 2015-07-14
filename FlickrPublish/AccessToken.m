@@ -32,7 +32,10 @@
         self.token = [NSString stringWithFormat:@"oauth_token=%@", token];
         self.verifier = [NSString stringWithFormat:@"oauth_verifier=%@", verifier];
         //
-        self.signature = [NSString stringWithFormat:@"oauth_signature=%@", [self calculateSignature]];
+        NSString* signow = [self calculateSignature];
+        signow = [signow stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
+        NSLog(@"accesstoken signow 1 -> %@",  signow);
+        self.signature = [NSString stringWithFormat:@"oauth_signature=%@", signow];
     }
     return self;
 }
@@ -71,6 +74,8 @@
 
 - (NSString *) getUrl
 {
+    NSString* signow = [self calculateSignature];
+    NSLog(@"accesstoken signow 2 -> %@",  signow);
     return [NSString stringWithFormat:@"%@?%@&%@&%@&%@&%@&%@&%@&%@",self.url, self.nonce, self.timeStamp, self.verifier, self.consumerKey, self.signatureMethod, self.version, self.token, self.signature];
 }
 

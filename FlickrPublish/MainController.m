@@ -7,8 +7,17 @@
 //
 
 #import "MainController.h"
+#import "PhotosetGetList.h"
+#import "Constants.h"
+#import "AppDelegate.h"
+#import "PhotosetCell.h"
+#import "PhotoSet.h"
 
 @interface MainController ()
+
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+@property (nonatomic, strong) NSArray* photosets;
 
 @end
 
@@ -17,11 +26,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"Your Sets";
+    //
+    [self.activityIndicator startAnimating];
+    //
+    AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    // Create request and operation and execute
+    PhotosetGetList* request = [[PhotosetGetList alloc] initWithKey: API_KEY Secret: delegate.hmacsha1Key Token:delegate.token UserID:delegate.nsid];
+    // Create operation
+    PhotosetGetListOperation* op = [[PhotosetGetListOperation alloc] initWithRequest:request Delegate:self];
+    //
+    [delegate enqueueOperation:op];
+    //
+    [self.tableView setLayoutMargins:UIEdgeInsetsZero];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) receivedPhotoSets: (NSArray *) photosets
+{
+    self.photosets = photosets;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicator stopAnimating];
+        [self.tableView reloadData];
+    });
 }
 
 /*
@@ -33,5 +64,27 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.photosets.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PhotoSetCell* cell = [tableView dequeueReusableCellWithIdentifier:@"AlbumCell"];
+    PhotoSet* set = [self.photosets objectAtIndex:indexPath.item];
+    cell.photosetName.text = set.name;
+    return cell;
+}
+
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 
 @end

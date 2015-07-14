@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lxD-2z-yTi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -88,8 +89,66 @@
                     <view key="view" contentMode="scaleToFill" id="983-CI-FRc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="esU-Zy-irG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AlbumCell" id="VhQ-pd-G9I" customClass="PhotoSetCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VhQ-pd-G9I" id="nB0-M0-uGX">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZo-7t-p2Y">
+                                                    <rect key="frame" x="8" y="8" width="584" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="gdW-5C-bsM"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fZo-7t-p2Y" firstAttribute="trailing" secondItem="nB0-M0-uGX" secondAttribute="trailingMargin" id="ALn-GH-fjR"/>
+                                                <constraint firstItem="fZo-7t-p2Y" firstAttribute="leading" secondItem="nB0-M0-uGX" secondAttribute="leadingMargin" id="JSf-XM-65o"/>
+                                                <constraint firstItem="fZo-7t-p2Y" firstAttribute="top" secondItem="nB0-M0-uGX" secondAttribute="topMargin" id="cDv-XN-gjN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="photosetName" destination="fZo-7t-p2Y" id="6fO-5Y-VFN"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="lMj-8h-hH1" id="zms-km-gqJ"/>
+                                    <outlet property="delegate" destination="lMj-8h-hH1" id="qgs-8K-w7Z"/>
+                                </connections>
+                            </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3Us-Zk-L8E">
+                                <rect key="frame" x="280" y="280" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="0kS-To-3F8"/>
+                                    <constraint firstAttribute="height" constant="40" id="ZF9-La-EgJ"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="esU-Zy-irG" secondAttribute="trailing" constant="-16" id="5wf-2J-yYZ"/>
+                            <constraint firstAttribute="centerY" secondItem="3Us-Zk-L8E" secondAttribute="centerY" id="b5r-Ih-Qfe"/>
+                            <constraint firstAttribute="centerX" secondItem="3Us-Zk-L8E" secondAttribute="centerX" id="dwC-Fl-B3U"/>
+                            <constraint firstItem="esU-Zy-irG" firstAttribute="top" secondItem="983-CI-FRc" secondAttribute="topMargin" id="hnp-9T-HN5"/>
+                            <constraint firstItem="esU-Zy-irG" firstAttribute="leading" secondItem="983-CI-FRc" secondAttribute="leadingMargin" constant="-16" id="wmE-of-XQu"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="esU-Zy-irG" secondAttribute="bottom" id="yCC-uG-FLJ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="3Us-Zk-L8E" id="wc2-9C-4HW"/>
+                        <outlet property="tableView" destination="esU-Zy-irG" id="6n7-ue-8CG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oC2-dF-080" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -1,23 +1,24 @@
 //
-//  OAuthRequest.m
+//  PhotosetGetList.m
 //  FlickrPublish
 //
-//  Created by Sanjay Dandekar on 10/07/15.
+//  Created by Sanjay Dandekar on 13/07/15.
 //  Copyright (c) 2015 Sanjay Dandekar. All rights reserved.
 //
 
-#import "RequestToken.h"
+#import "PhotosetGetList.h"
 #import "OFUtilities.h"
 
-@implementation RequestToken
+@implementation PhotosetGetList
 
-- (instancetype) initWithKey: (NSString *) key Secret: (NSString *) secret CallbackUrl: (NSString *) callbackUrl
+- (instancetype) initWithKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token UserID: (NSString *) userId
 {
     self = [super init];
     if (self)
     {
+        // Additional initialization
         self.httpVerb = @"GET";
-        self.url = @"https://www.flickr.com/services/oauth/request_token";
+        self.url = @"https://api.flickr.com/services/rest/";
         self.version = @"oauth_version=1.0";
         self.signatureMethod = @"oauth_signature_method=HMAC-SHA1";
         // timestamp
@@ -26,15 +27,19 @@
         self.nonce = [NSString stringWithFormat:@"oauth_nonce=%@", ts];
         //
         self.consumerKey = [NSString stringWithFormat:@"oauth_consumer_key=%@", key];
+        self.consumerSecret = secret;
         //
-        self.consumerSecret = [NSString stringWithFormat:@"%@&", secret];
-        // Encode callback URL
-        self.callbackUrl = [NSString stringWithFormat:@"oauth_callback=%@", OFEscapedURLStringFromNSStringWithExtraEscapedChars(callbackUrl, kEscapeChars)];
+        self.authToken = [NSString stringWithFormat:@"oauth_token=%@", token];
+        //
+        self.userId = [NSString stringWithFormat:@"user_id=%@", userId];
+        //
+        self.method = @"method=flickr.photosets.getList";
+        self.nojsoncallback = @"nojsoncallback=1";
+        self.format = @"format=json";
         //
         NSString* signow = [self calculateSignature];
-        NSLog(@"signow 1 beofore -> %@",  signow);
         signow = [signow stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
-        NSLog(@"signow 1 after -> %@",  signow);
+        NSLog(@"photosetgetlist signow 1 -> %@",  signow);
         self.signature = [NSString stringWithFormat:@"oauth_signature=%@", signow];
     }
     return self;
@@ -45,12 +50,16 @@
     // Create array
     NSMutableArray* array = [[NSMutableArray alloc] init];
     // Add the values to array
+    [array addObject:self.nojsoncallback];
+    [array addObject:self.format];
+    [array addObject:self.consumerKey];
+    [array addObject:self.authToken];
+    [array addObject:self.method];
+    [array addObject:self.userId];
     [array addObject:self.nonce];
     [array addObject:self.timeStamp];
-    [array addObject:self.consumerKey];
     [array addObject:self.signatureMethod];
     [array addObject:self.version];
-    [array addObject:self.callbackUrl];
     // Sort the array
     NSArray* sortedArray = [array sortedArrayUsingSelector:@selector(compare:)];
     // Create string buffer
@@ -73,9 +82,7 @@
 
 - (NSString *) getUrl
 {
-    NSString* signow = [self calculateSignature];
-    NSLog(@"signow 2 -> %@",  signow);
-    return [NSString stringWithFormat:@"%@?%@&%@&%@&%@&%@&%@&%@", self.url, self.nonce, self.timeStamp, self.consumerKey, self.signatureMethod, self.version, self.callbackUrl, self.signature];
+    return [NSString stringWithFormat:@"%@?%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@", self.url, self.nojsoncallback, self.format, self.consumerKey, self.authToken, self.method, self.userId, self.signature, self.nonce, self.timeStamp, self.signatureMethod, self.version];
 }
 
 @end

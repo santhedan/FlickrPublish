@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		065138C61B54C5000034A3CB /* PhotoSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 065138C51B54C5000034A3CB /* PhotoSet.m */; };
+		065138CA1B54C7D00034A3CB /* PhotoSetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 065138C91B54C7D00034A3CB /* PhotoSetCell.m */; };
 		067C2F391B4E927C004A7E55 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F381B4E927C004A7E55 /* main.m */; };
 		067C2F3C1B4E927C004A7E55 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F3B1B4E927C004A7E55 /* AppDelegate.m */; };
 		067C2F3F1B4E927C004A7E55 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F3E1B4E927C004A7E55 /* ViewController.m */; };
@@ -25,6 +27,8 @@
 		06A027AA1B4F82370000ED81 /* RequestTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027A91B4F82370000ED81 /* RequestTokenOperation.m */; };
 		06A027B11B4F8E520000ED81 /* OFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027B01B4F8E520000ED81 /* OFUtilities.m */; };
 		06A027B51B4FDE760000ED81 /* AccessTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027B41B4FDE760000ED81 /* AccessTokenOperation.m */; };
+		06A027B81B53A4B10000ED81 /* PhotosetGetList.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027B71B53A4B10000ED81 /* PhotosetGetList.m */; };
+		06A027BB1B53AA940000ED81 /* PhotosetGetListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027BA1B53AA940000ED81 /* PhotosetGetListOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		065138C41B54C5000034A3CB /* PhotoSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSet.h; sourceTree = "<group>"; };
+		065138C51B54C5000034A3CB /* PhotoSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSet.m; sourceTree = "<group>"; };
+		065138C81B54C7D00034A3CB /* PhotoSetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSetCell.h; sourceTree = "<group>"; };
+		065138C91B54C7D00034A3CB /* PhotoSetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSetCell.m; sourceTree = "<group>"; };
 		067C2F331B4E927C004A7E55 /* FlickrPublish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrPublish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		067C2F371B4E927C004A7E55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		067C2F381B4E927C004A7E55 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -73,6 +81,10 @@
 		06A027B21B4FA3DB0000ED81 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		06A027B31B4FDE760000ED81 /* AccessTokenOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessTokenOperation.h; sourceTree = "<group>"; };
 		06A027B41B4FDE760000ED81 /* AccessTokenOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessTokenOperation.m; sourceTree = "<group>"; };
+		06A027B61B53A4B10000ED81 /* PhotosetGetList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosetGetList.h; sourceTree = "<group>"; };
+		06A027B71B53A4B10000ED81 /* PhotosetGetList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosetGetList.m; sourceTree = "<group>"; };
+		06A027B91B53AA940000ED81 /* PhotosetGetListOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosetGetListOperation.h; sourceTree = "<group>"; };
+		06A027BA1B53AA940000ED81 /* PhotosetGetListOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosetGetListOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +105,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		065138C31B54C4EA0034A3CB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				065138C41B54C5000034A3CB /* PhotoSet.h */,
+				065138C51B54C5000034A3CB /* PhotoSet.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		065138C71B54C7AF0034A3CB /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				065138C81B54C7D00034A3CB /* PhotoSetCell.h */,
+				065138C91B54C7D00034A3CB /* PhotoSetCell.m */,
+			);
+			name = TableCell;
+			sourceTree = "<group>";
+		};
 		067C2F2A1B4E927B004A7E55 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +144,7 @@
 		067C2F351B4E927C004A7E55 /* FlickrPublish */ = {
 			isa = PBXGroup;
 			children = (
+				065138C71B54C7AF0034A3CB /* TableCell */,
 				06A027AB1B4F8DEF0000ED81 /* OF */,
 				06A027991B4F7AD00000ED81 /* Flickr */,
 				06A027951B4F7A0B0000ED81 /* Segue */,
@@ -186,6 +217,8 @@
 				06A027A91B4F82370000ED81 /* RequestTokenOperation.m */,
 				06A027B31B4FDE760000ED81 /* AccessTokenOperation.h */,
 				06A027B41B4FDE760000ED81 /* AccessTokenOperation.m */,
+				06A027B91B53AA940000ED81 /* PhotosetGetListOperation.h */,
+				06A027BA1B53AA940000ED81 /* PhotosetGetListOperation.m */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -209,6 +242,7 @@
 		06A027991B4F7AD00000ED81 /* Flickr */ = {
 			isa = PBXGroup;
 			children = (
+				065138C31B54C4EA0034A3CB /* Model */,
 				06A0279B1B4F7AFE0000ED81 /* BaseRequest.h */,
 				06A0279C1B4F7AFE0000ED81 /* BaseRequest.m */,
 				06A0279E1B4F7FDC0000ED81 /* OAuth */,
@@ -233,6 +267,8 @@
 				06A027A31B4F80560000ED81 /* RequestToken.m */,
 				06A027A51B4F81480000ED81 /* AccessToken.h */,
 				06A027A61B4F81480000ED81 /* AccessToken.m */,
+				06A027B61B53A4B10000ED81 /* PhotosetGetList.h */,
+				06A027B71B53A4B10000ED81 /* PhotosetGetList.m */,
 			);
 			name = OAuth;
 			sourceTree = "<group>";
@@ -350,15 +386,19 @@
 				067C2F3F1B4E927C004A7E55 /* ViewController.m in Sources */,
 				06A027981B4F7A550000ED81 /* StartupSegue.m in Sources */,
 				067C2F621B4E93CE004A7E55 /* OAuthController.m in Sources */,
+				065138CA1B54C7D00034A3CB /* PhotoSetCell.m in Sources */,
 				06A027AA1B4F82370000ED81 /* RequestTokenOperation.m in Sources */,
 				067C2F3C1B4E927C004A7E55 /* AppDelegate.m in Sources */,
 				06A0279D1B4F7AFE0000ED81 /* BaseRequest.m in Sources */,
+				06A027BB1B53AA940000ED81 /* PhotosetGetListOperation.m in Sources */,
 				06A027A11B4F80220000ED81 /* FlickrBaseRequest.m in Sources */,
 				06A027B51B4FDE760000ED81 /* AccessTokenOperation.m in Sources */,
 				067C2F651B4E93EB004A7E55 /* MainController.m in Sources */,
 				06A027A71B4F81480000ED81 /* AccessToken.m in Sources */,
+				065138C61B54C5000034A3CB /* PhotoSet.m in Sources */,
 				06A027B11B4F8E520000ED81 /* OFUtilities.m in Sources */,
 				06A027A41B4F80560000ED81 /* RequestToken.m in Sources */,
+				06A027B81B53A4B10000ED81 /* PhotosetGetList.m in Sources */,
 				067C2F391B4E927C004A7E55 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
