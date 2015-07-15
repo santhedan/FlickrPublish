@@ -24,6 +24,6 @@ Hence I decided to create this application: The application flow is simple right
 
 7. It will then list all groups that the photo can be added to - All groups that the photo is already part of is not listed at all.
 
-8. Now select your groups and the tap "Add"!
+8. Now select your groups and then tap "Add"!
 
 9. That's it.
