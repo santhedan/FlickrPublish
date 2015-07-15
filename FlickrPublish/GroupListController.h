@@ -10,8 +10,9 @@
 #import "Photo.h"
 #import "PhotosGetAllContextsOperation.h"
 #import "PeopleGetGroupsOperation.h"
+#import "GroupsPoolsAddOperation.h"
 
-@interface GroupListController : UIViewController <UITableViewDataSource, UITableViewDelegate, PhotosGetAllContextsHandler, PeopleGetGroupsOperationHandler>
+@interface GroupListController : UIViewController <UITableViewDataSource, UITableViewDelegate, PhotosGetAllContextsHandler, PeopleGetGroupsOperationHandler, GroupsPoolsAddOperationHandler>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageToAdd;
 
@@ -26,5 +27,7 @@
 - (IBAction)handleAdd:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+- (void) addedToGroups: (NSArray *) groups;
 
 @end

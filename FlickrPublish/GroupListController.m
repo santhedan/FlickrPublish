@@ -15,6 +15,7 @@
 #import "PeopleGetGroups.h"
 #import "Group.h"
 #import "GroupCell.h"
+#import "GroupsPoolsAddOperation.h"
 
 @interface GroupListController ()
 
@@ -74,6 +75,12 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Group* g = [self.groups objectAtIndex:indexPath.item];
+    g.selected = !(g.selected);
+}
+
 - (void) receivedGroups: (NSArray *) groups
 {
     self.groups = groups;
@@ -97,7 +104,37 @@
 
 - (IBAction)handleAdd:(id)sender
 {
-    
+    // Create an array of selected groups
+    NSMutableArray* gArr = [[NSMutableArray alloc] init];
+    for (Group* g in self.groups)
+    {
+        if (g.selected)
+        {
+            [gArr addObject:g];
+        }
+    }
+    if (gArr.count > 0)
+    {
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        // Create request
+        GroupsPoolsAddOperation* op = [[GroupsPoolsAddOperation alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token PhotoId:self.photo.id Groups:gArr Delegate:self];
+        //
+        [delegate enqueueOperation:op];
+        //
+        [self.activityIndicator startAnimating];
+    }
+}
+
+- (void) addedToGroups: (NSArray *) groups
+{
+    //
+    AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    // Create request and operation and execute
+    PhotosGetAllContexts* request = [[PhotosGetAllContexts alloc] initWithKey: API_KEY Secret: delegate.hmacsha1Key Token:delegate.token PhotoId:self.photo.id];
+    // Create operation
+    PhotosGetAllContextsOperation* op = [[PhotosGetAllContextsOperation alloc] initWithRequest:request Delegate:self];
+    //
+    [delegate enqueueOperation:op];
 }
 
 @end
