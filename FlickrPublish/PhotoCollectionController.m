@@ -12,10 +12,13 @@
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "PhotosetGetPhotosOperation.h"
+#import "GroupListController.h"
 
 @interface PhotoCollectionController ()
 
 @property (nonatomic, strong) NSArray* photos;
+
+@property (nonatomic, strong) Photo* selectedPhoto;
 
 @end
 
@@ -59,15 +62,15 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     self.photos = nil;
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    GroupListController* ctrl = (GroupListController *)[segue destinationViewController];
+    ctrl.photo = self.selectedPhoto;
 }
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -119,6 +122,12 @@ static NSString * const reuseIdentifier = @"PhotoCell";
 - (void) willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [self.collectionView reloadData];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedPhoto = [self.photos objectAtIndex:indexPath.item];
+    [self performSegueWithIdentifier:@"ShowGroups" sender:self];
 }
 
 /*
