@@ -81,6 +81,9 @@
     PhotoSetCell* cell = [tableView dequeueReusableCellWithIdentifier:@"AlbumCell"];
     PhotoSet* set = [self.photosets objectAtIndex:indexPath.item];
     cell.photosetName.text = set.name;
+    cell.photos.text = set.photos;
+    cell.videos.text = set.videos;
+    cell.views.text = set.views;
     return cell;
 }
 

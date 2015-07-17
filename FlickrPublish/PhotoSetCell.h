@@ -12,4 +12,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *photosetName;
 
+@property (weak, nonatomic) IBOutlet UILabel *photos;
+
+@property (weak, nonatomic) IBOutlet UILabel *videos;
+
+@property (weak, nonatomic) IBOutlet UILabel *views;
+
 @end

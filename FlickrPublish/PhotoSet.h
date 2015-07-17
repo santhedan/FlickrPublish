@@ -14,4 +14,10 @@
 
 @property (nonatomic, strong) NSString* name;
 
+@property (nonatomic, strong) NSString* photos;
+
+@property (nonatomic, strong) NSString* videos;
+
+@property (nonatomic, strong) NSString* views;
+
 @end

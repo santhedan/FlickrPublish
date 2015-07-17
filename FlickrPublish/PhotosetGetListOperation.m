@@ -56,6 +56,9 @@
                 {
                     PhotoSet* pset = [[PhotoSet alloc] init];
                     pset.id = [set valueForKey:@"id"];
+                    pset.photos = [NSString stringWithFormat:@"%@", [set valueForKey:@"photos"]];
+                    pset.videos = [NSString stringWithFormat:@"%@", [set valueForKey:@"videos"]];
+                    pset.views = [NSString stringWithFormat:@"%@", [set valueForKey:@"count_views"]];
                     NSDictionary* nameDict = [set valueForKey:@"title"];
                     pset.name = [nameDict valueForKey:@"_content"];
                     [photosets addObject:pset];
