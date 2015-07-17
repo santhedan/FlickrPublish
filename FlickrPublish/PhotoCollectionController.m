@@ -105,7 +105,7 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     float collectionViewWidth = collectionView.frame.size.width - 20;
     
     // Divide this with the minimum desired width of the cell
-    int itemsInRow = collectionViewWidth / 240;
+    int itemsInRow = collectionViewWidth / 150;
     
     // So we can fit "itemsInRow"
     int desiredItemWidth = (collectionViewWidth - (itemsInRow - 1) * 10) / itemsInRow;
