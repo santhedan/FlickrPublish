@@ -67,7 +67,6 @@
             // Convery response to string
             NSString* strResponse = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
             //
-            NSLog(@"Response -> %@", strResponse);
             // Did this call succeed?
             if ([strResponse containsString:@"\"stat\": \"ok\""])
             {

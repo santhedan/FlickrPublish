@@ -77,7 +77,6 @@
     BOOL result = OFExtractOAuthCallback(url, [NSURL URLWithString:CALLBACK_URL], &token, &verifier);
     if (!result)
     {
-        NSLog(@"Cannot obtain token/secret from URL: %@", [url absoluteString]);
         return NO;
     }
     // Create secret

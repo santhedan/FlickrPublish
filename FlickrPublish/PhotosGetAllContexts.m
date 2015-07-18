@@ -39,7 +39,6 @@
         //
         NSString* signow = [self calculateSignature];
         signow = [signow stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
-        NSLog(@"PhotosGetAllContexts signow 1 -> %@",  signow);
         self.signature = [NSString stringWithFormat:@"oauth_signature=%@", signow];
     }
     return self;
@@ -74,8 +73,6 @@
     // Now append first and last part
     [firstPart appendString:encoded];
     //
-    NSLog(@"Encoding data (%@)", firstPart);
-    NSLog(@"Using key (%@)", self.consumerSecret);
     // Now calculate HMAC-SHA1 of data
     return OFHMACSha1Base64(self.consumerSecret, firstPart);
 }

@@ -32,9 +32,7 @@
         self.callbackUrl = [NSString stringWithFormat:@"oauth_callback=%@", OFEscapedURLStringFromNSStringWithExtraEscapedChars(callbackUrl, kEscapeChars)];
         //
         NSString* signow = [self calculateSignature];
-        NSLog(@"signow 1 beofore -> %@",  signow);
         signow = [signow stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
-        NSLog(@"signow 1 after -> %@",  signow);
         self.signature = [NSString stringWithFormat:@"oauth_signature=%@", signow];
     }
     return self;
@@ -65,16 +63,12 @@
     // Now append first and last part
     [firstPart appendString:encoded];
     //
-    NSLog(@"Encoding data (%@)", firstPart);
-    NSLog(@"Using key (%@)", self.consumerSecret);
     // Now calculate HMAC-SHA1 of data
     return OFHMACSha1Base64(self.consumerSecret, firstPart);
 }
 
 - (NSString *) getUrl
 {
-    NSString* signow = [self calculateSignature];
-    NSLog(@"signow 2 -> %@",  signow);
     return [NSString stringWithFormat:@"%@?%@&%@&%@&%@&%@&%@&%@", self.url, self.nonce, self.timeStamp, self.consumerKey, self.signatureMethod, self.version, self.callbackUrl, self.signature];
 }
 

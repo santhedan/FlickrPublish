@@ -35,8 +35,6 @@
     // Create a NSURL from the request
     NSURL *url = [NSURL URLWithString:[self.request getUrl]];
     //
-    NSLog(@"URL -> %@", [url description]);
-    //
     NSData* response = [NSData dataWithContentsOfURL:url];
     // Create empty return value
     NSMutableArray* groups = [[NSMutableArray alloc] init];

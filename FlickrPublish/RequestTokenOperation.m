@@ -42,7 +42,6 @@
     // Create a NSURL from the request
     NSURL *url = [NSURL URLWithString:[self.request getUrl]];
     NSString* response = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
-    NSLog(@"response -> %@", response);
     if (error == nil)
     {
         // Check if the response starts with oauth_callback_confirmed=true
