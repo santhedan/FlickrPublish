@@ -26,4 +26,6 @@
 
 @property (nonatomic, assign) NSInteger faves;
 
+@property (nonatomic, assign) NSInteger comments;
+
 @end

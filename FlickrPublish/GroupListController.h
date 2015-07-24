@@ -20,7 +20,7 @@
 
 - (void) receivedGroups: (NSArray *) groups;
 
-- (void) receivedPhotoGroups: (NSArray *) groups;
+- (void) receivedPhotoGroups: (NSArray *) groups Info: (PhotoInfo *) info;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

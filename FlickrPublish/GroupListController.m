@@ -23,6 +23,8 @@
 
 @property (nonatomic, strong) NSArray* groups;
 
+@property (nonatomic, strong) PhotoInfo *info;
+
 @end
 
 @implementation GroupListController
@@ -90,9 +92,10 @@
     });
 }
 
-- (void) receivedPhotoGroups: (NSArray *) groups
+- (void) receivedPhotoGroups: (NSArray *) groups Info: (PhotoInfo *) info
 {
     self.groupsToExclude = groups;
+    self.info = info;
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     // Create request and operation and execute
     PeopleGetGroups* request = [[PeopleGetGroups alloc] initWithKey: API_KEY Secret: delegate.hmacsha1Key Token:delegate.token UserID:delegate.nsid];

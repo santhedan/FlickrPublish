@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		063A9D131B62510100EF05F3 /* PhotosGetFavorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 063A9D121B62510100EF05F3 /* PhotosGetFavorites.m */; };
+		063A9D161B62511F00EF05F3 /* PhotosGetInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 063A9D151B62511F00EF05F3 /* PhotosGetInfo.m */; };
+		063A9D191B6254C200EF05F3 /* PhotoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 063A9D181B6254C200EF05F3 /* PhotoInfo.m */; };
 		065138C61B54C5000034A3CB /* PhotoSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 065138C51B54C5000034A3CB /* PhotoSet.m */; };
 		065138CA1B54C7D00034A3CB /* PhotoSetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 065138C91B54C7D00034A3CB /* PhotoSetCell.m */; };
 		065138CD1B54D0AB0034A3CB /* PhotoCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 065138CC1B54D0AB0034A3CB /* PhotoCollectionController.m */; };
@@ -60,6 +63,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		063A9D111B62510100EF05F3 /* PhotosGetFavorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosGetFavorites.h; sourceTree = "<group>"; };
+		063A9D121B62510100EF05F3 /* PhotosGetFavorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosGetFavorites.m; sourceTree = "<group>"; };
+		063A9D141B62511F00EF05F3 /* PhotosGetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosGetInfo.h; sourceTree = "<group>"; };
+		063A9D151B62511F00EF05F3 /* PhotosGetInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosGetInfo.m; sourceTree = "<group>"; };
+		063A9D171B6254C200EF05F3 /* PhotoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoInfo.h; sourceTree = "<group>"; };
+		063A9D181B6254C200EF05F3 /* PhotoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoInfo.m; sourceTree = "<group>"; };
 		065138C41B54C5000034A3CB /* PhotoSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSet.h; sourceTree = "<group>"; };
 		065138C51B54C5000034A3CB /* PhotoSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSet.m; sourceTree = "<group>"; };
 		065138C81B54C7D00034A3CB /* PhotoSetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSetCell.h; sourceTree = "<group>"; };
@@ -165,6 +174,8 @@
 				065138D51B54D75C0034A3CB /* Photo.m */,
 				065138E31B5617DB0034A3CB /* Group.h */,
 				065138E41B5617DB0034A3CB /* Group.m */,
+				063A9D171B6254C200EF05F3 /* PhotoInfo.h */,
+				063A9D181B6254C200EF05F3 /* PhotoInfo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -353,6 +364,10 @@
 				065138E71B5628810034A3CB /* PeopleGetGroups.m */,
 				065138F51B564AC00034A3CB /* GroupsPoolsAdd.h */,
 				065138F61B564AC00034A3CB /* GroupsPoolsAdd.m */,
+				063A9D111B62510100EF05F3 /* PhotosGetFavorites.h */,
+				063A9D121B62510100EF05F3 /* PhotosGetFavorites.m */,
+				063A9D141B62511F00EF05F3 /* PhotosGetInfo.h */,
+				063A9D151B62511F00EF05F3 /* PhotosGetInfo.m */,
 			);
 			name = FlickrRequests;
 			sourceTree = "<group>";
@@ -489,8 +504,10 @@
 				06A027BB1B53AA940000ED81 /* PhotosetGetListOperation.m in Sources */,
 				065138F41B5639F70034A3CB /* GroupCell.m in Sources */,
 				065138E81B5628810034A3CB /* PeopleGetGroups.m in Sources */,
+				063A9D131B62510100EF05F3 /* PhotosGetFavorites.m in Sources */,
 				06A027A11B4F80220000ED81 /* FlickrBaseRequest.m in Sources */,
 				06A027B51B4FDE760000ED81 /* AccessTokenOperation.m in Sources */,
+				063A9D191B6254C200EF05F3 /* PhotoInfo.m in Sources */,
 				067C2F651B4E93EB004A7E55 /* MainController.m in Sources */,
 				065138DC1B5503AF0034A3CB /* Utility.m in Sources */,
 				065138E51B5617DB0034A3CB /* Group.m in Sources */,
@@ -503,6 +520,7 @@
 				065138D91B54D7DC0034A3CB /* PhotosetGetPhotosOperation.m in Sources */,
 				067C2F391B4E927C004A7E55 /* main.m in Sources */,
 				065138D01B54D4D30034A3CB /* PhotoCell.m in Sources */,
+				063A9D161B62511F00EF05F3 /* PhotosGetInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "PhotosGetAllContexts.h"
+#import "PhotoInfo.h"
 
 @protocol PhotosGetAllContextsHandler <NSObject>
 
 @required
 
-- (void) receivedPhotoGroups: (NSArray *) groups;
+- (void) receivedPhotoGroups: (NSArray *) groups Info: (PhotoInfo *) info;
 
 @end
 

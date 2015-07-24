@@ -8,6 +8,8 @@
 
 #import "PhotosGetAllContextsOperation.h"
 #import "Group.h"
+#import "PhotosGetInfo.h"
+#import "PhotosGetFavorites.h"
 
 @interface PhotosGetAllContextsOperation()
 
@@ -60,8 +62,52 @@
             }
         }
     }
+    // Create photo info object
+    PhotoInfo* info = [[PhotoInfo alloc] init];
+    // Create get info request
+    PhotosGetInfo* infoRequest = [[PhotosGetInfo alloc] initWithKey:self.request.consumerKey Secret:self.request.consumerSecret Token:self.request.authToken PhotoId:self.request.photoId];
+    url = [NSURL URLWithString:[infoRequest getUrl]];
+    response = [NSData dataWithContentsOfURL:url];
+    // Parse the data
+    if (response != nil)
+    {
+        // Error code
+        NSError* localError = nil;
+        NSDictionary* infos = [NSJSONSerialization JSONObjectWithData:response options:0 error:&localError];
+        if (localError == nil)
+        {
+            NSString* status = [infos valueForKey:@"stat"];
+            if ([status isEqualToString:@"ok"])
+            {
+                NSNumber* isPublic = [[[infos valueForKey:@"photo"] valueForKey:@"visibility"] valueForKey:@"ispublic"];
+                info.isPublic = (isPublic.intValue == 1);
+                NSString* comments = [[[infos valueForKey:@"photo"] valueForKey:@"comments"] valueForKey:@"_content"];
+                info.comments = [comments intValue];
+            }
+        }
+    }
+    // Create get fav request
+    PhotosGetFavorites* favRequest = [[PhotosGetFavorites alloc] initWithKey:self.request.consumerKey Secret:self.request.consumerSecret Token:self.request.authToken PhotoId:self.request.photoId];
+    url = [NSURL URLWithString:[favRequest getUrl]];
+    response = [NSData dataWithContentsOfURL:url];
+    // Parse the data
+    if (response != nil)
+    {
+        // Error code
+        NSError* localError = nil;
+        NSDictionary* favs = [NSJSONSerialization JSONObjectWithData:response options:0 error:&localError];
+        if (localError == nil)
+        {
+            NSString* status = [favs valueForKey:@"stat"];
+            if ([status isEqualToString:@"ok"])
+            {
+                NSString* favCount = [[favs valueForKey:@"photo"] valueForKey:@"total"];
+                info.faves = [favCount intValue];
+            }
+        }
+    }
     // Call delegate
-    [self.delegate receivedPhotoGroups:groups];
+    [self.delegate receivedPhotoGroups:groups Info: info];
 }
 
 @end
