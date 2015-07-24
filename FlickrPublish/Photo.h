@@ -22,4 +22,8 @@
 
 @property (nonatomic, assign) NSInteger width;
 
+@property (nonatomic, assign) NSInteger views;
+
+@property (nonatomic, assign) NSInteger faves;
+
 @end

@@ -37,7 +37,7 @@
         self.nojsoncallback = @"nojsoncallback=1";
         self.format = @"format=json";
         //
-        self.extras = @"extras=url_s";
+        self.extras = @"extras=url_s,views";
         self.photosetId = [NSString stringWithFormat:@"photoset_id=%@", photosetId];
         //
         NSString* signow = [self calculateSignature];

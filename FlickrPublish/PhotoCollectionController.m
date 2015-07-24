@@ -92,6 +92,7 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     // Configure the cell
     Photo* p = [self.photos objectAtIndex:indexPath.item];
     cell.imageTitle.text = p.name;
+    cell.imageViews.text = [NSString stringWithFormat:@"%ld", p.views];
     cell.thumbnailSmall.image = [UIImage imageWithData:p.imageData];
     
     return cell;

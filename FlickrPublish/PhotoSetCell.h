@@ -18,4 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *views;
 
+@property (weak, nonatomic) IBOutlet UIImageView *photosetPhoto;
+
 @end

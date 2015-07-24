@@ -36,6 +36,7 @@
         self.method = @"method=flickr.photosets.getList";
         self.nojsoncallback = @"nojsoncallback=1";
         self.format = @"format=json";
+        self.extra = @"primary_photo_extras=url_s";
         //
         NSString* signow = [self calculateSignature];
         signow = [signow stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
@@ -59,6 +60,7 @@
     [array addObject:self.timeStamp];
     [array addObject:self.signatureMethod];
     [array addObject:self.version];
+    [array addObject:self.extra];
     // Sort the array
     NSArray* sortedArray = [array sortedArrayUsingSelector:@selector(compare:)];
     // Create string buffer
@@ -79,7 +81,7 @@
 
 - (NSString *) getUrl
 {
-    return [NSString stringWithFormat:@"%@?%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@", self.url, self.nojsoncallback, self.format, self.consumerKey, self.authToken, self.method, self.userId, self.signature, self.nonce, self.timeStamp, self.signatureMethod, self.version];
+    return [NSString stringWithFormat:@"%@?%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@", self.url, self.nojsoncallback, self.format, self.consumerKey, self.authToken, self.method, self.userId, self.signature, self.nonce, self.timeStamp, self.signatureMethod, self.version, self.extra];
 }
 
 @end

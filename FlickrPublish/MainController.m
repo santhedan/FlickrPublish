@@ -84,6 +84,7 @@
     cell.photos.text = set.photos;
     cell.videos.text = set.videos;
     cell.views.text = set.views;
+    cell.photosetPhoto.image = [UIImage imageWithData:set.photosetPhoto];
     return cell;
 }
 

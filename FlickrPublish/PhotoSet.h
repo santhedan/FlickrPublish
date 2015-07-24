@@ -20,4 +20,6 @@
 
 @property (nonatomic, strong) NSString* views;
 
+@property (nonatomic, strong) NSData* photosetPhoto;
+
 @end
