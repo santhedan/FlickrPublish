@@ -16,4 +16,6 @@
 
 @property (nonatomic, assign) BOOL selected;
 
+@property (nonatomic, assign) NSInteger remaining;
+
 @end

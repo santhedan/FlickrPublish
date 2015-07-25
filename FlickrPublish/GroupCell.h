@@ -12,4 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *groupName;
 
+@property (weak, nonatomic) IBOutlet UILabel *remainingCount;
+
 @end

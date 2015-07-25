@@ -46,6 +46,8 @@
     [delegate enqueueOperation:op];
     //
     [self.activityIndicator startAnimating];
+    //
+    [self.tableView setLayoutMargins:UIEdgeInsetsZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,6 +76,7 @@
     GroupCell* cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell"];
     Group* g = [self.groups objectAtIndex:indexPath.item];
     cell.groupName.text = g.name;
+    cell.remainingCount.text = [NSString stringWithFormat:@"Remaining: %ld", (long)g.remaining];
     return cell;
 }
 
@@ -89,9 +92,9 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.activityIndicator stopAnimating];
         //
-        self.faveCount.text = [NSString stringWithFormat:@"%ld", self.info.faves];
-        self.commentCount.text = [NSString stringWithFormat:@"%ld", self.info.comments];
-        self.viewCount.text = [NSString stringWithFormat:@"%ld", self.photo.views];
+        self.faveCount.text = [NSString stringWithFormat:@"%ld", (long)self.info.faves];
+        self.commentCount.text = [NSString stringWithFormat:@"%ld", (long)self.info.comments];
+        self.viewCount.text = [NSString stringWithFormat:@"%ld", (long)self.photo.views];
         if (self.info.isPublic)
         {
             self.publicState.text = @"Public";

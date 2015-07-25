@@ -385,33 +385,47 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VVP-aM-8uO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="61" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VVP-aM-8uO">
                                 <rect key="frame" x="0.0" y="150" width="600" height="412"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupCell" id="vqZ-H1-SLl" customClass="GroupCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupCell" rowHeight="61" id="vqZ-H1-SLl" customClass="GroupCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vqZ-H1-SLl" id="5wK-XK-EWy">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osP-1g-fz3">
-                                                    <rect key="frame" x="8" y="8" width="584" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osP-1g-fz3">
+                                                    <rect key="frame" x="8" y="0.0" width="584" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="XIc-jp-kgE"/>
+                                                        <constraint firstAttribute="height" constant="40" id="XIc-jp-kgE"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GillSans-SemiBoldItalic" family="Gill Sans" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5o-Nw-RUu">
+                                                    <rect key="frame" x="8" y="40" width="592" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="Ysh-2X-XPC"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="osP-1g-fz3" firstAttribute="trailing" secondItem="5wK-XK-EWy" secondAttribute="trailingMargin" id="3Le-rn-P6h"/>
-                                                <constraint firstItem="osP-1g-fz3" firstAttribute="top" secondItem="5wK-XK-EWy" secondAttribute="topMargin" id="Jjr-3a-dKh"/>
+                                                <constraint firstItem="k5o-Nw-RUu" firstAttribute="leading" secondItem="5wK-XK-EWy" secondAttribute="leadingMargin" id="4eM-cC-tCM"/>
+                                                <constraint firstItem="osP-1g-fz3" firstAttribute="top" secondItem="5wK-XK-EWy" secondAttribute="topMargin" constant="-8" id="Jjr-3a-dKh"/>
                                                 <constraint firstItem="osP-1g-fz3" firstAttribute="leading" secondItem="5wK-XK-EWy" secondAttribute="leadingMargin" id="QAl-LG-V8Z"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="k5o-Nw-RUu" secondAttribute="trailing" constant="-8" id="QZt-Rh-kKm"/>
+                                                <constraint firstItem="k5o-Nw-RUu" firstAttribute="top" secondItem="osP-1g-fz3" secondAttribute="bottom" id="iGn-Uz-FA4"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="groupName" destination="osP-1g-fz3" id="dFO-Hg-t1d"/>
+                                            <outlet property="remainingCount" destination="k5o-Nw-RUu" id="6o1-yM-BXm"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -566,7 +580,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNY-4x-zvS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3567" y="1303.5"/>
+            <point key="canvasLocation" x="3567" y="1303"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IJj-6d-1Lz">

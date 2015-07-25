@@ -61,7 +61,11 @@
                     if (![self.groupsToExclude containsObject:g.id])
                     {
                         g.name = [group valueForKey:@"name"];
-                        [groups addObject:g];
+                        g.remaining = ((NSString *)[[group valueForKey:@"throttle"] valueForKey:@"remaining"]).integerValue;
+                        if (g.remaining > 0)
+                        {
+                            [groups addObject:g];
+                        }
                     }
                 }
             }

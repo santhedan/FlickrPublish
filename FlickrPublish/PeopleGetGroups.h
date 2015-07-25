@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) NSString* userId;
 
+@property (nonatomic, strong) NSString* extra;
+
 - (instancetype) initWithKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token UserID: (NSString *) userId;
 
 - (NSString *) getUrl;
