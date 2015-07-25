@@ -11,6 +11,13 @@
 #import "Constants.h"
 #import "AppDelegate.h"
 #import "AccessToken.h"
+#import "WebAuthController.h"
+
+@interface OAuthController()
+
+@property (nonatomic, strong) NSURL* urlToLoad;
+
+@end
 
 @implementation OAuthController
 
@@ -44,10 +51,9 @@
     delegate.secret = secret;
     delegate.token = token;
     
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.flickr.com/services/oauth/authorize?oauth_token=%@", token]];
-    
+    self.urlToLoad = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.flickr.com/services/oauth/authorize?oauth_token=%@", token]];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[UIApplication sharedApplication] openURL:url];
+        [self performSegueWithIdentifier:@"WebAuth" sender:self];
     });
 }
 
@@ -96,14 +102,18 @@
     });
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"WebAuth"])
+    {
+        WebAuthController* ctrl = (WebAuthController *)segue.destinationViewController;
+        ctrl.urlToLoad = self.urlToLoad;
+    }
 }
-*/
 
 @end

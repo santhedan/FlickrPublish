@@ -50,6 +50,7 @@
 		06A027B51B4FDE760000ED81 /* AccessTokenOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027B41B4FDE760000ED81 /* AccessTokenOperation.m */; };
 		06A027B81B53A4B10000ED81 /* PhotosetGetList.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027B71B53A4B10000ED81 /* PhotosetGetList.m */; };
 		06A027BB1B53AA940000ED81 /* PhotosetGetListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027BA1B53AA940000ED81 /* PhotosetGetListOperation.m */; };
+		06A7A3EA1B635CE900E163C0 /* WebAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7A3E91B635CE900E163C0 /* WebAuthController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,8 @@
 		06A027B71B53A4B10000ED81 /* PhotosetGetList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosetGetList.m; sourceTree = "<group>"; };
 		06A027B91B53AA940000ED81 /* PhotosetGetListOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosetGetListOperation.h; sourceTree = "<group>"; };
 		06A027BA1B53AA940000ED81 /* PhotosetGetListOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosetGetListOperation.m; sourceTree = "<group>"; };
+		06A7A3E81B635CE900E163C0 /* WebAuthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebAuthController.h; sourceTree = "<group>"; };
+		06A7A3E91B635CE900E163C0 /* WebAuthController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAuthController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +274,8 @@
 				065138CC1B54D0AB0034A3CB /* PhotoCollectionController.m */,
 				065138EF1B562E690034A3CB /* GroupListController.h */,
 				065138F01B562E690034A3CB /* GroupListController.m */,
+				06A7A3E81B635CE900E163C0 /* WebAuthController.h */,
+				06A7A3E91B635CE900E163C0 /* WebAuthController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -488,6 +493,7 @@
 			files = (
 				065138F71B564AC00034A3CB /* GroupsPoolsAdd.m in Sources */,
 				065138E21B5616780034A3CB /* PhotosGetAllContextsOperation.m in Sources */,
+				06A7A3EA1B635CE900E163C0 /* WebAuthController.m in Sources */,
 				065138D61B54D75C0034A3CB /* Photo.m in Sources */,
 				067C2F3F1B4E927C004A7E55 /* ViewController.m in Sources */,
 				065138EB1B56294A0034A3CB /* PeopleGetGroupsOperation.m in Sources */,

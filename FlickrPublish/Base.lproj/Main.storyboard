@@ -73,6 +73,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="9fq-JX-GZ2" id="6Sg-t0-uww"/>
                         <segue destination="lMj-8h-hH1" kind="custom" identifier="AfterAuth" customClass="StartupSegue" id="NmL-Sr-huR"/>
+                        <segue destination="h4l-ww-dTX" kind="presentation" identifier="WebAuth" id="42F-vB-BiB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0u-iM-411" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -229,6 +230,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oC2-dF-080" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2041" y="1304"/>
+        </scene>
+        <!--Web Auth Controller-->
+        <scene sceneID="oDp-In-PQF">
+            <objects>
+                <viewController id="h4l-ww-dTX" customClass="WebAuthController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nKy-GE-z5H"/>
+                        <viewControllerLayoutGuide type="bottom" id="d5a-05-A8y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7BC-1Q-9Br">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R86-o4-Edy">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="R86-o4-Edy" firstAttribute="top" secondItem="7BC-1Q-9Br" secondAttribute="topMargin" id="An8-vn-mj8"/>
+                            <constraint firstItem="R86-o4-Edy" firstAttribute="leading" secondItem="7BC-1Q-9Br" secondAttribute="leadingMargin" constant="-16" id="Aut-b6-ilq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="R86-o4-Edy" secondAttribute="trailing" constant="-16" id="IHZ-My-BOg"/>
+                            <constraint firstItem="d5a-05-A8y" firstAttribute="top" secondItem="R86-o4-Edy" secondAttribute="bottom" id="ld2-OP-v0R"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="webView" destination="R86-o4-Edy" id="R5D-Q6-bFR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dmZ-uh-yMz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2728" y="585"/>
         </scene>
         <!--Photo Collection Controller-->
         <scene sceneID="JX5-vf-MER">
