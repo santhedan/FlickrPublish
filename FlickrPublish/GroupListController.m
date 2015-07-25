@@ -88,6 +88,19 @@
     self.groups = groups;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.activityIndicator stopAnimating];
+        //
+        self.faveCount.text = [NSString stringWithFormat:@"%ld", self.info.faves];
+        self.commentCount.text = [NSString stringWithFormat:@"%ld", self.info.comments];
+        self.viewCount.text = [NSString stringWithFormat:@"%ld", self.photo.views];
+        if (self.info.isPublic)
+        {
+            self.publicState.text = @"Public";
+        }
+        else
+        {
+            self.publicState.text = @"Private";
+        }
+        //
         [self.tableView reloadData];
     });
 }

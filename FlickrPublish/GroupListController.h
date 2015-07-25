@@ -30,4 +30,9 @@
 
 - (void) addedToGroups: (NSArray *) groups;
 
+@property (weak, nonatomic) IBOutlet UILabel *faveCount;
+@property (weak, nonatomic) IBOutlet UILabel *viewCount;
+@property (weak, nonatomic) IBOutlet UILabel *commentCount;
+@property (weak, nonatomic) IBOutlet UILabel *publicState;
+
 @end
