@@ -26,7 +26,8 @@
 
 @implementation MainController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"Your Sets";
@@ -39,9 +40,17 @@
     // Create operation
     PhotosetGetListOperation* op = [[PhotosetGetListOperation alloc] initWithRequest:request Delegate:self];
     //
+    UIBarButtonItem* groupItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"group"] style:UIBarButtonItemStylePlain target:self action:@selector(showGroups)];
+    self.navigationItem.rightBarButtonItem = groupItem;
+    //
     [delegate enqueueOperation:op];
     //
     [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+}
+
+- (void)showGroups
+{
+    NSLog(@"Show groups");
 }
 
 - (void)didReceiveMemoryWarning {
