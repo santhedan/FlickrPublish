@@ -51,6 +51,7 @@
 - (void)showGroups
 {
     NSLog(@"Show groups");
+    [self performSegueWithIdentifier:@"ManageGroups" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,10 +73,13 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    PhotoCollectionController* ctrl = segue.destinationViewController;
-    ctrl.set = self.selectedSet;
+    if ([segue.identifier isEqualToString:@"ShowPhotos"])
+    {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        PhotoCollectionController* ctrl = segue.destinationViewController;
+        ctrl.set = self.selectedSet;
+    }
 }
 
 #pragma mark UITableViewDataSource

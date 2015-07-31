@@ -89,10 +89,7 @@
                         g.remaining = ((NSString *)[[group valueForKey:@"throttle"] valueForKey:@"remaining"]).integerValue;
                         g.throttleCount = ((NSString *)[[group valueForKey:@"throttle"] valueForKey:@"count"]).integerValue;
                         g.throttleMode = [[group valueForKey:@"throttle"] valueForKey:@"mode"];
-                        if (g.remaining > 0)
-                        {
-                            [groups addObject:g];
-                        }
+
                         NSString* imageUrlPath = [NSString stringWithFormat:GROUP_IMAGE_URL, iconFarm, iconServer, g.id];
                         
                         // Get the last path component of the URL
@@ -114,7 +111,7 @@
                         {
                             g.imageData = [NSData dataWithContentsOfFile:fullFilePath];
                         }
-                        
+                        [groups addObject:g];
                     }
                 }
             }

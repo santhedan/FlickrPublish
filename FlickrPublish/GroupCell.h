@@ -22,4 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnail;
 
+@property (weak, nonatomic) IBOutlet UIButton *showPhotosBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *configureCommentsBtn;
+
 @end
