@@ -14,4 +14,12 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *remainingCount;
 
+@property (weak, nonatomic) IBOutlet UILabel *membershipType;
+
+@property (weak, nonatomic) IBOutlet UILabel *members;
+
+@property (weak, nonatomic) IBOutlet UILabel *photos;
+
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnail;
+
 @end

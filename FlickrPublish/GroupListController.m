@@ -76,7 +76,26 @@
     GroupCell* cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell"];
     Group* g = [self.groups objectAtIndex:indexPath.item];
     cell.groupName.text = g.name;
-    cell.remainingCount.text = [NSString stringWithFormat:@"Remaining: %ld", (long)g.remaining];
+    cell.remainingCount.text = [NSString stringWithFormat:@"Remaining: %ld (%ld / %@)", (long)g.remaining, (long)g.throttleCount, g.throttleMode];
+    cell.members.text = [NSString stringWithFormat:@"%@ members", g.members];
+    cell.photos.text = [NSString stringWithFormat:@"%@ photos", g.poolPhotoCount];
+    if (g.memType == ADMIN)
+    {
+        cell.membershipType.text = @"Admin";
+    }
+    else if (g.memType == MODERATOR)
+    {
+        cell.membershipType.text = @"Moderator";
+    }
+    else
+    {
+        cell.membershipType.text = @"Member";
+    }
+    cell.thumbnail.image = [UIImage imageWithData:g.imageData];
+    cell.thumbnail.layer.borderWidth = 3.0f;
+    cell.thumbnail.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.size.width / 2;;
+    cell.thumbnail.clipsToBounds = YES;
     return cell;
 }
 

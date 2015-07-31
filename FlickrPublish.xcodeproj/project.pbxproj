@@ -27,6 +27,10 @@
 		065138F41B5639F70034A3CB /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 065138F31B5639F70034A3CB /* GroupCell.m */; };
 		065138F71B564AC00034A3CB /* GroupsPoolsAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 065138F61B564AC00034A3CB /* GroupsPoolsAdd.m */; };
 		065138FA1B564C8D0034A3CB /* GroupsPoolsAddOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 065138F91B564C8D0034A3CB /* GroupsPoolsAddOperation.m */; };
+		0663BF3E1B6B324400A044D0 /* GroupsGetInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0663BF3D1B6B324400A044D0 /* GroupsGetInfo.m */; };
+		0663BF411B6B326900A044D0 /* GroupsPoolsGetPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = 0663BF401B6B326900A044D0 /* GroupsPoolsGetPhotos.m */; };
+		0663BF441B6B328900A044D0 /* PhotosCommentsAddComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0663BF431B6B328900A044D0 /* PhotosCommentsAddComment.m */; };
+		0663BF471B6B461A00A044D0 /* GroupsGetInfoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0663BF461B6B461A00A044D0 /* GroupsGetInfoOperation.m */; };
 		067C2F391B4E927C004A7E55 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F381B4E927C004A7E55 /* main.m */; };
 		067C2F3C1B4E927C004A7E55 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F3B1B4E927C004A7E55 /* AppDelegate.m */; };
 		067C2F3F1B4E927C004A7E55 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F3E1B4E927C004A7E55 /* ViewController.m */; };
@@ -104,6 +108,14 @@
 		065138F61B564AC00034A3CB /* GroupsPoolsAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsPoolsAdd.m; sourceTree = "<group>"; };
 		065138F81B564C8D0034A3CB /* GroupsPoolsAddOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsPoolsAddOperation.h; sourceTree = "<group>"; };
 		065138F91B564C8D0034A3CB /* GroupsPoolsAddOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsPoolsAddOperation.m; sourceTree = "<group>"; };
+		0663BF3C1B6B324400A044D0 /* GroupsGetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsGetInfo.h; sourceTree = "<group>"; };
+		0663BF3D1B6B324400A044D0 /* GroupsGetInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsGetInfo.m; sourceTree = "<group>"; };
+		0663BF3F1B6B326900A044D0 /* GroupsPoolsGetPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsPoolsGetPhotos.h; sourceTree = "<group>"; };
+		0663BF401B6B326900A044D0 /* GroupsPoolsGetPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsPoolsGetPhotos.m; sourceTree = "<group>"; };
+		0663BF421B6B328900A044D0 /* PhotosCommentsAddComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosCommentsAddComment.h; sourceTree = "<group>"; };
+		0663BF431B6B328900A044D0 /* PhotosCommentsAddComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosCommentsAddComment.m; sourceTree = "<group>"; };
+		0663BF451B6B461A00A044D0 /* GroupsGetInfoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsGetInfoOperation.h; sourceTree = "<group>"; };
+		0663BF461B6B461A00A044D0 /* GroupsGetInfoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsGetInfoOperation.m; sourceTree = "<group>"; };
 		067C2F331B4E927C004A7E55 /* FlickrPublish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrPublish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		067C2F371B4E927C004A7E55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		067C2F381B4E927C004A7E55 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -311,6 +323,8 @@
 				065138EA1B56294A0034A3CB /* PeopleGetGroupsOperation.m */,
 				065138F81B564C8D0034A3CB /* GroupsPoolsAddOperation.h */,
 				065138F91B564C8D0034A3CB /* GroupsPoolsAddOperation.m */,
+				0663BF451B6B461A00A044D0 /* GroupsGetInfoOperation.h */,
+				0663BF461B6B461A00A044D0 /* GroupsGetInfoOperation.m */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -373,6 +387,12 @@
 				063A9D121B62510100EF05F3 /* PhotosGetFavorites.m */,
 				063A9D141B62511F00EF05F3 /* PhotosGetInfo.h */,
 				063A9D151B62511F00EF05F3 /* PhotosGetInfo.m */,
+				0663BF3C1B6B324400A044D0 /* GroupsGetInfo.h */,
+				0663BF3D1B6B324400A044D0 /* GroupsGetInfo.m */,
+				0663BF3F1B6B326900A044D0 /* GroupsPoolsGetPhotos.h */,
+				0663BF401B6B326900A044D0 /* GroupsPoolsGetPhotos.m */,
+				0663BF421B6B328900A044D0 /* PhotosCommentsAddComment.h */,
+				0663BF431B6B328900A044D0 /* PhotosCommentsAddComment.m */,
 			);
 			name = FlickrRequests;
 			sourceTree = "<group>";
@@ -491,13 +511,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0663BF471B6B461A00A044D0 /* GroupsGetInfoOperation.m in Sources */,
 				065138F71B564AC00034A3CB /* GroupsPoolsAdd.m in Sources */,
+				0663BF441B6B328900A044D0 /* PhotosCommentsAddComment.m in Sources */,
 				065138E21B5616780034A3CB /* PhotosGetAllContextsOperation.m in Sources */,
 				06A7A3EA1B635CE900E163C0 /* WebAuthController.m in Sources */,
 				065138D61B54D75C0034A3CB /* Photo.m in Sources */,
 				067C2F3F1B4E927C004A7E55 /* ViewController.m in Sources */,
 				065138EB1B56294A0034A3CB /* PeopleGetGroupsOperation.m in Sources */,
 				065138D31B54D5B40034A3CB /* PhotosetGetPhotos.m in Sources */,
+				0663BF411B6B326900A044D0 /* GroupsPoolsGetPhotos.m in Sources */,
 				06A027981B4F7A550000ED81 /* StartupSegue.m in Sources */,
 				065138CD1B54D0AB0034A3CB /* PhotoCollectionController.m in Sources */,
 				067C2F621B4E93CE004A7E55 /* OAuthController.m in Sources */,
@@ -526,6 +549,7 @@
 				065138D91B54D7DC0034A3CB /* PhotosetGetPhotosOperation.m in Sources */,
 				067C2F391B4E927C004A7E55 /* main.m in Sources */,
 				065138D01B54D4D30034A3CB /* PhotoCell.m in Sources */,
+				0663BF3E1B6B324400A044D0 /* GroupsGetInfo.m in Sources */,
 				063A9D161B62511F00EF05F3 /* PhotosGetInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
