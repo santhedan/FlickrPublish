@@ -28,4 +28,6 @@
 
 @property (nonatomic, assign) NSInteger comments;
 
+@property (nonatomic, assign) BOOL selected;
+
 @end

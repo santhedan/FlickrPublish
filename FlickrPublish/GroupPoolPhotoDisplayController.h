@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Group.h"
+#import "GroupsPoolsGetPhotosOperation.h"
+#import "PhotosCommentsAddCommentOperation.h"
 
-@interface GroupPoolPhotoDisplayController : UIViewController
+@interface GroupPoolPhotoDisplayController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, GroupsPoolsGetPhotosOperationDelegate, PhotosCommentsAddCommentOperationDelegate>
 
 @property (nonatomic, strong) Group* group;
 

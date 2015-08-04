@@ -9,6 +9,12 @@
 #import "PhotosCommentsAddComment.h"
 #import "OFUtilities.h"
 
+@interface PhotosCommentsAddComment()
+
+@property (nonatomic, strong) NSString* inComment;
+
+@end
+
 @implementation PhotosCommentsAddComment
 
 - (instancetype) initWithKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token PhotoId: (NSString *) photoId Comment: (NSString *) comment
@@ -33,6 +39,7 @@
         //
         self.photoId = [NSString stringWithFormat:@"photo_id=%@", photoId];
         self.comment = [NSString stringWithFormat:@"comment_text=%@", OFEscapedURLStringFromNSStringWithExtraEscapedChars(comment, kEscapeChars)];
+        self.inComment = comment;
         //
         self.method = @"method=flickr.photos.comments.addComment";
         self.nojsoncallback = @"nojsoncallback=1";

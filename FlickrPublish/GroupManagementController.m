@@ -62,7 +62,7 @@
         GroupDetailController* ctrl = (GroupDetailController*)segue.destinationViewController;
         ctrl.group = self.selGroup;
     }
-    else if ([segue.identifier isEqualToString:@""])
+    else if ([segue.identifier isEqualToString:@"ShowGroupPhotos"])
     {
         GroupPoolPhotoDisplayController* ctrl = (GroupPoolPhotoDisplayController*)segue.destinationViewController;
         ctrl.group = self.selGroup;
