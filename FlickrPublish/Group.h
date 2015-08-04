@@ -25,7 +25,7 @@
 
 @property (nonatomic, strong) NSString* iconFarm;
 
-@property (nonatomic, strong) NSString* descrition;
+@property (nonatomic, strong) NSString* groupDescription;
 
 @property (nonatomic, strong) NSString* rules;
 
@@ -41,8 +41,12 @@
 
 @property (nonatomic, strong) NSString* throttleMode;
 
+@property (nonatomic, strong) NSString* groupImagePath;
+
 @property (nonatomic, assign) MembershipType memType;
 
 @property (nonatomic, strong) NSData* imageData;
+
+- (NSString *) getDefaultComment;
 
 @end

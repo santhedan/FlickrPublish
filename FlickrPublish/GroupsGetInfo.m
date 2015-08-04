@@ -26,10 +26,10 @@
         self.timeStamp = [NSString stringWithFormat:@"oauth_timestamp=%@", ts];
         self.nonce = [NSString stringWithFormat:@"oauth_nonce=%@", ts];
         //
-        self.consumerKey = key;
+        self.consumerKey = [NSString stringWithFormat:@"oauth_consumer_key=%@", key];
         self.consumerSecret = secret;
         //
-        self.authToken = token;
+        self.authToken = [NSString stringWithFormat:@"oauth_token=%@", token];
         //
         self.method = @"method=flickr.groups.getInfo";
         self.nojsoncallback = @"nojsoncallback=1";

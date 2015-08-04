@@ -10,4 +10,10 @@
 
 @implementation Group
 
+- (NSString *) getDefaultComment
+{
+    NSString* comment = [NSString stringWithFormat:@"Very nice photo. Thanks for sharing.<br />Seen & Admired in <a href='http://www.flickr.com/groups/%@/'>%@</a><br /><img src='%@' width='75' height='75' alt='%@' /><br />", self.id, self.name, self.groupImagePath, self.name];
+    return comment;
+}
+
 @end

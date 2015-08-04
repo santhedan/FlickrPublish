@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoadGroupComments.h"
+#import "SaveGroupComments.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, LoadGroupCommentsHandler, SaveGroupCommentsHandler>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -27,6 +29,16 @@
 @property (nonatomic, strong) NSString* hmacsha1Key;
 
 @property (nonatomic, assign) BOOL isAuthenticated;
+
+- (void) loadedGroupComments: (NSDictionary*) groupComments;
+
+- (void) didSaveGroupComments;
+
+- (void) addComment: (NSString *) comment forGroup: (NSString *) groupId;
+
+- (void) removeCommentForGroup: (NSString *) groupId;
+
+- (NSString *) getCommentForGroup: (NSString *) groupId;
 
 @end
 

@@ -13,10 +13,13 @@
 #import "Constants.h"
 #import "GroupCell.h"
 #import "Group.h"
+#import "GroupDetailController.h"
+#import "GroupPoolPhotoDisplayController.h"
 
 @interface GroupManagementController ()
 
 @property (nonatomic, strong) NSArray* groups;
+@property (nonatomic, strong) Group* selGroup;
 
 @end
 
@@ -47,15 +50,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ShowGroupDetail"])
+    {
+        GroupDetailController* ctrl = (GroupDetailController*)segue.destinationViewController;
+        ctrl.group = self.selGroup;
+    }
+    else if ([segue.identifier isEqualToString:@""])
+    {
+        GroupPoolPhotoDisplayController* ctrl = (GroupPoolPhotoDisplayController*)segue.destinationViewController;
+        ctrl.group = self.selGroup;
+    }
 }
-*/
 
 #pragma mark UITableViewDataSource
 
@@ -116,12 +128,16 @@
 {
     UIButton* btn = (UIButton *)sender;
     NSLog(@"btn.tag -> %ld", (long)btn.tag);
+    self.selGroup = [self.groups objectAtIndex:btn.tag];
+    [self performSegueWithIdentifier:@"ShowGroupPhotos" sender:self];
 }
 
 - (IBAction)handleConfigureComments:(id)sender
 {
     UIButton* btn = (UIButton *)sender;
     NSLog(@"btn.tag -> %ld", (long)btn.tag);
+    self.selGroup = [self.groups objectAtIndex:btn.tag];
+    [self performSegueWithIdentifier:@"ShowGroupDetail" sender:self];
 }
 
 

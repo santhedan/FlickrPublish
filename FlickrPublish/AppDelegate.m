@@ -17,12 +17,15 @@
 
 @property (nonatomic, strong) NSOperationQueue* queue;
 
+@property (nonatomic, strong) NSMutableDictionary* groupComments;
+
 @end
 
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     // Override point for customization after application launch.
     self.queue = [[NSOperationQueue alloc] init];
     self.queue.maxConcurrentOperationCount = 1;
@@ -43,31 +46,57 @@
     {
         self.isAuthenticated = NO;
     }
+    LoadGroupComments* op = [[LoadGroupComments alloc] initWithHandler:self];
+    [self enqueueOperation:op];
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
+- (void)applicationWillResignActive:(UIApplication *)application
+{
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    [self destroyQueue];
+    if (self.groupComments != nil)
+    {
+        SaveGroupComments* op = [[SaveGroupComments alloc] initWithGroupComments:self.groupComments Handler:self];
+        [self enqueueOperation:op];
+    }
+    else
+    {
+        [self destroyQueue];
+    }
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    // Create Load operation and execute
+    LoadGroupComments* op = [[LoadGroupComments alloc] initWithHandler:self];
+    [self enqueueOperation:op];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
+- (void)applicationWillTerminate:(UIApplication *)application
+{
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    [self destroyQueue];
+    if (self.groupComments != nil)
+    {
+        SaveGroupComments* op = [[SaveGroupComments alloc] initWithGroupComments:self.groupComments Handler:self];
+        [self enqueueOperation:op];
+    }
+    else
+    {
+        [self destroyQueue];
+    }
 }
 
 - (BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
@@ -106,6 +135,47 @@
         [self.queue cancelAllOperations];
         self.queue = nil;
     }
+}
+
+- (void) loadedGroupComments: (NSDictionary*) groupComments
+{
+    NSLog(@"Group comments loaded");
+    if (groupComments != nil)
+    {
+        self.groupComments = [[NSMutableDictionary alloc] initWithDictionary:groupComments];
+    }
+}
+
+- (void) didSaveGroupComments
+{
+    NSLog(@"Group comments saved");
+    [self destroyQueue];
+}
+
+- (void) addComment: (NSString *) comment forGroup: (NSString *) groupId
+{
+    if (self.groupComments == nil)
+    {
+        self.groupComments = [[NSMutableDictionary alloc] init];
+    }
+    [self.groupComments setObject:comment forKey:groupId];
+}
+
+- (void) removeCommentForGroup: (NSString *) groupId
+{
+    if (self.groupComments != nil)
+    {
+        [self.groupComments removeObjectForKey:groupId];
+    }
+}
+
+- (NSString *) getCommentForGroup: (NSString *) groupId
+{
+    if (self.groupComments != nil)
+    {
+        return [self.groupComments objectForKey:groupId];
+    }
+    return @"";
 }
 
 @end

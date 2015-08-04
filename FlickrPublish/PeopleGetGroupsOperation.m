@@ -91,7 +91,7 @@
                         g.throttleMode = [[group valueForKey:@"throttle"] valueForKey:@"mode"];
 
                         NSString* imageUrlPath = [NSString stringWithFormat:GROUP_IMAGE_URL, iconFarm, iconServer, g.id];
-                        
+                        g.groupImagePath = imageUrlPath;
                         // Get the last path component of the URL
                         NSString* fileName = [imageUrlPath lastPathComponent];
                         // Now create path to the file in documents directory
