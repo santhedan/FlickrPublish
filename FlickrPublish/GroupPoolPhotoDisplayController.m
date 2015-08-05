@@ -157,7 +157,21 @@
 
 - (void) commentsAdded
 {
+    // Index counter
+    int i = 0;
+    // IndexPath collection
+    NSMutableArray* indexes = [[NSMutableArray alloc] init];
+    for (Photo* p in self.photos) {
+        if (p.selected)
+        {
+            p.selected = NO;
+            NSIndexPath* path = [NSIndexPath indexPathForItem:i inSection:0];
+            [indexes addObject:path];
+        }
+        i++;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadItemsAtIndexPaths:indexes];
         [self.activityIndicator stopAnimating];
     });
 }
