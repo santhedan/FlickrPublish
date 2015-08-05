@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "PhotosetGetListOperation.h"
 
-@interface MainController : UIViewController <PhotosetGetListHandler, UITableViewDataSource, UITableViewDelegate>
+@interface MainController : UIViewController <PhotosetGetListHandler, UICollectionViewDataSource, UICollectionViewDelegate>
 
 - (void) receivedPhotoSets: (NSArray *) photosets;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end

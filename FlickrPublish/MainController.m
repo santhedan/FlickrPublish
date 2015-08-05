@@ -45,7 +45,7 @@
     //
     [delegate enqueueOperation:op];
     //
-    [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    [self.collectionView setLayoutMargins:UIEdgeInsetsZero];
 }
 
 - (void)showGroups
@@ -64,7 +64,7 @@
     self.photosets = photosets;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.activityIndicator stopAnimating];
-        [self.tableView reloadData];
+        [self.collectionView reloadData];
     });
 }
 
@@ -82,32 +82,62 @@
     }
 }
 
-#pragma mark UITableViewDataSource
+#pragma mark UICollectionViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.photosets.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PhotoSetCell* cell = [tableView dequeueReusableCellWithIdentifier:@"AlbumCell"];
+    PhotoSetCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AlbumCell" forIndexPath:indexPath];
     PhotoSet* set = [self.photosets objectAtIndex:indexPath.item];
     cell.photosetName.text = set.name;
     cell.photos.text = set.photos;
     cell.videos.text = set.videos;
     cell.views.text = set.views;
     cell.photosetPhoto.image = [UIImage imageWithData:set.photosetPhoto];
+    //
+    cell.layer.borderWidth = 0.5f;
+    cell.layer.borderColor = [cell tintColor].CGColor;
+    //
     return cell;
 }
 
-#pragma mark UITableViewDelegate
+#pragma mark UICollectionViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PhotoSet* set = [self.photosets objectAtIndex:indexPath.item];
     self.selectedSet = set;
     [self performSegueWithIdentifier:@"ShowPhotos" sender:self];
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Get the width of the collection view after removing the padding
+    float collectionViewWidth = collectionView.frame.size.width - 20;
+    
+    // Divide this with the minimum desired width of the cell
+    int itemsInRow = collectionViewWidth / 240;
+    
+    // So we can fit "itemsInRow"
+    int desiredItemWidth = (collectionViewWidth - (itemsInRow - 1) * 10) / itemsInRow;
+    
+    // Height is fixed
+    int desiredItemHeight = 80;
+    
+    // Create size object from above and return
+    CGSize itemSize = CGSizeMake(desiredItemWidth, desiredItemHeight);
+    
+    return itemSize;
+}
+
+- (void) willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [self.collectionView reloadData];
 }
 
 @end

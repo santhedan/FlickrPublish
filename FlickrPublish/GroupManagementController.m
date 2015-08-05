@@ -116,7 +116,6 @@
 
 - (void) receivedGroups: (NSArray *) groups
 {
-    NSLog(@"Groups -> %ld", [groups count]);
     self.groups = groups;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];

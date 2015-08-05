@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PhotoSetCell : UITableViewCell
+@interface PhotoSetCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *photosetName;
 
