@@ -25,6 +25,10 @@
 
 @property (nonatomic, strong) PhotoInfo *info;
 
+@property (nonatomic, assign) NSInteger currentIndex;
+
+@property (nonatomic, assign) BOOL visible;
+
 @end
 
 @implementation GroupListController
@@ -35,6 +39,7 @@
     // Do any additional setup after loading the view.
     self.title = self.photo.name;
     //
+    self.currentIndex = 0;
     self.imageToAdd.image = [UIImage imageWithData:self.photo.imageData];
     //
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -54,6 +59,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+ - (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.visible = YES;
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    self.visible = NO;
+    [super viewWillDisappear:animated];
 }
 
 /*
@@ -92,7 +109,14 @@
     {
         cell.membershipType.text = @"Member";
     }
-    cell.thumbnail.image = [UIImage imageWithData:g.imageData];
+    if (g.imageData != nil)
+    {
+        cell.thumbnail.image = [UIImage imageWithData:g.imageData];
+    }
+    else
+    {
+        cell.thumbnail.image = [UIImage imageNamed:@"small_placeholder"];
+    }
     cell.thumbnail.layer.borderWidth = 3.0f;
     cell.thumbnail.layer.borderColor = [UIColor darkGrayColor].CGColor;
     cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.size.width / 2;;
@@ -101,6 +125,15 @@
     cell.layer.borderWidth = 0.5f;
     cell.layer.borderColor = [cell tintColor].CGColor;
     //
+    if (g.selected)
+    {
+        cell.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
+    }
+    else
+    {
+        cell.backgroundColor = [UIColor clearColor];
+    }
+    //
     return cell;
 }
 
@@ -108,6 +141,7 @@
 {
     Group* g = [self.groups objectAtIndex:indexPath.item];
     g.selected = !(g.selected);
+    [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -155,6 +189,17 @@
         //
         [self.collectionView reloadData];
     });
+    if ([self.groups count] > 0)
+    {
+        // Get the first group
+        Group* g = [self.groups objectAtIndex:self.currentIndex];
+        // Create download operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:g.groupImagePath Directory:g.id Delegate:self];
+        // Get delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        // Schedule operation
+        [delegate enqueueOperation:op];
+    }
 }
 
 - (void) receivedPhotoGroups: (NSArray *) groups Info: (PhotoInfo *) info
@@ -203,6 +248,30 @@
     PhotosGetAllContextsOperation* op = [[PhotosGetAllContextsOperation alloc] initWithRequest:request Delegate:self];
     //
     [delegate enqueueOperation:op];
+}
+
+- (void) receivedFileData: (NSData *) imageData
+{
+    // Get handle to group
+    Group* g = [self.groups objectAtIndex:self.currentIndex];
+    // Assign image data
+    g.imageData = imageData;
+    // Create index path
+    NSIndexPath* path = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
+    });
+    self.currentIndex = self.currentIndex + 1;
+    if (self.currentIndex < [self.groups count] && self.visible)
+    {
+        // Start loading images
+        g = [self.groups objectAtIndex:self.currentIndex];
+        // Create download operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:g.groupImagePath Directory:g.id Delegate:self];
+        // Delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate enqueueOperation:op];
+    }
 }
 
 @end

@@ -92,25 +92,6 @@
 
                         NSString* imageUrlPath = [NSString stringWithFormat:GROUP_IMAGE_URL, iconFarm, iconServer, g.id];
                         g.groupImagePath = imageUrlPath;
-                        // Get the last path component of the URL
-                        NSString* fileName = [imageUrlPath lastPathComponent];
-                        // Now create path to the file in documents directory
-                        NSString* fullFilePath = [NSString pathWithComponents:[NSArray arrayWithObjects:[Utility applicationDocumentsDirectory], g.id, fileName, nil]];
-                        if (![[NSFileManager defaultManager] fileExistsAtPath:fullFilePath])
-                        {
-                            g.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrlPath]];
-                            // Create directory
-                            NSString* dirPath = [fullFilePath stringByDeletingLastPathComponent];
-                            [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&localError];
-                            if (localError == nil)
-                            {
-                                [Utility writeData:g.imageData toFile:fullFilePath];
-                            }
-                        }
-                        else
-                        {
-                            g.imageData = [NSData dataWithContentsOfFile:fullFilePath];
-                        }
                         [groups addObject:g];
                     }
                 }

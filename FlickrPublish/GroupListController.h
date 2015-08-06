@@ -11,8 +11,9 @@
 #import "PhotosGetAllContextsOperation.h"
 #import "PeopleGetGroupsOperation.h"
 #import "GroupsPoolsAddOperation.h"
+#import "DownloadFileOperation.h"
 
-@interface GroupListController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, PhotosGetAllContextsHandler, PeopleGetGroupsOperationHandler, GroupsPoolsAddOperationHandler>
+@interface GroupListController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, PhotosGetAllContextsHandler, PeopleGetGroupsOperationHandler, GroupsPoolsAddOperationHandler, DownloadFileOperationDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageToAdd;
 
@@ -34,5 +35,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *viewCount;
 @property (weak, nonatomic) IBOutlet UILabel *commentCount;
 @property (weak, nonatomic) IBOutlet UILabel *publicState;
+
+- (void) receivedFileData: (NSData *) imageData;
 
 @end
