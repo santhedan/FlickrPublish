@@ -60,7 +60,6 @@
                     p.smallImageURL = [[photo valueForKey:@"url_s"] stringByReplacingOccurrencesOfString:@"_m.jpg" withString:@"_q.jpg"];
                     p.height = ((NSString *)[photo valueForKey:@"height_s"]).intValue;
                     p.width = ((NSString *)[photo valueForKey:@"width_s"]).intValue;
-                    p.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString: p.smallImageURL]];
                     p.selected = NO;
                     [photos addObject:p];
                 }
