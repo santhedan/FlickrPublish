@@ -22,6 +22,10 @@
 
 @property (nonatomic, strong) PhotoSet* selectedSet;
 
+@property (nonatomic, assign) NSInteger currentIndex;
+
+@property (nonatomic, assign) BOOL visible;
+
 @end
 
 @implementation MainController
@@ -29,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.currentIndex = 0;
     // Do any additional setup after loading the view.
     self.title = @"Your Sets";
     //
@@ -49,13 +54,37 @@
     [self.collectionView setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.visible = YES;
+    //
+    if (self.currentIndex < [self.photosets count])
+    {
+        // Start loading images
+        PhotoSet* set = [self.photosets objectAtIndex:self.currentIndex];
+        // Create download operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:set.photosetPhotoUrl Directory:set.id Delegate:self];
+        // Delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate enqueueOperation:op];
+    }
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    self.visible = NO;
+    [super viewWillDisappear:animated];
+}
+
 - (void)showGroups
 {
     NSLog(@"Show groups");
     [self performSegueWithIdentifier:@"ManageGroups" sender:self];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -67,6 +96,16 @@
         [self.activityIndicator stopAnimating];
         [self.collectionView reloadData];
     });
+    if ([self.photosets count] > 0)
+    {
+        // Start loading images
+        PhotoSet* set = [self.photosets objectAtIndex:self.currentIndex];
+        // Create download operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:set.photosetPhotoUrl Directory:set.id Delegate:self];
+        // Delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate enqueueOperation:op];
+    }
 }
 
 #pragma mark - Navigation
@@ -99,7 +138,14 @@
     cell.photos.text = set.photos;
     cell.videos.text = set.videos;
     cell.views.text = set.views;
-    cell.photosetPhoto.image = [UIImage imageWithData:set.photosetPhoto];
+    if (set.photosetPhoto != nil)
+    {
+        cell.photosetPhoto.image = [UIImage imageWithData:set.photosetPhoto];
+    }
+    else
+    {
+        cell.photosetPhoto.image = [UIImage imageNamed:@"small_placeholder"];
+    }
     //
     cell.layer.borderWidth = 0.5f;
     cell.layer.borderColor = [cell tintColor].CGColor;
@@ -139,6 +185,27 @@
 - (void) willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [self.collectionView reloadData];
+}
+
+- (void) receivedFileData: (NSData *) imageData
+{
+    PhotoSet* set = [self.photosets objectAtIndex:self.currentIndex];
+    set.photosetPhoto = imageData;
+    NSIndexPath* path = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
+    });
+    self.currentIndex = self.currentIndex + 1;
+    if (self.currentIndex < [self.photosets count] && self.visible)
+    {
+        // Start loading images
+        set = [self.photosets objectAtIndex:self.currentIndex];
+        // Create download operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:set.photosetPhotoUrl Directory:set.id Delegate:self];
+        // Delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate enqueueOperation:op];
+    }
 }
 
 @end

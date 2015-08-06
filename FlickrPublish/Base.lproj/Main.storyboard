@@ -110,7 +110,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tt1-eN-Ux8">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Tt1-eN-Ux8">
                                                     <rect key="frame" x="8" y="10" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="Ejt-Rp-cel"/>
@@ -275,7 +275,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpc-TL-YvE">
                                                     <rect key="frame" x="4" y="4" width="232" height="142"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Xi-iB-AFl">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="0Xi-iB-AFl">
                                                             <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="68" id="Kru-k5-coK"/>
@@ -466,7 +466,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MOw-oK-qCh">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="large_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="MOw-oK-qCh">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCc-wr-nHJ">
@@ -829,7 +829,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GAz-4f-cs8">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="large_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="GAz-4f-cs8">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8RA-IW-Ozh">
@@ -1060,7 +1060,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTM-gK-fiB">
                                                     <rect key="frame" x="4" y="4" width="232" height="117"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lnH-KL-RLI">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lnH-KL-RLI">
                                                             <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="68" id="D0I-RF-jew"/>
@@ -1245,8 +1245,10 @@
     <resources>
         <image name="comments" width="30" height="30"/>
         <image name="favs" width="30" height="30"/>
+        <image name="large_placeholder" width="150" height="150"/>
         <image name="photos" width="30" height="30"/>
         <image name="selectedState" width="30" height="30"/>
+        <image name="small_placeholder" width="68" height="68"/>
         <image name="videos" width="30" height="30"/>
         <image name="views" width="30" height="30"/>
     </resources>

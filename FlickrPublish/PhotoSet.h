@@ -22,4 +22,6 @@
 
 @property (nonatomic, strong) NSData* photosetPhoto;
 
+@property (nonatomic, strong) NSString* photosetPhotoUrl;
+
 @end

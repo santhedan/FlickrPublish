@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "PhotosetGetListOperation.h"
+#import "DownloadFileOperation.h"
 
-@interface MainController : UIViewController <PhotosetGetListHandler, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MainController : UIViewController <PhotosetGetListHandler, UICollectionViewDataSource, UICollectionViewDelegate, DownloadFileOperationDelegate>
 
 - (void) receivedPhotoSets: (NSArray *) photosets;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+- (void) receivedFileData: (NSData *) imageData;
 
 @end

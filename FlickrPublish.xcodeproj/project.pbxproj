@@ -42,6 +42,7 @@
 		067C2F621B4E93CE004A7E55 /* OAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F611B4E93CE004A7E55 /* OAuthController.m */; };
 		067C2F651B4E93EB004A7E55 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F641B4E93EB004A7E55 /* MainController.m */; };
 		067C2F671B4E9866004A7E55 /* flickr.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 067C2F661B4E9866004A7E55 /* flickr.jpg */; };
+		069DBD3A1B73463C003588D7 /* DownloadFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 069DBD391B73463C003588D7 /* DownloadFileOperation.m */; };
 		069EFCA51B5A52FA004AD2E2 /* FlickrPublish.png in Resources */ = {isa = PBXBuildFile; fileRef = 069EFCA41B5A52FA004AD2E2 /* FlickrPublish.png */; };
 		069EFCA81B5A5695004AD2E2 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 069EFCA61B5A5695004AD2E2 /* iTunesArtwork.png */; };
 		069EFCA91B5A5695004AD2E2 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 069EFCA71B5A5695004AD2E2 /* iTunesArtwork@2x.png */; };
@@ -143,6 +144,8 @@
 		067C2F631B4E93EB004A7E55 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		067C2F641B4E93EB004A7E55 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		067C2F661B4E9866004A7E55 /* flickr.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flickr.jpg; sourceTree = "<group>"; };
+		069DBD381B73463C003588D7 /* DownloadFileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadFileOperation.h; sourceTree = "<group>"; };
+		069DBD391B73463C003588D7 /* DownloadFileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadFileOperation.m; sourceTree = "<group>"; };
 		069EFCA41B5A52FA004AD2E2 /* FlickrPublish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FlickrPublish.png; sourceTree = "<group>"; };
 		069EFCA61B5A5695004AD2E2 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		069EFCA71B5A5695004AD2E2 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
@@ -360,6 +363,8 @@
 				06C7F8A61B70B3FE002B54D8 /* GroupsPoolsGetPhotosOperation.m */,
 				06C7F8A81B70C7A4002B54D8 /* PhotosCommentsAddCommentOperation.h */,
 				06C7F8A91B70C7A4002B54D8 /* PhotosCommentsAddCommentOperation.m */,
+				069DBD381B73463C003588D7 /* DownloadFileOperation.h */,
+				069DBD391B73463C003588D7 /* DownloadFileOperation.m */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -573,6 +578,7 @@
 				06C7F89B1B7070ED002B54D8 /* GroupDetailController.m in Sources */,
 				065138E81B5628810034A3CB /* PeopleGetGroups.m in Sources */,
 				063A9D131B62510100EF05F3 /* PhotosGetFavorites.m in Sources */,
+				069DBD3A1B73463C003588D7 /* DownloadFileOperation.m in Sources */,
 				06A027A11B4F80220000ED81 /* FlickrBaseRequest.m in Sources */,
 				06A027B51B4FDE760000ED81 /* AccessTokenOperation.m in Sources */,
 				063A9D191B6254C200EF05F3 /* PhotoInfo.m in Sources */,
