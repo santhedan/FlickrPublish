@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PhotoSet.h"
 #import "PhotosetGetPhotosOperation.h"
+#import "DownloadFileOperation.h"
 
-@interface PhotoCollectionController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, PhotosetGetPhotosHandler>
+@interface PhotoCollectionController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, PhotosetGetPhotosHandler, DownloadFileOperationDelegate>
 
 @property (nonatomic, strong) PhotoSet* set;
 
@@ -18,5 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+- (void) receivedFileData: (NSData *) imageData;
 
 @end

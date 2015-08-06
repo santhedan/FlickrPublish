@@ -50,7 +50,6 @@
             NSString* status = [dictPhotos valueForKey:@"stat"];
             if ([status isEqualToString:@"ok"])
             {
-                NSString* photosetId = [[dictPhotos valueForKey:@"photoset"] valueForKey:@"id"];
                 NSArray* photoDictArray = [[dictPhotos valueForKey:@"photoset"] valueForKey:@"photo"];
                 for (NSDictionary *photo in photoDictArray)
                 {
@@ -62,25 +61,6 @@
                     p.smallImageURL = [[photo valueForKey:@"url_s"] stringByReplacingOccurrencesOfString:@"_m.jpg" withString:@"_q.jpg"];
                     p.height = ((NSString *)[photo valueForKey:@"height_s"]).intValue;
                     p.width = ((NSString *)[photo valueForKey:@"width_s"]).intValue;
-                    // Get the last path component of the URL
-                    NSString* fileName = [p.smallImageURL lastPathComponent];
-                    // Now create path to the file in documents directory
-                    NSString* fullFilePath = [NSString pathWithComponents:[NSArray arrayWithObjects:[Utility applicationDocumentsDirectory], photosetId, fileName, nil]];
-                    if (![[NSFileManager defaultManager] fileExistsAtPath:fullFilePath])
-                    {
-                        p.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:p.smallImageURL]];
-                        // Create directory
-                        NSString* dirPath = [fullFilePath stringByDeletingLastPathComponent];
-                        [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&localError];
-                        if (localError == nil)
-                        {
-                            [Utility writeData:p.imageData toFile:fullFilePath];
-                        }
-                    }
-                    else
-                    {
-                        p.imageData = [NSData dataWithContentsOfFile:fullFilePath];
-                    }
                     //
                     [photos addObject:p];
                 }
