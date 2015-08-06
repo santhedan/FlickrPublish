@@ -47,7 +47,7 @@
     //
     [self.activityIndicator startAnimating];
     //
-    [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    [self.collectionView setLayoutMargins:UIEdgeInsetsZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,14 +66,15 @@
 }
 */
 
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.groups.count;
 }
 
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    GroupCell* cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell"];
+    GroupCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GroupCell" forIndexPath:indexPath];
     Group* g = [self.groups objectAtIndex:indexPath.item];
     cell.groupName.text = g.name;
     cell.remainingCount.text = [NSString stringWithFormat:@"Remaining: %ld (%ld / %@)", (long)g.remaining, (long)g.throttleCount, g.throttleMode];
@@ -96,13 +97,42 @@
     cell.thumbnail.layer.borderColor = [UIColor darkGrayColor].CGColor;
     cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.size.width / 2;;
     cell.thumbnail.clipsToBounds = YES;
+    //
+    cell.layer.borderWidth = 0.5f;
+    cell.layer.borderColor = [cell tintColor].CGColor;
+    //
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Group* g = [self.groups objectAtIndex:indexPath.item];
     g.selected = !(g.selected);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Get the width of the collection view after removing the padding
+    float collectionViewWidth = collectionView.frame.size.width - 20;
+    
+    // Divide this with the minimum desired width of the cell
+    int itemsInRow = collectionViewWidth / 240;
+    
+    // So we can fit "itemsInRow"
+    int desiredItemWidth = (collectionViewWidth - (itemsInRow - 1) * 10) / itemsInRow;
+    
+    // Height is fixed
+    int desiredItemHeight = 125;
+    
+    // Create size object from above and return
+    CGSize itemSize = CGSizeMake(desiredItemWidth, desiredItemHeight);
+    
+    return itemSize;
+}
+
+- (void) willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [self.collectionView reloadData];
 }
 
 - (void) receivedGroups: (NSArray *) groups
@@ -123,7 +153,7 @@
             self.publicState.text = @"Private";
         }
         //
-        [self.tableView reloadData];
+        [self.collectionView reloadData];
     });
 }
 

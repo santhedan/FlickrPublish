@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "PeopleGetGroupsOperation.h"
 
-@interface GroupManagementController : UIViewController <UITableViewDataSource, UITableViewDelegate, PeopleGetGroupsOperationHandler>
+@interface GroupManagementController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, PeopleGetGroupsOperationHandler>
 
 - (void) receivedGroups: (NSArray *) groups;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 

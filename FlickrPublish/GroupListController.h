@@ -12,7 +12,7 @@
 #import "PeopleGetGroupsOperation.h"
 #import "GroupsPoolsAddOperation.h"
 
-@interface GroupListController : UIViewController <UITableViewDataSource, UITableViewDelegate, PhotosGetAllContextsHandler, PeopleGetGroupsOperationHandler, GroupsPoolsAddOperationHandler>
+@interface GroupListController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, PhotosGetAllContextsHandler, PeopleGetGroupsOperationHandler, GroupsPoolsAddOperationHandler>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageToAdd;
 
@@ -22,7 +22,7 @@
 
 - (void) receivedPhotoGroups: (NSArray *) groups Info: (PhotoInfo *) info;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 - (IBAction)handleAdd:(id)sender;
 

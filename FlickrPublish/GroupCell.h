@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GroupCell : UITableViewCell
+@interface GroupCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *groupName;
 
