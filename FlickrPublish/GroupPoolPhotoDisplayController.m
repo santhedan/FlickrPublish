@@ -18,6 +18,9 @@
 @property (nonatomic, strong) NSArray* photos;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, assign) NSInteger currentIndex;
+
+@property (nonatomic, assign) BOOL visible;
 
 @end
 
@@ -26,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.currentIndex = 0;
     // Do any additional setup after loading the view.
     self.title = self.group.name;
     //
@@ -35,6 +39,29 @@
     GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithRequest:request Delegate:self];
     [delegate enqueueOperation:op];
     [self.activityIndicator startAnimating];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.visible = YES;
+    //
+    if (self.currentIndex < [self.photos count])
+    {
+        // Start loading images
+        Photo* p = [self.photos objectAtIndex:self.currentIndex];
+        // Create download operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:p.smallImageURL Directory:nil Delegate:self];
+        // Delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate enqueueOperation:op];
+    }
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    self.visible = NO;
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,7 +124,14 @@
     Photo* p = [self.photos objectAtIndex:indexPath.item];
     cell.imageTitle.text = p.name;
     cell.imageViews.text = [NSString stringWithFormat:@"%ld", (long)p.views];
-    cell.thumbnailSmall.image = [UIImage imageWithData:p.imageData];
+    if (p.imageData != nil)
+    {
+        cell.thumbnailSmall.image = [UIImage imageWithData:p.imageData];
+    }
+    else
+    {
+        cell.thumbnailSmall.image = [UIImage imageNamed:@"large_placeholder"];
+    }
     if (p.selected)
     {
         [cell.selState setHidden:NO];
@@ -153,6 +187,17 @@
         [self.collectionView reloadData];
         [self.activityIndicator stopAnimating];
     });
+    if ([self.photos count] > 0)
+    {
+        // Get photo
+        Photo* p = [self.photos objectAtIndex:self.currentIndex];
+        // Get app delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        // Create operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:p.smallImageURL Directory:nil Delegate:self];
+        // Start download
+        [delegate enqueueOperation:op];
+    }
 }
 
 - (void) commentsAdded
@@ -174,6 +219,30 @@
         [self.collectionView reloadItemsAtIndexPaths:indexes];
         [self.activityIndicator stopAnimating];
     });
+}
+
+- (void) receivedFileData: (NSData *) imageData
+{
+    // Get photo
+    Photo* p = [self.photos objectAtIndex:self.currentIndex];
+    // Assign data
+    p.imageData = imageData;
+    // Create index path
+    NSIndexPath* path = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
+    });
+    self.currentIndex = self.currentIndex + 1;
+    if (self.currentIndex < [self.photos count] && self.visible)
+    {
+        // Start loading images
+        p = [self.photos objectAtIndex:self.currentIndex];
+        // Create download operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:p.smallImageURL Directory:nil Delegate:self];
+        // Delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate enqueueOperation:op];
+    }
 }
 
 @end

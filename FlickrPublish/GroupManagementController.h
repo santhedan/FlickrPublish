@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PeopleGetGroupsOperation.h"
+#import "DownloadFileOperation.h"
 
-@interface GroupManagementController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, PeopleGetGroupsOperationHandler>
+@interface GroupManagementController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, PeopleGetGroupsOperationHandler, DownloadFileOperationDelegate>
 
 - (void) receivedGroups: (NSArray *) groups;
 
@@ -20,5 +21,7 @@
 - (IBAction)handleShowPhotos:(id)sender;
 
 - (IBAction)handleConfigureComments:(id)sender;
+
+- (void) receivedFileData: (NSData *) imageData;
 
 @end
