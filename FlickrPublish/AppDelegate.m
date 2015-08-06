@@ -175,7 +175,7 @@
     {
         return [self.groupComments objectForKey:groupId];
     }
-    return @"";
+    return nil;
 }
 
 @end
