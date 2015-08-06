@@ -46,6 +46,7 @@
     [delegate enqueueOperation:op];
     //
     [self.collectionView setLayoutMargins:UIEdgeInsetsZero];
+    [self.collectionView setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
 - (void)showGroups

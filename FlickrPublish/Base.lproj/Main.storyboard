@@ -100,7 +100,7 @@
                                     <size key="itemSize" width="240" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlbumCell" id="DVC-Aw-G38" customClass="PhotoSetCell">
@@ -117,7 +117,7 @@
                                                         <constraint firstAttribute="height" constant="60" id="ed4-0E-Ob2"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QTg-Xh-yR6">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QTg-Xh-yR6">
                                                     <rect key="frame" x="72" y="8" width="160" height="55"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="55" id="o5k-3X-Wtj"/>
@@ -194,7 +194,7 @@
                                             <constraint firstAttribute="centerY" secondItem="Tt1-eN-Ux8" secondAttribute="centerY" id="Xw6-Bx-joy"/>
                                             <constraint firstItem="fez-7a-som" firstAttribute="leading" secondItem="IcG-Vw-e6C" secondAttribute="trailing" constant="4" id="bwz-3m-9y8"/>
                                             <constraint firstItem="0Zy-Uu-1lu" firstAttribute="leading" secondItem="fez-7a-som" secondAttribute="trailing" constant="4" id="o4e-12-n5a"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="QTg-Xh-yR6" secondAttribute="trailing" id="oYo-vb-DpV"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="QTg-Xh-yR6" secondAttribute="trailing" priority="999" id="oYo-vb-DpV"/>
                                             <constraint firstItem="IcG-Vw-e6C" firstAttribute="bottom" secondItem="DVC-Aw-G38" secondAttribute="bottomMargin" constant="8" id="q91-Te-DzC"/>
                                             <constraint firstItem="fez-7a-som" firstAttribute="bottom" secondItem="DVC-Aw-G38" secondAttribute="bottomMargin" constant="3" id="sgO-wy-C6n"/>
                                             <constraint firstAttribute="leadingMargin" secondItem="Tt1-eN-Ux8" secondAttribute="leading" id="xLe-tP-HBK"/>
