@@ -30,4 +30,8 @@
 
 @property (nonatomic, assign) BOOL selected;
 
+- (NSComparisonResult)compareViews: (Photo *) otherObject;
+- (NSComparisonResult)compareFaves: (Photo *) otherObject;
+- (NSComparisonResult)compareComments: (Photo *) otherObject;
+
 @end

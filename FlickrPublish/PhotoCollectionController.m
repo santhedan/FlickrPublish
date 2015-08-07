@@ -15,6 +15,9 @@
 #import "GroupListController.h"
 
 @interface PhotoCollectionController ()
+{
+    UIBarButtonItem* sortItem;
+}
 
 @property (nonatomic, strong) NSArray* photos;
 
@@ -43,6 +46,8 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     //[self.collectionView registerClass:[PhotoCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     // Do any additional setup after loading the view.
+    sortItem = [[UIBarButtonItem alloc] initWithTitle:@"Sort" style:UIBarButtonItemStylePlain target:self action:@selector(showSortOption)];
+    self.navigationItem.rightBarButtonItem = sortItem;
     //
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     // Create request and operation and execute
@@ -53,6 +58,55 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     [delegate enqueueOperation:op];
     //
     [self.activityIndicator startAnimating];
+}
+
+- (void) showSortOption
+{
+    UIAlertController* ctrl = [UIAlertController alertControllerWithTitle:@"Sort photos by" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    // Sort by views
+    UIAlertAction* viewAction = [UIAlertAction actionWithTitle:@"Views" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){[self sortByViews];}];
+    // Sort by views
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action){[self dismissViewControllerAnimated:YES completion:nil];}];
+    // Add the action to controller
+    [ctrl addAction: viewAction];
+    [ctrl addAction: cancelAction];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        ctrl.popoverPresentationController.barButtonItem = sortItem;
+        [self presentViewController:ctrl animated:YES completion:nil];
+    }
+    else
+    {
+        // Now show the alert
+        [self presentViewController:ctrl animated:YES completion:nil];
+    }
+}
+
+- (void) sortByViews
+{
+    NSArray* sortedArray = [self.photos sortedArrayUsingSelector:@selector(compareViews:)];
+    self.photos = sortedArray;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
+}
+
+- (void) sortByFaves
+{
+    NSArray* sortedArray = [self.photos sortedArrayUsingSelector:@selector(compareFaves:)];
+    self.photos = sortedArray;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
+}
+
+- (void) sortByComments
+{
+    NSArray* sortedArray = [self.photos sortedArrayUsingSelector:@selector(compareComments:)];
+    self.photos = sortedArray;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
 }
 
 - (void) viewWillAppear:(BOOL)animated
