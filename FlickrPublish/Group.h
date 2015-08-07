@@ -49,4 +49,6 @@
 
 - (NSString *) getDefaultComment;
 
+- (NSComparisonResult)compare: (Group *) otherObject;
+
 @end

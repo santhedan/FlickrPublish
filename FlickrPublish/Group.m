@@ -16,4 +16,9 @@
     return comment;
 }
 
+- (NSComparisonResult)compare: (Group *) otherObject
+{
+    return [self.name compare:otherObject.name options:NSCaseInsensitiveSearch];
+}
+
 @end

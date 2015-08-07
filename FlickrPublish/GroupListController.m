@@ -177,7 +177,8 @@
 
 - (void) receivedGroups: (NSArray *) groups
 {
-    self.groups = groups;
+    NSArray* sortedGroups = [groups sortedArrayUsingSelector:@selector(compare:)];
+    self.groups = sortedGroups;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.activityIndicator stopAnimating];
         //

@@ -101,7 +101,9 @@
 
 - (void) receivedGroupInformation: (Group *) group
 {
-    self.group.groupDescription = group.groupDescription;
+    NSString* modDesc = [group.groupDescription stringByReplacingOccurrencesOfString:@"\n" withString:@"<br />"];
+    self.group.groupDescription = modDesc;
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         // Load the description in webview
         [self.webView loadHTMLString:self.group.groupDescription baseURL:nil];
