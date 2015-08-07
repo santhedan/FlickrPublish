@@ -14,6 +14,8 @@
 
 - (void) addedToGroups: (NSArray *) groups;
 
+- (void) showProgressMessage: (NSString *) progressMessage;
+
 @end
 
 @interface GroupsPoolsAddOperation : NSOperation

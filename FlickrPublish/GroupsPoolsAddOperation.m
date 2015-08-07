@@ -64,14 +64,23 @@
         // Check if we have any error
         if (error == nil)
         {
+            NSDictionary* responseStatus = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
+            NSString* status = [responseStatus objectForKey:@"stat"];
             // Convery response to string
             NSString* strResponse = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+            NSLog(@"strResponse -> %@", strResponse);
             //
             // Did this call succeed?
-            if ([strResponse containsString:@"\"stat\": \"ok\""])
+            if ([status isEqualToString:@"ok"])
             {
                 // Remember this group as a group where photo has been added
                 [successGroups addObject:group];
+                [self.delegate showProgressMessage: [NSString stringWithFormat:@"Added to %@", group.name]];
+            }
+            else
+            {
+                NSString* message = [responseStatus objectForKey:@"message"];
+                [self.delegate showProgressMessage: [NSString stringWithFormat:@"%@ : %@", group.name, message]];
             }
         }
     }

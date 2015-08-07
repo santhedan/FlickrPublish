@@ -29,6 +29,8 @@
 
 @property (nonatomic, assign) BOOL visible;
 
+@property (weak, nonatomic) IBOutlet UILabel *progressLabel;
+
 @end
 
 @implementation GroupListController
@@ -38,6 +40,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = self.photo.name;
+    self.progressLabel.text = @"Fetching groups";
+    self.progressLabel.layer.borderWidth = 0.5f;
+    self.progressLabel.layer.cornerRadius = 3.0f;
+    self.progressLabel.layer.borderColor = [self.progressLabel tintColor].CGColor;
     //
     self.currentIndex = 0;
     self.imageToAdd.image = [UIImage imageWithData:self.photo.imageData];
@@ -188,6 +194,8 @@
         }
         //
         [self.collectionView reloadData];
+        //
+        self.progressLabel.hidden = YES;
     });
     if ([self.groups count] > 0)
     {
@@ -206,6 +214,7 @@
 {
     self.groupsToExclude = groups;
     self.info = info;
+    self.currentIndex = 0;
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     // Create request and operation and execute
     PeopleGetGroups* request = [[PeopleGetGroups alloc] initWithKey: API_KEY Secret: delegate.hmacsha1Key Token:delegate.token UserID:delegate.nsid];
@@ -228,6 +237,11 @@
     }
     if (gArr.count > 0)
     {
+        self.progressLabel.hidden = NO;
+        self.progressLabel.layer.borderWidth = 0.5f;
+        self.progressLabel.layer.cornerRadius = 3.0f;
+        self.progressLabel.layer.borderColor = [self.progressLabel tintColor].CGColor;
+        self.progressLabel.text = @"Adding photo to selected groups";
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         // Create request
         GroupsPoolsAddOperation* op = [[GroupsPoolsAddOperation alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token PhotoId:self.photo.id Groups:gArr Delegate:self];
@@ -240,6 +254,9 @@
 
 - (void) addedToGroups: (NSArray *) groups
 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.progressLabel.text = @"Updating groups";
+    });
     //
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     // Create request and operation and execute
@@ -272,6 +289,13 @@
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         [delegate enqueueOperation:op];
     }
+}
+
+- (void) showProgressMessage: (NSString *) progressMessage
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.progressLabel.text = progressMessage;
+    });
 }
 
 @end

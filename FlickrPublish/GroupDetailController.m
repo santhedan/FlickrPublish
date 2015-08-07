@@ -54,9 +54,18 @@
     self.thumbnail.layer.cornerRadius = self.thumbnail.frame.size.width / 2;;
     self.thumbnail.clipsToBounds = YES;
     //
-    self.comment.text = [self.group getDefaultComment];
-    //
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    // Get comment for the group
+    NSString* comment = [delegate getCommentForGroup:self.group.id];
+    //
+    if (comment == nil)
+    {
+        self.comment.text = [self.group getDefaultComment];
+    }
+    else
+    {
+        self.comment.text = comment;
+    }
     // Get group description
     GroupsGetInfo* request = [[GroupsGetInfo alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token GroupId:self.group.id];
     GroupsGetInfoOperation* op = [[GroupsGetInfoOperation alloc] initWithRequest:request Delegate:self];

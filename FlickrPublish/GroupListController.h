@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (void) addedToGroups: (NSArray *) groups;
+- (void) showProgressMessage: (NSString *) progressMessage;
 
 @property (weak, nonatomic) IBOutlet UILabel *faveCount;
 @property (weak, nonatomic) IBOutlet UILabel *viewCount;
