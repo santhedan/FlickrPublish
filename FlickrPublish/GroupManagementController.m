@@ -215,12 +215,13 @@
     // Assign image data
     g.imageData = imageData;
     // Create index path
-    /*
     NSIndexPath* path = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
     dispatch_async(dispatch_get_main_queue(), ^{
-        //[self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
+        if (path.item < self.filteredGroups.count)
+        {
+            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
+        }
     });
-     */
     self.currentIndex = self.currentIndex + 1;
     if (self.currentIndex < [self.groups count] && self.visible)
     {
