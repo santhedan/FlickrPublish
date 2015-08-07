@@ -196,7 +196,7 @@
 {
     UIButton* btn = (UIButton *)sender;
     NSLog(@"btn.tag -> %ld", (long)btn.tag);
-    self.selGroup = [self.groups objectAtIndex:btn.tag];
+    self.selGroup = [self.filteredGroups objectAtIndex:btn.tag];
     [self performSegueWithIdentifier:@"ShowGroupPhotos" sender:self];
 }
 
@@ -204,7 +204,7 @@
 {
     UIButton* btn = (UIButton *)sender;
     NSLog(@"btn.tag -> %ld", (long)btn.tag);
-    self.selGroup = [self.groups objectAtIndex:btn.tag];
+    self.selGroup = [self.filteredGroups objectAtIndex:btn.tag];
     [self performSegueWithIdentifier:@"ShowGroupDetail" sender:self];
 }
 
