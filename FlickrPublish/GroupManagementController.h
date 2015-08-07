@@ -10,7 +10,7 @@
 #import "PeopleGetGroupsOperation.h"
 #import "DownloadFileOperation.h"
 
-@interface GroupManagementController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, PeopleGetGroupsOperationHandler, DownloadFileOperationDelegate>
+@interface GroupManagementController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, PeopleGetGroupsOperationHandler, DownloadFileOperationDelegate, UISearchBarDelegate>
 
 - (void) receivedGroups: (NSArray *) groups;
 

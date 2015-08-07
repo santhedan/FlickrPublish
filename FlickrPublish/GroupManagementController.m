@@ -19,6 +19,8 @@
 @interface GroupManagementController ()
 
 @property (nonatomic, strong) NSArray* groups;
+@property (nonatomic, strong) NSArray* filteredGroups;
+
 @property (nonatomic, strong) Group* selGroup;
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, assign) BOOL visible;
@@ -89,14 +91,14 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.groups count];
+    return [self.filteredGroups count];
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GroupCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GroupCell" forIndexPath:indexPath];
-    Group* g = [self.groups objectAtIndex:indexPath.item];
+    Group* g = [self.filteredGroups objectAtIndex:indexPath.item];
     cell.groupName.text = g.name;
     cell.remainingCount.text = [NSString stringWithFormat:@"Remaining: %ld (%ld / %@)", (long)g.remaining, (long)g.throttleCount, g.throttleMode];
     cell.members.text = [NSString stringWithFormat:@"%@ members", g.members];
@@ -172,6 +174,7 @@
 {
     NSArray* sortedGroups = [groups sortedArrayUsingSelector:@selector(compare:)];
     self.groups = sortedGroups;
+    self.filteredGroups = sortedGroups;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.collectionView reloadData];
         [self.activityIndicator stopAnimating];
@@ -212,10 +215,12 @@
     // Assign image data
     g.imageData = imageData;
     // Create index path
+    /*
     NSIndexPath* path = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
+        //[self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
     });
+     */
     self.currentIndex = self.currentIndex + 1;
     if (self.currentIndex < [self.groups count] && self.visible)
     {
@@ -227,6 +232,36 @@
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         [delegate enqueueOperation:op];
     }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if (searchText.length > 0)
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[cd] %@", searchText];
+        NSArray *filteredGroups = [self.groups filteredArrayUsingPredicate:predicate];
+        self.filteredGroups = filteredGroups;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+    }
+    else
+    {
+        self.filteredGroups = self.groups;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [searchBar setText:@""];
+            [self.collectionView reloadData];
+        });
+    }
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    self.filteredGroups = self.groups;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [searchBar setText:@""];
+        [self.collectionView reloadData];
+    });
 }
 
 @end
