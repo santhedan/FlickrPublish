@@ -251,6 +251,7 @@
         self.filteredGroups = self.groups;
         dispatch_async(dispatch_get_main_queue(), ^{
             [searchBar setText:@""];
+            [searchBar resignFirstResponder];
             [self.collectionView reloadData];
         });
     }
@@ -261,6 +262,7 @@
     self.filteredGroups = self.groups;
     dispatch_async(dispatch_get_main_queue(), ^{
         [searchBar setText:@""];
+        [searchBar resignFirstResponder];
         [self.collectionView reloadData];
     });
 }
