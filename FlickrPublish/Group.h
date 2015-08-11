@@ -51,4 +51,8 @@
 
 - (NSComparisonResult)compare: (Group *) otherObject;
 
+- (NSComparisonResult)compareMembers: (Group *) otherObject;
+
+- (NSComparisonResult)comparePhotos: (Group *) otherObject;
+
 @end

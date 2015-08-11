@@ -21,4 +21,30 @@
     return [self.name compare:otherObject.name options:NSCaseInsensitiveSearch];
 }
 
+- (NSComparisonResult)compareMembers: (Group *) otherObject
+{
+    if (self.members.doubleValue == otherObject.members.doubleValue) {
+        return NSOrderedSame;
+    } else if (self.members.doubleValue > otherObject.members.doubleValue) {
+        return NSOrderedAscending;
+    } else if (self.members.doubleValue < otherObject.members.doubleValue) {
+        return NSOrderedDescending;
+    } else {
+        return NSOrderedSame;
+    }
+}
+
+- (NSComparisonResult)comparePhotos: (Group *) otherObject
+{
+    if (self.poolPhotoCount.doubleValue == otherObject.poolPhotoCount.doubleValue) {
+        return NSOrderedSame;
+    } else if (self.poolPhotoCount.doubleValue > otherObject.poolPhotoCount.doubleValue) {
+        return NSOrderedAscending;
+    } else if (self.poolPhotoCount.doubleValue < otherObject.poolPhotoCount.doubleValue) {
+        return NSOrderedDescending;
+    } else {
+        return NSOrderedSame;
+    }
+}
+
 @end

@@ -17,6 +17,9 @@
 #import "GroupPoolPhotoDisplayController.h"
 
 @interface GroupManagementController ()
+{
+    UIBarButtonItem* sortItem;
+}
 
 @property (nonatomic, strong) NSArray* groups;
 @property (nonatomic, strong) NSArray* filteredGroups;
@@ -37,6 +40,10 @@
     // Do any additional setup after loading the view.
     self.title = @"Your Groups";
     //
+    // Do any additional setup after loading the view.
+    sortItem = [[UIBarButtonItem alloc] initWithTitle:@"Sort" style:UIBarButtonItemStylePlain target:self action:@selector(showSortOption)];
+    self.navigationItem.rightBarButtonItem = sortItem;
+    //
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     // Create request and operation and execute
     PeopleGetGroups* request = [[PeopleGetGroups alloc] initWithKey: API_KEY Secret: delegate.hmacsha1Key Token:delegate.token UserID:delegate.nsid];
@@ -48,6 +55,48 @@
     [self.activityIndicator startAnimating];
     //
     [self.collectionView setLayoutMargins:UIEdgeInsetsZero];
+}
+
+- (void) showSortOption
+{
+    UIAlertController* ctrl = [UIAlertController alertControllerWithTitle:@"Sort photos by" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    // Sort by views
+    UIAlertAction* membersAction = [UIAlertAction actionWithTitle:@"Members" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){[self sortByMembers];}];
+    UIAlertAction* photosAction = [UIAlertAction actionWithTitle:@"Photos" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){[self sortByPhotos];}];
+    // Sort by views
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action){[self dismissViewControllerAnimated:YES completion:nil];}];
+    // Add the action to controller
+    [ctrl addAction: membersAction];
+    [ctrl addAction: photosAction];
+    [ctrl addAction: cancelAction];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        ctrl.popoverPresentationController.barButtonItem = sortItem;
+        [self presentViewController:ctrl animated:YES completion:nil];
+    }
+    else
+    {
+        // Now show the alert
+        [self presentViewController:ctrl animated:YES completion:nil];
+    }
+}
+
+- (void) sortByMembers
+{
+    NSArray* sortedArray = [self.filteredGroups sortedArrayUsingSelector:@selector(compareMembers:)];
+    self.filteredGroups = sortedArray;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
+}
+
+- (void) sortByPhotos
+{
+    NSArray* sortedArray = [self.filteredGroups sortedArrayUsingSelector:@selector(comparePhotos:)];
+    self.filteredGroups = sortedArray;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
 }
 
 - (void) viewWillAppear:(BOOL)animated
