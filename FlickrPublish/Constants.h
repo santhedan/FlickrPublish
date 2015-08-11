@@ -25,4 +25,13 @@
 
 #define USERNAME_KEY @"USERNAME_KEY"
 
+typedef NS_ENUM(NSInteger, MembershipType)
+{
+    MEMBER,
+    MODERATOR,
+    ADMIN
+};
+
+#define GROUP_IMAGE_URL @"http://c3.staticflickr.com/%@/%@/buddyicons/%@.jpg"
+
 #endif
