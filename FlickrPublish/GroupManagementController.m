@@ -15,6 +15,7 @@
 #import "Group.h"
 #import "GroupDetailController.h"
 #import "GroupPoolPhotoDisplayController.h"
+#import "NSString+HTML.h"
 
 @interface GroupManagementController ()
 {
@@ -63,11 +64,13 @@
     // Sort by views
     UIAlertAction* membersAction = [UIAlertAction actionWithTitle:@"Members" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){[self sortByMembers];}];
     UIAlertAction* photosAction = [UIAlertAction actionWithTitle:@"Photos" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){[self sortByPhotos];}];
+    UIAlertAction* nameAction = [UIAlertAction actionWithTitle:@"Name" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){[self sortByName];}];
     // Sort by views
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action){[self dismissViewControllerAnimated:YES completion:nil];}];
     // Add the action to controller
     [ctrl addAction: membersAction];
     [ctrl addAction: photosAction];
+    [ctrl addAction: nameAction];
     [ctrl addAction: cancelAction];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {
@@ -79,6 +82,15 @@
         // Now show the alert
         [self presentViewController:ctrl animated:YES completion:nil];
     }
+}
+
+- (void) sortByName
+{
+    NSArray* sortedArray = [self.filteredGroups sortedArrayUsingSelector:@selector(compare:)];
+    self.filteredGroups = sortedArray;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
 }
 
 - (void) sortByMembers
@@ -148,7 +160,9 @@
 {
     GroupCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GroupCell" forIndexPath:indexPath];
     Group* g = [self.filteredGroups objectAtIndex:indexPath.item];
-    cell.groupName.text = g.name;
+
+    cell.groupName.text = [g.name stringByDecodingHTMLEntities];
+    
     cell.remainingCount.text = [NSString stringWithFormat:@"Remaining: %ld (%ld / %@)", (long)g.remaining, (long)g.throttleCount, g.throttleMode];
     cell.members.text = [NSString stringWithFormat:@"%@ members", g.members];
     cell.photos.text = [NSString stringWithFormat:@"%@ photos", g.poolPhotoCount];
