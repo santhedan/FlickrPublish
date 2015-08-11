@@ -99,6 +99,15 @@
     }
 }
 
+- (void) performSaveComment
+{
+    if (self.groupComments != nil)
+    {
+        SaveGroupComments* op = [[SaveGroupComments alloc] initWithGroupComments:self.groupComments Handler:nil];
+        [self enqueueOperation:op];
+    }
+}
+
 - (BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     NSString *token = nil;

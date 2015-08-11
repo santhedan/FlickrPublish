@@ -40,5 +40,7 @@
 
 - (NSString *) getCommentForGroup: (NSString *) groupId;
 
+- (void) performSaveComment;
+
 @end
 

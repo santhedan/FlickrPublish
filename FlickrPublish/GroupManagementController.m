@@ -269,7 +269,10 @@
 
 - (IBAction)unwindToContainerVC:(UIStoryboardSegue *)segue
 {
-    
+    // Get delegate
+    AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    // Start save operation
+    [delegate performSaveComment];
 }
 
 @end

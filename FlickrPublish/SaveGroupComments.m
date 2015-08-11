@@ -40,7 +40,10 @@
         // Write dictionary
         [self.groupComments writeToFile:dictPath atomically:YES];
         // Inform handler
-        [self.handler didSaveGroupComments];
+        if (self.handler != nil)
+        {
+            [self.handler didSaveGroupComments];
+        }
     }
 }
 
