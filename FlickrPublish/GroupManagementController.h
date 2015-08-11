@@ -24,4 +24,6 @@
 
 - (void) receivedFileData: (NSData *) imageData;
 
+- (IBAction)unwindToContainerVC:(UIStoryboardSegue *)segue;
+
 @end

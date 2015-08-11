@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *photoCount;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UITextView *comment;
-- (IBAction)saveComment:(id)sender;
+- (void) saveComment;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
@@ -31,6 +31,9 @@
     // Do any additional setup after loading the view.
     self.title = @"Group Detail";
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    //
+    UIBarButtonItem* saveItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveComment)];
+    self.navigationItem.rightBarButtonItem = saveItem;
     //
     self.albumName.text = self.group.name;
     self.remainingCount.text = [NSString stringWithFormat:@"Remaining: %ld (%ld / %@)", (long)self.group.remaining, (long)self.group.throttleCount, self.group.throttleMode];
@@ -89,7 +92,7 @@
 }
 */
 
-- (IBAction)saveComment:(id)sender
+- (void)saveComment
 {
     NSString* comment = self.comment.text;
     if (comment != nil && comment.length > 0)
@@ -97,6 +100,9 @@
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         [delegate addComment:comment forGroup:self.group.id];
     }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"unwindToContainerVC" sender:self];
+    });
 }
 
 - (void) receivedGroupInformation: (Group *) group
