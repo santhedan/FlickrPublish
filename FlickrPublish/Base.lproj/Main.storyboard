@@ -534,6 +534,9 @@
                                                     <state key="normal" title="View">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="handleViewPhoto:" destination="1FE-Pv-RGA" eventType="touchUpInside" id="fg9-Vo-xWq"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selectedState" translatesAutoresizingMaskIntoConstraints="NO" id="GUg-Mq-1cB">
                                                     <rect key="frame" x="60" y="60" width="30" height="30"/>
@@ -607,11 +610,45 @@
                         <outlet property="activityIndicator" destination="KtH-oj-JxA" id="9kD-Q4-J4t"/>
                         <outlet property="addCommentCmd" destination="2a4-KO-XlT" id="gV2-qC-ooc"/>
                         <outlet property="collectionView" destination="m54-6A-8QX" id="8ve-VT-Uwa"/>
+                        <segue destination="tEl-sz-A71" kind="show" identifier="ShowLargeImageInNewScreen" id="ZG5-1U-Itc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kC7-Ca-Vbj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2041" y="2833"/>
+        </scene>
+        <!--Large Photo Viewer Controller-->
+        <scene sceneID="iE6-QJ-3e9">
+            <objects>
+                <viewController id="tEl-sz-A71" customClass="LargePhotoViewerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZfG-Fp-ZVs"/>
+                        <viewControllerLayoutGuide type="bottom" id="awQ-yW-MYl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bY3-cl-IMX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQ5-aM-fDT">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="mQ5-aM-fDT" secondAttribute="trailing" constant="-16" id="0dA-GT-kXi"/>
+                            <constraint firstItem="mQ5-aM-fDT" firstAttribute="leading" secondItem="bY3-cl-IMX" secondAttribute="leadingMargin" constant="-16" id="0uW-QD-Uz3"/>
+                            <constraint firstItem="mQ5-aM-fDT" firstAttribute="top" secondItem="bY3-cl-IMX" secondAttribute="topMargin" id="BWK-28-QCq"/>
+                            <constraint firstItem="awQ-yW-MYl" firstAttribute="top" secondItem="mQ5-aM-fDT" secondAttribute="bottom" id="RYF-Pj-xoy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="mQ5-aM-fDT" id="4fQ-tV-8lh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Med-Us-P9t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2728" y="2833"/>
         </scene>
         <!--Group Detail Controller-->
         <scene sceneID="c2K-0s-s1o">

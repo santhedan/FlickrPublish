@@ -17,6 +17,9 @@
 @property (nonatomic, strong) Group* group;
 
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
+
 @property (weak, nonatomic) IBOutlet UIButton *addCommentCmd;
+
+- (IBAction)handleViewPhoto:(id)sender;
 
 @end

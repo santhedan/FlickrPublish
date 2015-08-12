@@ -12,11 +12,13 @@
 #import "GroupsPoolsGetPhotosOperation.h"
 #import "PhotoCell.h"
 #import "Photo.h"
+#import "LargePhotoViewerController.h"
 
 @interface GroupPoolPhotoDisplayController ()
 {
     UIBarButtonItem* sortItem;
     NSInteger selectedCount;
+    Photo* selPhoto;
 }
 
 @property (nonatomic, strong) NSArray* photos;
@@ -143,15 +145,16 @@
     }
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    LargePhotoViewerController* ctrl = (LargePhotoViewerController *)segue.destinationViewController;
+    ctrl.photo = selPhoto;
 }
-*/
 
 #pragma mark UICollectionViewDataSource
 
@@ -311,6 +314,14 @@
             });
         }
     }
+}
+
+- (IBAction)handleViewPhoto:(id)sender
+{
+    UIButton* btn = (UIButton *)sender;
+    NSLog(@"btn.tag -> %ld", (long)btn.tag);
+    selPhoto = [self.photos objectAtIndex:btn.tag];
+    [self performSegueWithIdentifier:@"ShowLargeImageInNewScreen" sender:self];
 }
 
 @end

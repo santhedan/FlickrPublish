@@ -65,6 +65,7 @@
 		06C7F8A41B70ACFF002B54D8 /* GroupPoolPhotoDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C7F8A31B70ACFF002B54D8 /* GroupPoolPhotoDisplayController.m */; };
 		06C7F8A71B70B3FE002B54D8 /* GroupsPoolsGetPhotosOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C7F8A61B70B3FE002B54D8 /* GroupsPoolsGetPhotosOperation.m */; };
 		06C7F8AA1B70C7A4002B54D8 /* PhotosCommentsAddCommentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C7F8A91B70C7A4002B54D8 /* PhotosCommentsAddCommentOperation.m */; };
+		06DCD2F41B7B696000B90751 /* LargePhotoViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DCD2F31B7B696000B90751 /* LargePhotoViewerController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +191,8 @@
 		06C7F8A61B70B3FE002B54D8 /* GroupsPoolsGetPhotosOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsPoolsGetPhotosOperation.m; sourceTree = "<group>"; };
 		06C7F8A81B70C7A4002B54D8 /* PhotosCommentsAddCommentOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosCommentsAddCommentOperation.h; sourceTree = "<group>"; };
 		06C7F8A91B70C7A4002B54D8 /* PhotosCommentsAddCommentOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosCommentsAddCommentOperation.m; sourceTree = "<group>"; };
+		06DCD2F21B7B696000B90751 /* LargePhotoViewerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargePhotoViewerController.h; sourceTree = "<group>"; };
+		06DCD2F31B7B696000B90751 /* LargePhotoViewerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargePhotoViewerController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +339,8 @@
 				06C7F89A1B7070ED002B54D8 /* GroupDetailController.m */,
 				06C7F8A21B70ACFF002B54D8 /* GroupPoolPhotoDisplayController.h */,
 				06C7F8A31B70ACFF002B54D8 /* GroupPoolPhotoDisplayController.m */,
+				06DCD2F21B7B696000B90751 /* LargePhotoViewerController.h */,
+				06DCD2F31B7B696000B90751 /* LargePhotoViewerController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -607,6 +612,7 @@
 				06C7F8AA1B70C7A4002B54D8 /* PhotosCommentsAddCommentOperation.m in Sources */,
 				06A027A71B4F81480000ED81 /* AccessToken.m in Sources */,
 				067BFB561B7A12BF00A2A5F7 /* GTMNSString+HTML.m in Sources */,
+				06DCD2F41B7B696000B90751 /* LargePhotoViewerController.m in Sources */,
 				065138C61B54C5000034A3CB /* PhotoSet.m in Sources */,
 				06A027B11B4F8E520000ED81 /* OFUtilities.m in Sources */,
 				06C7F8A41B70ACFF002B54D8 /* GroupPoolPhotoDisplayController.m in Sources */,
