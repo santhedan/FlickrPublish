@@ -169,6 +169,11 @@
     Photo* p = [self.photos objectAtIndex:indexPath.item];
     cell.imageTitle.text = p.name;
     cell.imageViews.text = [NSString stringWithFormat:@"%ld", (long)p.views];
+    //
+    cell.viewButton.layer.borderWidth = 1.0f;
+    cell.viewButton.layer.borderColor = [cell.viewButton tintColor].CGColor;
+    cell.viewButton.tag = indexPath.item;
+    //
     if (p.imageData != nil)
     {
         cell.thumbnailSmall.image = [UIImage imageWithData:p.imageData];

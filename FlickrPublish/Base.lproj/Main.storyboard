@@ -483,7 +483,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCc-wr-nHJ">
-                                                    <rect key="frame" x="0.0" y="130" width="150" height="20"/>
+                                                    <rect key="frame" x="0.0" y="105" width="150" height="20"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="views" translatesAutoresizingMaskIntoConstraints="NO" id="2Wq-CG-LBD">
                                                             <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -524,6 +524,17 @@
                                                         <constraint firstAttribute="height" constant="20" id="wvY-z4-MHI"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ta2-55-aNd">
+                                                    <rect key="frame" x="0.0" y="125" width="150" height="25"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="4R4-8V-e2j"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="GillSans-SemiBoldItalic" family="Gill Sans" pointSize="16"/>
+                                                    <state key="normal" title="View">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selectedState" translatesAutoresizingMaskIntoConstraints="NO" id="GUg-Mq-1cB">
                                                     <rect key="frame" x="60" y="60" width="30" height="30"/>
                                                     <constraints>
@@ -538,9 +549,12 @@
                                             <constraint firstAttribute="centerX" secondItem="GUg-Mq-1cB" secondAttribute="centerX" id="0I7-G0-mkB"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="MOw-oK-qCh" secondAttribute="trailing" constant="-8" id="C49-UA-cZO"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="MOw-oK-qCh" secondAttribute="bottom" constant="-8" id="Dn1-VI-TqY"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="cCc-wr-nHJ" secondAttribute="bottom" constant="-8" id="H3q-Oa-Wxt"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="ta2-55-aNd" secondAttribute="trailing" constant="-8" id="DrC-bU-kDe"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="cCc-wr-nHJ" secondAttribute="bottom" constant="17" id="H3q-Oa-Wxt"/>
                                             <constraint firstItem="cCc-wr-nHJ" firstAttribute="leading" secondItem="Xpo-aV-4cE" secondAttribute="leadingMargin" constant="-8" id="K9g-WH-iZR"/>
                                             <constraint firstItem="MOw-oK-qCh" firstAttribute="top" secondItem="Xpo-aV-4cE" secondAttribute="topMargin" constant="-8" id="W9a-fA-V5k"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="ta2-55-aNd" secondAttribute="bottom" constant="-8" id="Xn8-Mk-8CN"/>
+                                            <constraint firstItem="ta2-55-aNd" firstAttribute="leading" secondItem="Xpo-aV-4cE" secondAttribute="leadingMargin" constant="-8" id="dsl-iq-Cnr"/>
                                             <constraint firstItem="MOw-oK-qCh" firstAttribute="leading" secondItem="Xpo-aV-4cE" secondAttribute="leadingMargin" constant="-8" id="f5b-jB-efN"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="cCc-wr-nHJ" secondAttribute="trailing" constant="-8" id="fs2-Oe-aa6"/>
                                             <constraint firstAttribute="centerY" secondItem="GUg-Mq-1cB" secondAttribute="centerY" id="mJv-X7-kmo"/>
@@ -550,6 +564,7 @@
                                             <outlet property="imageViews" destination="nSA-8q-2E5" id="htI-ao-uEs"/>
                                             <outlet property="selState" destination="GUg-Mq-1cB" id="t18-Vt-tza"/>
                                             <outlet property="thumbnailSmall" destination="MOw-oK-qCh" id="W89-Ua-Aqj"/>
+                                            <outlet property="viewButton" destination="ta2-55-aNd" id="YSW-ff-KIc"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

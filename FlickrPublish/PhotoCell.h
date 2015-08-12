@@ -18,4 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *selState;
 
+@property (weak, nonatomic) IBOutlet UIButton *viewButton;
+
 @end
