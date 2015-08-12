@@ -16,6 +16,6 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-- (void) receivedFileData: (NSData *) imageData;
+- (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
 
 @end

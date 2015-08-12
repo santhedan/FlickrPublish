@@ -96,16 +96,6 @@
         [self.activityIndicator stopAnimating];
         [self.collectionView reloadData];
     });
-    if ([self.photosets count] > 0)
-    {
-        // Start loading images
-        PhotoSet* set = [self.photosets objectAtIndex:self.currentIndex];
-        // Create download operation
-        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:set.photosetPhotoUrl Directory:set.id Delegate:self];
-        // Delegate
-        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [delegate enqueueOperation:op];
-    }
 }
 
 #pragma mark - Navigation
@@ -145,6 +135,11 @@
     else
     {
         cell.photosetPhoto.image = [UIImage imageNamed:@"small_placeholder"];
+        // Request download - Create download operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:set.photosetPhotoUrl Directory:set.id FileId:set.id Delegate:self];
+        // Delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate enqueueOperation:op];
     }
     //
     cell.layer.borderWidth = 0.5f;
@@ -189,22 +184,28 @@
 
 - (void) receivedFileData: (NSData *) imageData
 {
-    PhotoSet* set = [self.photosets objectAtIndex:self.currentIndex];
-    set.photosetPhoto = imageData;
-    NSIndexPath* path = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
-    });
-    self.currentIndex = self.currentIndex + 1;
-    if (self.currentIndex < [self.photosets count] && self.visible)
-    {
-        // Start loading images
-        set = [self.photosets objectAtIndex:self.currentIndex];
-        // Create download operation
-        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:set.photosetPhotoUrl Directory:set.id Delegate:self];
-        // Delegate
-        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [delegate enqueueOperation:op];
+    // Empty implementation
+}
+
+- (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId
+{
+    @synchronized (self.photosets) {
+        // We have to find a photo with id fileId - so first create a filter predicate
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id == %@", fileId];
+        NSArray *filteredPhotoset = [self.photosets filteredArrayUsingPredicate:predicate];
+        if (filteredPhotoset.count == 1)
+        {
+            PhotoSet* pset = [filteredPhotoset objectAtIndex:0];
+            pset.photosetPhoto = imageData;
+            // get index of p
+            NSInteger index = [self.photosets indexOfObject:pset];
+            // Create indexPath
+            NSIndexPath* path = [NSIndexPath indexPathForItem:index inSection:0];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Reload the cell
+                [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
+            });
+        }
     }
 }
 

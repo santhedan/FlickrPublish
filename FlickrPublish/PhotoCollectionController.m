@@ -39,12 +39,6 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     self.currentIndex = 0;
     self.title = self.set.name;
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
-    //[self.collectionView registerClass:[PhotoCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
     // Do any additional setup after loading the view.
     sortItem = [[UIBarButtonItem alloc] initWithTitle:@"Sort" style:UIBarButtonItemStylePlain target:self action:@selector(showSortOption)];
     self.navigationItem.rightBarButtonItem = sortItem;
@@ -84,46 +78,41 @@ static NSString * const reuseIdentifier = @"PhotoCell";
 
 - (void) sortByViews
 {
-    NSArray* sortedArray = [self.photos sortedArrayUsingSelector:@selector(compareViews:)];
-    self.photos = sortedArray;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView reloadData];
-    });
+    @synchronized (self.photos) {
+        NSArray* sortedArray = [self.photos sortedArrayUsingSelector:@selector(compareViews:)];
+        self.photos = sortedArray;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+    }
 }
 
 - (void) sortByFaves
 {
-    NSArray* sortedArray = [self.photos sortedArrayUsingSelector:@selector(compareFaves:)];
-    self.photos = sortedArray;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView reloadData];
-    });
+    @synchronized (self.photos) {
+        NSArray* sortedArray = [self.photos sortedArrayUsingSelector:@selector(compareFaves:)];
+        self.photos = sortedArray;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+    }
 }
 
 - (void) sortByComments
 {
-    NSArray* sortedArray = [self.photos sortedArrayUsingSelector:@selector(compareComments:)];
-    self.photos = sortedArray;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView reloadData];
-    });
+    @synchronized (self.photos) {
+        NSArray* sortedArray = [self.photos sortedArrayUsingSelector:@selector(compareComments:)];
+        self.photos = sortedArray;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.visible = YES;
-    //
-    if (self.currentIndex < [self.photos count])
-    {
-        // Start loading images
-        Photo* p = [self.photos objectAtIndex:self.currentIndex];
-        // Create download operation
-        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:p.smallImageURL Directory:self.set.id Delegate:self];
-        // Delegate
-        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [delegate enqueueOperation:op];
-    }
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -163,7 +152,9 @@ static NSString * const reuseIdentifier = @"PhotoCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.photos.count;
+    @synchronized (self.photos) {
+        return self.photos.count;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -181,6 +172,12 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     else
     {
         cell.thumbnailSmall.image = [UIImage imageNamed:@"large_placeholder"];
+        // Request photo download - Get app delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        // Create operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:p.smallImageURL Directory:self.set.id FileId:p.id Delegate:self];
+        // Start download
+        [delegate enqueueOperation:op];
     }
     
     return cell;
@@ -219,35 +216,6 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     [self performSegueWithIdentifier:@"ShowGroups" sender:self];
 }
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
-
 - (void) receivedPhotos: (NSArray *) photos
 {
     self.photos = photos;
@@ -255,40 +223,32 @@ static NSString * const reuseIdentifier = @"PhotoCell";
         [self.collectionView reloadData];
         [self.activityIndicator stopAnimating];
     });
-    if ([self.photos count] > 0)
-    {
-        // Get photo
-        Photo* p = [self.photos objectAtIndex:self.currentIndex];
-        // Get app delegate
-        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        // Create operation
-        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:p.smallImageURL Directory:self.set.id Delegate:self];
-        // Start download
-        [delegate enqueueOperation:op];
-    }
 }
 
 - (void) receivedFileData: (NSData *) imageData
 {
-    // Get photo
-    Photo* p = [self.photos objectAtIndex:self.currentIndex];
-    // Assign data
-    p.imageData = imageData;
-    // Create index path
-    NSIndexPath* path = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
-    });
-    self.currentIndex = self.currentIndex + 1;
-    if (self.currentIndex < [self.photos count] && self.visible)
-    {
-        // Start loading images
-        p = [self.photos objectAtIndex:self.currentIndex];
-        // Create download operation
-        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:p.smallImageURL Directory:self.set.id Delegate:self];
-        // Delegate
-        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [delegate enqueueOperation:op];
+        // Empty implementation
+}
+
+- (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId
+{
+    @synchronized (self.photos) {
+        // We have to find a photo with id fileId - so first create a filter predicate
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id == %@", fileId];
+        NSArray *filteredPhotos = [self.photos filteredArrayUsingPredicate:predicate];
+        if (filteredPhotos.count == 1)
+        {
+            Photo* p = [filteredPhotos objectAtIndex:0];
+            p.imageData = imageData;
+            // get index of p
+            NSInteger index = [self.photos indexOfObject:p];
+            // Create indexPath
+            NSIndexPath* path = [NSIndexPath indexPathForItem:index inSection:0];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Reload the cell
+                [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
+            });
+        }
     }
 }
 
