@@ -28,7 +28,7 @@
 {
     // Override point for customization after application launch.
     self.queue = [[NSOperationQueue alloc] init];
-    self.queue.maxConcurrentOperationCount = 1;
+    self.queue.maxConcurrentOperationCount = 5;
     // Get stored dats if any
     self.token = [[NSUserDefaults standardUserDefaults] objectForKey:AUTHTOKEN_KEY];
     self.secret = [[NSUserDefaults standardUserDefaults] objectForKey:SECRET_KEY];
@@ -132,7 +132,7 @@
     if (self.queue == nil)
     {
         self.queue = [[NSOperationQueue alloc] init];
-        self.queue.maxConcurrentOperationCount = 1;
+        self.queue.maxConcurrentOperationCount = 5;
     }
     [self.queue addOperation:op];
 }

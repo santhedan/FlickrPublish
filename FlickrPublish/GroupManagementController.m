@@ -86,29 +86,35 @@
 
 - (void) sortByName
 {
-    NSArray* sortedArray = [self.filteredGroups sortedArrayUsingSelector:@selector(compare:)];
-    self.filteredGroups = sortedArray;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView reloadData];
-    });
+    @synchronized (self.filteredGroups) {
+        NSArray* sortedArray = [self.filteredGroups sortedArrayUsingSelector:@selector(compare:)];
+        self.filteredGroups = sortedArray;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+    }
 }
 
 - (void) sortByMembers
 {
-    NSArray* sortedArray = [self.filteredGroups sortedArrayUsingSelector:@selector(compareMembers:)];
-    self.filteredGroups = sortedArray;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView reloadData];
-    });
+    @synchronized (self.filteredGroups) {
+        NSArray* sortedArray = [self.filteredGroups sortedArrayUsingSelector:@selector(compareMembers:)];
+        self.filteredGroups = sortedArray;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+    }
 }
 
 - (void) sortByPhotos
 {
-    NSArray* sortedArray = [self.filteredGroups sortedArrayUsingSelector:@selector(comparePhotos:)];
-    self.filteredGroups = sortedArray;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView reloadData];
-    });
+    @synchronized (self.filteredGroups) {
+        NSArray* sortedArray = [self.filteredGroups sortedArrayUsingSelector:@selector(comparePhotos:)];
+        self.filteredGroups = sortedArray;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -152,14 +158,19 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.filteredGroups count];
+    @synchronized (self.filteredGroups) {
+        return [self.filteredGroups count];
+    }
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GroupCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GroupCell" forIndexPath:indexPath];
-    Group* g = [self.filteredGroups objectAtIndex:indexPath.item];
+    Group* g = nil;
+    @synchronized (self.filteredGroups) {
+        g = [self.filteredGroups objectAtIndex:indexPath.item];
+    }
 
     cell.groupName.text = [g.name stringByDecodingHTMLEntities];
     
@@ -185,6 +196,12 @@
     else
     {
         cell.thumbnail.image = [UIImage imageNamed:@"small_placeholder"];
+        // Request image download - Create download operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:g.groupImagePath Directory:g.id FileId:g.id Delegate:self];
+        // Get delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        // Schedule operation
+        [delegate enqueueOperation:op];
     }
     cell.thumbnail.layer.borderWidth = 3.0f;
     cell.thumbnail.layer.borderColor = [UIColor darkGrayColor].CGColor;
@@ -242,17 +259,6 @@
         [self.collectionView reloadData];
         [self.activityIndicator stopAnimating];
     });
-    if ([self.groups count] > 0)
-    {
-        // Get the first group
-        Group* g = [self.groups objectAtIndex:self.currentIndex];
-        // Create download operation
-        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:g.groupImagePath Directory:g.id Delegate:self];
-        // Get delegate
-        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        // Schedule operation
-        [delegate enqueueOperation:op];
-    }
 }
 
 - (IBAction)handleShowPhotos:(id)sender
@@ -273,28 +279,36 @@
 
 - (void) receivedFileData: (NSData *) imageData
 {
-    // Get handle to group
-    Group* g = [self.groups objectAtIndex:self.currentIndex];
-    // Assign image data
-    g.imageData = imageData;
-    // Create index path
-    NSIndexPath* path = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (path.item < self.filteredGroups.count)
-        {
-            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
-        }
-    });
-    self.currentIndex = self.currentIndex + 1;
-    if (self.currentIndex < [self.groups count] && self.visible)
+    // Empty implementation
+}
+
+- (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId
+{
+    if (imageData != nil)
     {
-        // Start loading images
-        g = [self.groups objectAtIndex:self.currentIndex];
-        // Create download operation
-        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:g.groupImagePath Directory:g.id Delegate:self];
-        // Delegate
-        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [delegate enqueueOperation:op];
+        @synchronized (self.groups) {
+            // We have to find a photo with id fileId - so first create a filter predicate
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id == %@", fileId];
+            NSArray *tempGroups = [self.groups filteredArrayUsingPredicate:predicate];
+            if (tempGroups.count == 1)
+            {
+                Group* g = [tempGroups objectAtIndex:0];
+                g.imageData = imageData;
+                // get index of g in filtered group
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    @synchronized (self.filteredGroups) {
+                        NSInteger index = [self.filteredGroups indexOfObject:g];
+                        if (index >= 0)
+                        {
+                            // Create indexPath
+                            NSIndexPath* path = [NSIndexPath indexPathForItem:index inSection:0];
+                            // Reload the cell
+                            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
+                        }
+                    }
+                });
+            }
+        }
     }
 }
 
@@ -304,13 +318,29 @@
     {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[cd] %@", searchText];
         NSArray *filteredGroups = [self.groups filteredArrayUsingPredicate:predicate];
-        self.filteredGroups = filteredGroups;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.collectionView reloadData];
-        });
+        @synchronized (self.filteredGroups) {
+            self.filteredGroups = filteredGroups;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.collectionView reloadData];
+            });
+        }
     }
     else
     {
+        @synchronized (self.filteredGroups) {
+            self.filteredGroups = self.groups;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [searchBar setText:@""];
+                [searchBar resignFirstResponder];
+                [self.collectionView reloadData];
+            });
+        }
+    }
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    @synchronized (self.filteredGroups) {
         self.filteredGroups = self.groups;
         dispatch_async(dispatch_get_main_queue(), ^{
             [searchBar setText:@""];
@@ -318,16 +348,6 @@
             [self.collectionView reloadData];
         });
     }
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    self.filteredGroups = self.groups;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [searchBar setText:@""];
-        [searchBar resignFirstResponder];
-        [self.collectionView reloadData];
-    });
 }
 
 - (IBAction)unwindToContainerVC:(UIStoryboardSegue *)segue

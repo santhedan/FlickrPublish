@@ -22,7 +22,7 @@
 
 - (IBAction)handleConfigureComments:(id)sender;
 
-- (void) receivedFileData: (NSData *) imageData;
+- (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
 
 - (IBAction)unwindToContainerVC:(UIStoryboardSegue *)segue;
 
