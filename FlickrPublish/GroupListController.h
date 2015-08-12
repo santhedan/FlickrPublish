@@ -25,7 +25,7 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-- (IBAction)handleAdd:(id)sender;
+- (void)handleAdd;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
@@ -37,6 +37,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *commentCount;
 @property (weak, nonatomic) IBOutlet UILabel *publicState;
 
-- (void) receivedFileData: (NSData *) imageData;
+- (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
 
 @end

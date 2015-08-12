@@ -18,6 +18,10 @@
 #import "GroupsPoolsAddOperation.h"
 
 @interface GroupListController ()
+{
+    NSInteger selectedCount;
+    UIBarButtonItem* addItem;
+}
 
 @property (nonatomic, strong) NSArray* groupsToExclude;
 
@@ -45,6 +49,9 @@
     self.progressLabel.layer.cornerRadius = 3.0f;
     self.progressLabel.layer.borderColor = [self.progressLabel tintColor].CGColor;
     //
+    addItem = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStylePlain target:self action:@selector(handleAdd)];
+    self.navigationItem.rightBarButtonItem = addItem;
+    //
     self.currentIndex = 0;
     self.imageToAdd.image = [UIImage imageWithData:self.photo.imageData];
     //
@@ -59,6 +66,9 @@
     [self.activityIndicator startAnimating];
     //
     [self.collectionView setLayoutMargins:UIEdgeInsetsZero];
+    //
+    [addItem setEnabled:NO];
+    selectedCount = 0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,6 +132,12 @@
     else
     {
         cell.thumbnail.image = [UIImage imageNamed:@"small_placeholder"];
+        // Request download of image - Create download operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:g.groupImagePath Directory:g.id FileId:g.id Delegate:self];
+        // Get delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        // Schedule operation
+        [delegate enqueueOperation:op];
     }
     cell.thumbnail.layer.borderWidth = 3.0f;
     cell.thumbnail.layer.borderColor = [UIColor darkGrayColor].CGColor;
@@ -147,7 +163,25 @@
 {
     Group* g = [self.groups objectAtIndex:indexPath.item];
     g.selected = !(g.selected);
+    if (g.selected)
+    {
+        selectedCount++;
+    }
+    else
+    {
+        selectedCount--;
+    }
     [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (selectedCount > 0)
+        {
+            [addItem setEnabled:YES];
+        }
+        else
+        {
+            [addItem setEnabled:NO];
+        }
+    });
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -198,17 +232,6 @@
         //
         self.progressLabel.hidden = YES;
     });
-    if ([self.groups count] > 0)
-    {
-        // Get the first group
-        Group* g = [self.groups objectAtIndex:self.currentIndex];
-        // Create download operation
-        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:g.groupImagePath Directory:g.id Delegate:self];
-        // Get delegate
-        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        // Schedule operation
-        [delegate enqueueOperation:op];
-    }
 }
 
 - (void) receivedPhotoGroups: (NSArray *) groups Info: (PhotoInfo *) info
@@ -225,7 +248,7 @@
     [delegate enqueueOperation:op];
 }
 
-- (IBAction)handleAdd:(id)sender
+- (void) handleAdd
 {
     // Create an array of selected groups
     NSMutableArray* gArr = [[NSMutableArray alloc] init];
@@ -270,25 +293,34 @@
 
 - (void) receivedFileData: (NSData *) imageData
 {
-    // Get handle to group
-    Group* g = [self.groups objectAtIndex:self.currentIndex];
-    // Assign image data
-    g.imageData = imageData;
-    // Create index path
-    NSIndexPath* path = [NSIndexPath indexPathForItem:self.currentIndex inSection:0];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
-    });
-    self.currentIndex = self.currentIndex + 1;
-    if (self.currentIndex < [self.groups count] && self.visible)
+        // Empty implementation
+}
+
+- (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId
+{
+    if (imageData != nil)
     {
-        // Start loading images
-        g = [self.groups objectAtIndex:self.currentIndex];
-        // Create download operation
-        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:g.groupImagePath Directory:g.id Delegate:self];
-        // Delegate
-        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [delegate enqueueOperation:op];
+        @synchronized (self.groups) {
+            // We have to find a photo with id fileId - so first create a filter predicate
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id == %@", fileId];
+            NSArray *tempGroups = [self.groups filteredArrayUsingPredicate:predicate];
+            if (tempGroups.count == 1)
+            {
+                Group* g = [tempGroups objectAtIndex:0];
+                g.imageData = imageData;
+                // get index of g in filtered group
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSInteger index = [self.groups indexOfObject:g];
+                    if (index >= 0)
+                    {
+                        // Create indexPath
+                        NSIndexPath* path = [NSIndexPath indexPathForItem:index inSection:0];
+                        // Reload the cell
+                        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:path, nil]];
+                    }
+                });
+            }
+        }
     }
 }
 

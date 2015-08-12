@@ -17,5 +17,6 @@
 @property (nonatomic, strong) Group* group;
 
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
+@property (weak, nonatomic) IBOutlet UIButton *addCommentCmd;
 
 @end

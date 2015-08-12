@@ -16,6 +16,7 @@
 @interface GroupPoolPhotoDisplayController ()
 {
     UIBarButtonItem* sortItem;
+    NSInteger selectedCount;
 }
 
 @property (nonatomic, strong) NSArray* photos;
@@ -45,6 +46,9 @@
     GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithRequest:request Delegate:self];
     [delegate enqueueOperation:op];
     [self.activityIndicator startAnimating];
+    //
+    selectedCount = 0;
+    [self.addCommentCmd setEnabled:NO];
 }
 
 - (void) showSortOption
@@ -196,7 +200,25 @@
 {
     Photo* p = [self.photos objectAtIndex:indexPath.item];
     p.selected = !(p.selected);
+    if (p.selected)
+    {
+        selectedCount++;
+    }
+    else
+    {
+        selectedCount--;
+    }
     [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (selectedCount > 0)
+        {
+            [self.addCommentCmd setEnabled:YES];
+        }
+        else
+        {
+            [self.addCommentCmd setEnabled:NO];
+        }
+    });
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

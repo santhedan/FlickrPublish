@@ -590,6 +590,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="KtH-oj-JxA" id="9kD-Q4-J4t"/>
+                        <outlet property="addCommentCmd" destination="2a4-KO-XlT" id="gV2-qC-ooc"/>
                         <outlet property="collectionView" destination="m54-6A-8QX" id="8ve-VT-Uwa"/>
                     </connections>
                 </viewController>
@@ -973,18 +974,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tm-d0-hH9">
-                                <rect key="frame" x="0.0" y="570" width="600" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="fKN-h8-GBu"/>
-                                </constraints>
-                                <state key="normal" title="Add">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="handleAdd:" destination="RYN-cE-4CA" eventType="touchUpInside" id="TDh-ul-yV9"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x9c-U2-I9o">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                 <constraints>
@@ -1089,7 +1078,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BIO-8Q-M3b">
-                                <rect key="frame" x="0.0" y="150" width="600" height="412"/>
+                                <rect key="frame" x="0.0" y="150" width="600" height="450"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fNT-AB-wNe">
                                     <size key="itemSize" width="50" height="50"/>
@@ -1123,9 +1112,6 @@
                                                             <fontDescription key="fontDescription" name="GillSans-SemiBoldItalic" family="Gill Sans" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="76" y="0.0" width="0.0" height="68"/>
-                                                            </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="membership" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P9p-qf-eOp">
                                                             <rect key="frame" x="0.0" y="68" width="82" height="20"/>
@@ -1135,9 +1121,6 @@
                                                             <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="0.0" y="68" width="16" height="20"/>
-                                                            </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="remaining" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTv-xW-IYN">
                                                             <rect key="frame" x="82" y="68" width="150" height="20"/>
@@ -1147,9 +1130,6 @@
                                                             <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="16" y="68" width="26" height="20"/>
-                                                            </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="photos" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFg-gk-u6i">
                                                             <rect key="frame" x="116" y="92" width="116" height="20"/>
@@ -1159,9 +1139,6 @@
                                                             <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="21" y="92" width="21" height="20"/>
-                                                            </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="members" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQY-2c-dsL">
                                                             <rect key="frame" x="0.0" y="92" width="116" height="20"/>
@@ -1171,9 +1148,6 @@
                                                             <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="0.0" y="92" width="21" height="20"/>
-                                                            </variation>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1198,9 +1172,6 @@
                                                         <constraint firstItem="YTv-xW-IYN" firstAttribute="top" secondItem="MR1-1C-SlG" secondAttribute="bottom" id="wCl-8k-adH"/>
                                                         <constraint firstItem="hFg-gk-u6i" firstAttribute="width" secondItem="XTM-gK-fiB" secondAttribute="width" multiplier="0.5" id="yd9-5B-LsK"/>
                                                     </constraints>
-                                                    <variation key="heightClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="4" y="4" width="42" height="42"/>
-                                                    </variation>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1244,12 +1215,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7tm-d0-hH9" firstAttribute="leading" secondItem="x9c-U2-I9o" secondAttribute="trailing" id="12g-RP-PKG"/>
                             <constraint firstItem="ttf-VE-Bti" firstAttribute="top" secondItem="x9c-U2-I9o" secondAttribute="bottom" id="2cX-Ue-FK3"/>
-                            <constraint firstItem="7tm-d0-hH9" firstAttribute="leading" secondItem="6VX-dA-BAG" secondAttribute="leadingMargin" constant="-16" id="7Rg-eJ-BVu"/>
                             <constraint firstAttribute="centerY" secondItem="eyI-F0-Dss" secondAttribute="centerY" id="DAC-Io-BTC"/>
                             <constraint firstItem="BIO-8Q-M3b" firstAttribute="top" secondItem="x9c-U2-I9o" secondAttribute="bottom" id="Evz-QE-1Zf"/>
-                            <constraint firstItem="7tm-d0-hH9" firstAttribute="top" secondItem="BIO-8Q-M3b" secondAttribute="bottom" constant="8" id="Fpn-lT-F2V"/>
+                            <constraint firstItem="ttf-VE-Bti" firstAttribute="top" secondItem="BIO-8Q-M3b" secondAttribute="bottom" id="HB3-QL-WGe"/>
                             <constraint firstAttribute="centerX" secondItem="eyI-F0-Dss" secondAttribute="centerX" id="ITY-tZ-EZm"/>
                             <constraint firstItem="x9c-U2-I9o" firstAttribute="leading" secondItem="6VX-dA-BAG" secondAttribute="leadingMargin" constant="-16" id="Iwy-UK-Ja3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="x9c-U2-I9o" secondAttribute="trailing" constant="-16" id="JdZ-OZ-hWt"/>
@@ -1257,9 +1226,7 @@
                             <constraint firstItem="BIO-8Q-M3b" firstAttribute="leading" secondItem="x9c-U2-I9o" secondAttribute="trailing" id="OYP-Bt-VTU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BIO-8Q-M3b" secondAttribute="trailing" constant="-16" id="TYe-s9-Ept"/>
                             <constraint firstAttribute="centerY" secondItem="K0z-gL-C85" secondAttribute="centerY" id="Vh9-Ty-z3Y"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7tm-d0-hH9" secondAttribute="trailing" constant="-16" id="dXx-Ti-8bb"/>
                             <constraint firstItem="BIO-8Q-M3b" firstAttribute="leading" secondItem="6VX-dA-BAG" secondAttribute="leadingMargin" constant="-16" id="nfI-fv-TYF"/>
-                            <constraint firstItem="ttf-VE-Bti" firstAttribute="top" secondItem="7tm-d0-hH9" secondAttribute="bottom" id="tVI-1l-JeW"/>
                             <constraint firstAttribute="centerX" secondItem="K0z-gL-C85" secondAttribute="centerX" id="uU3-Fy-ebd"/>
                             <constraint firstItem="x9c-U2-I9o" firstAttribute="top" secondItem="6VX-dA-BAG" secondAttribute="topMargin" id="vpI-zr-GAp"/>
                             <constraint firstItem="BIO-8Q-M3b" firstAttribute="top" secondItem="6VX-dA-BAG" secondAttribute="topMargin" id="wS7-sN-oM8"/>
@@ -1269,7 +1236,6 @@
                             <mask key="constraints">
                                 <exclude reference="OYP-Bt-VTU"/>
                                 <exclude reference="wS7-sN-oM8"/>
-                                <exclude reference="12g-RP-PKG"/>
                                 <exclude reference="2cX-Ue-FK3"/>
                             </mask>
                         </variation>
@@ -1281,8 +1247,6 @@
                                 <include reference="TYe-s9-Ept"/>
                                 <exclude reference="nfI-fv-TYF"/>
                                 <include reference="wS7-sN-oM8"/>
-                                <include reference="12g-RP-PKG"/>
-                                <exclude reference="7Rg-eJ-BVu"/>
                                 <include reference="2cX-Ue-FK3"/>
                             </mask>
                         </variation>
