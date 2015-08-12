@@ -231,6 +231,7 @@
         [self.collectionView reloadData];
         //
         self.progressLabel.hidden = YES;
+        [addItem setEnabled:YES];
     });
 }
 
@@ -261,6 +262,8 @@
     }
     if (gArr.count > 0)
     {
+        // DIsable Add
+        [addItem setEnabled:NO];
         self.progressLabel.hidden = NO;
         self.progressLabel.layer.borderWidth = 0.5f;
         self.progressLabel.layer.cornerRadius = 3.0f;

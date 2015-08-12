@@ -134,6 +134,8 @@
     //
     if (photoIds.count > 0)
     {
+        // Disable add comment button
+        [self.addCommentCmd setEnabled:NO];
         // Create operation
         PhotosCommentsAddCommentOperation* op = [[PhotosCommentsAddCommentOperation alloc] initWithPhotoIds:photoIds GroupId:self.group.id Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
         [delegate enqueueOperation:op];
@@ -275,6 +277,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.collectionView reloadItemsAtIndexPaths:indexes];
         [self.activityIndicator stopAnimating];
+        [self.addCommentCmd setEnabled:YES];
     });
 }
 
