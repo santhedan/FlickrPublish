@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) NSString* localDirectory;
 
+@property (nonatomic, strong) NSString* fileId;
+
 @property (nonatomic, strong) id<DownloadFileOperationDelegate> delegate;
 
 @end
@@ -23,12 +25,18 @@
 
 - (instancetype) initWithURL: (NSString *) urlOfImage Directory: (NSString *) localDirectory Delegate: (id<DownloadFileOperationDelegate>) delegate
 {
+    return [self initWithURL:urlOfImage Directory:localDirectory FileId:nil Delegate:delegate];;
+}
+
+- (instancetype) initWithURL: (NSString *) urlOfImage Directory: (NSString *) localDirectory FileId: (NSString *) fileId Delegate: (id<DownloadFileOperationDelegate>) delegate
+{
     self = [super init];
     if (self)
     {
         self.urlOfImage = urlOfImage;
         self.localDirectory = localDirectory;
         self.delegate = delegate;
+        self.fileId = fileId;
     }
     return self;
 }
@@ -54,18 +62,39 @@
             {
                 [Utility writeData:imageData toFile:fullFilePath];
             }
-            [self.delegate receivedFileData:imageData];
+            if ([self.delegate respondsToSelector:@selector(receivedFileData:FileId:)])
+            {
+                [self.delegate receivedFileData:imageData FileId:self.fileId];
+            }
+            else
+            {
+                [self.delegate receivedFileData:imageData];
+            }
         }
         else
         {
             NSData* imageData = [NSData dataWithContentsOfFile:fullFilePath];
-            [self.delegate receivedFileData:imageData];
+            if ([self.delegate respondsToSelector:@selector(receivedFileData:FileId:)])
+            {
+                [self.delegate receivedFileData:imageData FileId:self.fileId];
+            }
+            else
+            {
+                [self.delegate receivedFileData:imageData];
+            }
         }
     }
     else
     {
         NSData* imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString: self.urlOfImage]];
-        [self.delegate receivedFileData:imageData];
+        if ([self.delegate respondsToSelector:@selector(receivedFileData:FileId:)])
+        {
+            [self.delegate receivedFileData:imageData FileId:self.fileId];
+        }
+        else
+        {
+            [self.delegate receivedFileData:imageData];
+        }
     }
 }
 

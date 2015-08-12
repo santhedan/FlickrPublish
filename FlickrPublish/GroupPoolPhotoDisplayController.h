@@ -16,6 +16,6 @@
 
 @property (nonatomic, strong) Group* group;
 
-- (void) receivedFileData: (NSData *) imageData;
+- (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
 
 @end
