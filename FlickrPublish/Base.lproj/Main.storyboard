@@ -42,13 +42,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBY-bB-E1e">
-                                <rect key="frame" x="150" y="285" width="300" height="30"/>
+                                <rect key="frame" x="150" y="185" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="XWT-hE-Jaj"/>
                                     <constraint firstAttribute="height" constant="30" id="hkH-Tk-Rl4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="17"/>
-                                <state key="normal" title="Authorize FlickrPublish!">
+                                <state key="normal" title="Authorize FotoPub for Flickr!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -62,14 +62,51 @@
                                     <constraint firstAttribute="height" constant="40" id="0Qm-IP-ccZ"/>
                                 </constraints>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLC-kT-TWJ">
+                                <rect key="frame" x="24" y="223" width="568" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="KNu-Dp-bdD"/>
+                                    <constraint firstAttribute="height" constant="250" id="vKM-Bf-1eZ"/>
+                                </constraints>
+                                <string key="text">Click the link above and login using your Flickr credentials to grant requested access to this application. The application is requesting access to your Flickr photos so that you can publish your outstanding photos to Flickr Groups as well as comment on some awsome work of other photographers in Flickr Groups. The application will not modify or delete your photos.</string>
+                                <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="vKM-Bf-1eZ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="KNu-Dp-bdD"/>
+                                        <include reference="vKM-Bf-1eZ"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="eBY-bB-E1e" secondAttribute="centerY" id="Ocn-fA-eUi"/>
+                            <constraint firstItem="TLC-kT-TWJ" firstAttribute="top" secondItem="eBY-bB-E1e" secondAttribute="bottom" constant="8" id="G3S-YW-Sq8"/>
+                            <constraint firstAttribute="centerY" secondItem="eBY-bB-E1e" secondAttribute="centerY" constant="100" id="Ocn-fA-eUi"/>
                             <constraint firstAttribute="centerY" secondItem="9fq-JX-GZ2" secondAttribute="centerY" id="QCo-mv-IIq"/>
                             <constraint firstAttribute="centerX" secondItem="eBY-bB-E1e" secondAttribute="centerX" id="akM-yB-bdJ"/>
+                            <constraint firstItem="TLC-kT-TWJ" firstAttribute="trailing" secondItem="Wv2-hz-5Ke" secondAttribute="trailingMargin" constant="8" id="luj-cj-xZj"/>
+                            <constraint firstAttribute="centerY" secondItem="eBY-bB-E1e" secondAttribute="centerY" constant="50" id="mPQ-fZ-Hx4"/>
                             <constraint firstAttribute="centerX" secondItem="9fq-JX-GZ2" secondAttribute="centerX" id="nVK-Lb-I8f"/>
+                            <constraint firstItem="TLC-kT-TWJ" firstAttribute="leading" secondItem="Wv2-hz-5Ke" secondAttribute="leadingMargin" constant="8" id="t27-PW-h02"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="mPQ-fZ-Hx4"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="Ocn-fA-eUi"/>
+                                <include reference="mPQ-fZ-Hx4"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="9fq-JX-GZ2" id="6Sg-t0-uww"/>
@@ -1368,7 +1405,7 @@
         <image name="views" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NmL-Sr-huR"/>
         <segue reference="l7x-y1-mwl"/>
+        <segue reference="NmL-Sr-huR"/>
     </inferredMetricsTieBreakers>
 </document>
