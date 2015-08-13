@@ -13,10 +13,12 @@
 #import "Constants.h"
 #import "PhotosetGetPhotosOperation.h"
 #import "GroupListController.h"
+#import "LargePhotoViewerController.h"
 
 @interface PhotoCollectionController ()
 {
     UIBarButtonItem* sortItem;
+    Photo* selPhoto;
 }
 
 @property (nonatomic, strong) NSArray* photos;
@@ -138,8 +140,16 @@ static NSString * const reuseIdentifier = @"PhotoCell";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    GroupListController* ctrl = (GroupListController *)[segue destinationViewController];
-    ctrl.photo = self.selectedPhoto;
+    if ([segue.identifier isEqualToString:@"ShowGroups"])
+    {
+        GroupListController* ctrl = (GroupListController *)[segue destinationViewController];
+        ctrl.photo = self.selectedPhoto;
+    }
+    else if ([segue.identifier isEqualToString:@"ShowLargeImageInNewScreen"])
+    {
+        LargePhotoViewerController* ctrl = (LargePhotoViewerController *)segue.destinationViewController;
+        ctrl.photo = selPhoto;
+    }
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -165,6 +175,11 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     Photo* p = [self.photos objectAtIndex:indexPath.item];
     cell.imageTitle.text = p.name;
     cell.imageViews.text = [NSString stringWithFormat:@"%ld", (long)p.views];
+    //
+    cell.viewButton.layer.borderWidth = 1.0f;
+    cell.viewButton.layer.borderColor = [cell.viewButton tintColor].CGColor;
+    cell.viewButton.tag = indexPath.item;
+    //
     if (p.imageData != nil)
     {
         cell.thumbnailSmall.image = [UIImage imageWithData:p.imageData];
@@ -250,6 +265,14 @@ static NSString * const reuseIdentifier = @"PhotoCell";
             });
         }
     }
+}
+
+- (IBAction)handleViewPhoto:(id)sender
+{
+    UIButton* btn = (UIButton *)sender;
+    NSLog(@"btn.tag -> %ld", (long)btn.tag);
+    selPhoto = [self.photos objectAtIndex:btn.tag];
+    [self performSegueWithIdentifier:@"ShowLargeImageInNewScreen" sender:self];
 }
 
 @end

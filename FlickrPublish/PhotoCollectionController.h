@@ -22,4 +22,6 @@
 
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
 
+- (IBAction)handleViewPhoto:(id)sender;
+
 @end

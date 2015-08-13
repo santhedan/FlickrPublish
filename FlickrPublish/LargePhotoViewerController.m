@@ -21,12 +21,13 @@
     self.title = self.photo.name;
     self.automaticallyAdjustsScrollViewInsets = YES;
     // Load the large image in webview
-    NSString* largeImageUrl = [self.photo.smallImageURL stringByReplacingOccurrencesOfString:@"_q.jpg" withString:@"_h.jpg"];
+    NSString* largeImageUrl = [self.photo.smallImageURL stringByReplacingOccurrencesOfString:@"_q.jpg" withString:@"_b.jpg"];
     // Create NSURL
     NSURL* url = [NSURL URLWithString:largeImageUrl];
     // Create NSURLRequest
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
     // Load
+    self.webView.scrollView.bounces = NO;
     [self.webView loadRequest:request];
 }
 
