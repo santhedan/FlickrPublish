@@ -276,11 +276,6 @@
     [self performSegueWithIdentifier:@"ShowGroupDetail" sender:self];
 }
 
-- (void) receivedFileData: (NSData *) imageData
-{
-    // Empty implementation
-}
-
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId
 {
     if (imageData != nil)

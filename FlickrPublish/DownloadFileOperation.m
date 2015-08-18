@@ -62,39 +62,18 @@
             {
                 [Utility writeData:imageData toFile:fullFilePath];
             }
-            if ([self.delegate respondsToSelector:@selector(receivedFileData:FileId:)])
-            {
-                [self.delegate receivedFileData:imageData FileId:self.fileId];
-            }
-            else
-            {
-                [self.delegate receivedFileData:imageData];
-            }
+            [self.delegate receivedFileData:imageData FileId:self.fileId];
         }
         else
         {
             NSData* imageData = [NSData dataWithContentsOfFile:fullFilePath];
-            if ([self.delegate respondsToSelector:@selector(receivedFileData:FileId:)])
-            {
-                [self.delegate receivedFileData:imageData FileId:self.fileId];
-            }
-            else
-            {
-                [self.delegate receivedFileData:imageData];
-            }
+            [self.delegate receivedFileData:imageData FileId:self.fileId];
         }
     }
     else
     {
         NSData* imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString: self.urlOfImage]];
-        if ([self.delegate respondsToSelector:@selector(receivedFileData:FileId:)])
-        {
-            [self.delegate receivedFileData:imageData FileId:self.fileId];
-        }
-        else
-        {
-            [self.delegate receivedFileData:imageData];
-        }
+        [self.delegate receivedFileData:imageData FileId:self.fileId];
     }
 }
 

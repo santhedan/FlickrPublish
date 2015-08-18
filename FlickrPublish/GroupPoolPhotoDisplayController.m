@@ -19,6 +19,7 @@
     UIBarButtonItem* sortItem;
     NSInteger selectedCount;
     Photo* selPhoto;
+    BOOL commentsAndFavs;
 }
 
 @property (nonatomic, strong) NSArray* photos;
@@ -36,6 +37,7 @@
 {
     [super viewDidLoad];
     self.currentIndex = 0;
+    commentsAndFavs = NO;
     // Do any additional setup after loading the view.
     self.title = self.group.name;
     //
@@ -51,6 +53,8 @@
     //
     selectedCount = 0;
     [self.addCommentCmd setEnabled:NO];
+    [self.commentAndFavCmd setEnabled:NO];
+    [self.faveCmd setEnabled:NO];
 }
 
 - (void) showSortOption
@@ -117,6 +121,7 @@
 
 - (IBAction)addComments:(id)sender
 {
+    commentsAndFavs = NO;
     NSMutableArray* photoIds = [[NSMutableArray alloc] init];
     for (Photo* p in self.photos) {
         if (p.selected)
@@ -138,6 +143,67 @@
     {
         // Disable add comment button
         [self.addCommentCmd setEnabled:NO];
+        [self.commentAndFavCmd setEnabled:NO];
+        [self.faveCmd setEnabled:NO];
+        // Create operation
+        PhotosCommentsAddCommentOperation* op = [[PhotosCommentsAddCommentOperation alloc] initWithPhotoIds:photoIds GroupId:self.group.id Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
+        [delegate enqueueOperation:op];
+        [self.activityIndicator startAnimating];
+    }
+}
+
+- (IBAction)addFaves:(id)sender
+{
+    commentsAndFavs = NO;
+    NSMutableArray* photoIds = [[NSMutableArray alloc] init];
+    for (Photo* p in self.photos) {
+        if (p.selected)
+        {
+            [photoIds addObject:p.id];
+        }
+    }
+    // Get app delegate
+    AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    //
+    if (photoIds.count > 0)
+    {
+        // Disable add comment button
+        [self.addCommentCmd setEnabled:NO];
+        [self.commentAndFavCmd setEnabled:NO];
+        [self.faveCmd setEnabled:NO];
+        // Create operation
+        FavoritesAddOperation* op = [[FavoritesAddOperation alloc] initWithPhotoIds:photoIds GroupId:self.group.id Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
+        [delegate enqueueOperation:op];
+        [self.activityIndicator startAnimating];
+    }
+}
+
+- (IBAction)addCommentsAndFaves:(id)sender
+{
+    commentsAndFavs = YES;
+    NSMutableArray* photoIds = [[NSMutableArray alloc] init];
+    for (Photo* p in self.photos) {
+        if (p.selected)
+        {
+            [photoIds addObject:p.id];
+        }
+    }
+    // Get app delegate
+    AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    // Get comment for the group
+    NSString* comment = [delegate getCommentForGroup:self.group.id];
+    if (comment == nil)
+    {
+        comment = [self.group getDefaultComment];
+        [delegate addComment:comment forGroup:self.group.id];
+    }
+    //
+    if (photoIds.count > 0)
+    {
+        // Disable add comment button
+        [self.addCommentCmd setEnabled:NO];
+        [self.commentAndFavCmd setEnabled:NO];
+        [self.faveCmd setEnabled:NO];
         // Create operation
         PhotosCommentsAddCommentOperation* op = [[PhotosCommentsAddCommentOperation alloc] initWithPhotoIds:photoIds GroupId:self.group.id Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
         [delegate enqueueOperation:op];
@@ -223,10 +289,14 @@
         if (selectedCount > 0)
         {
             [self.addCommentCmd setEnabled:YES];
+            [self.commentAndFavCmd setEnabled:YES];
+            [self.faveCmd setEnabled:YES];
         }
         else
         {
             [self.addCommentCmd setEnabled:NO];
+            [self.commentAndFavCmd setEnabled:NO];
+            [self.faveCmd setEnabled:NO];
         }
     });
 }
@@ -269,6 +339,38 @@
 
 - (void) commentsAdded
 {
+    if (commentsAndFavs)
+    {
+        [self addFaves:nil];
+    }
+    else
+    {
+        // Index counter
+        int i = 0;
+        // IndexPath collection
+        NSMutableArray* indexes = [[NSMutableArray alloc] init];
+        for (Photo* p in self.photos) {
+            if (p.selected)
+            {
+                p.selected = NO;
+                NSIndexPath* path = [NSIndexPath indexPathForItem:i inSection:0];
+                [indexes addObject:path];
+            }
+            i++;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadItemsAtIndexPaths:indexes];
+            [self.activityIndicator stopAnimating];
+            [self.addCommentCmd setEnabled:NO];
+            [self.commentAndFavCmd setEnabled:NO];
+            [self.faveCmd setEnabled:NO];
+        });
+    }
+}
+
+- (void) favoritesAdded
+{
+    commentsAndFavs = NO;
     // Index counter
     int i = 0;
     // IndexPath collection
@@ -285,13 +387,10 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.collectionView reloadItemsAtIndexPaths:indexes];
         [self.activityIndicator stopAnimating];
-        [self.addCommentCmd setEnabled:YES];
+        [self.addCommentCmd setEnabled:NO];
+        [self.commentAndFavCmd setEnabled:NO];
+        [self.faveCmd setEnabled:NO];
     });
-}
-
-- (void) receivedFileData: (NSData *) imageData
-{
-    // Empty implementation
 }
 
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId

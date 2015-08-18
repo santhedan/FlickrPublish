@@ -240,11 +240,6 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     });
 }
 
-- (void) receivedFileData: (NSData *) imageData
-{
-        // Empty implementation
-}
-
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId
 {
     @synchronized (self.photos) {

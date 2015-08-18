@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lxD-2z-yTi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lxD-2z-yTi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -614,12 +614,12 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2a4-KO-XlT">
-                                <rect key="frame" x="0.0" y="570" width="600" height="30"/>
+                                <rect key="frame" x="0.0" y="570" width="180" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0mn-W4-yS8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
-                                <state key="normal" title="Add Comment">
+                                <state key="normal" title="Comment">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -629,24 +629,74 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KtH-oj-JxA">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxY-TI-zjq">
+                                <rect key="frame" x="420" y="570" width="180" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="AZo-iy-aej"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                <state key="normal" title="Favorite">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addFaves:" destination="1FE-Pv-RGA" eventType="touchUpInside" id="wTW-me-c64"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8M-T9-uWV">
+                                <rect key="frame" x="180" y="570" width="240" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="fzn-dE-z05"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                <state key="normal" title="Comment &amp; Favorite">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addCommentsAndFaves:" destination="1FE-Pv-RGA" eventType="touchUpInside" id="MYs-6p-Rd8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="oxY-TI-zjq" firstAttribute="width" secondItem="MwU-kp-Z8z" secondAttribute="width" multiplier="0.3" id="0Id-D2-dhv"/>
                             <constraint firstItem="m54-6A-8QX" firstAttribute="top" secondItem="MwU-kp-Z8z" secondAttribute="topMargin" id="1mu-Vz-Pr6"/>
                             <constraint firstAttribute="centerY" secondItem="KtH-oj-JxA" secondAttribute="centerY" id="6Uy-F6-lNb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="m54-6A-8QX" secondAttribute="trailing" constant="-16" id="D5k-RM-1Hy"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2a4-KO-XlT" secondAttribute="trailing" constant="-16" id="ZCD-bc-liz"/>
+                            <constraint firstItem="2a4-KO-XlT" firstAttribute="width" secondItem="MwU-kp-Z8z" secondAttribute="width" multiplier="0.3" id="ETE-FH-yoS"/>
+                            <constraint firstItem="H8M-T9-uWV" firstAttribute="leading" secondItem="2a4-KO-XlT" secondAttribute="trailing" id="MnW-9R-M8R"/>
+                            <constraint firstItem="oxY-TI-zjq" firstAttribute="width" secondItem="MwU-kp-Z8z" secondAttribute="width" multiplier="0.2" id="NgD-D5-P6g"/>
+                            <constraint firstItem="oxY-TI-zjq" firstAttribute="leading" secondItem="H8M-T9-uWV" secondAttribute="trailing" id="T9k-jG-NNg"/>
+                            <constraint firstItem="A6s-Qv-zit" firstAttribute="top" secondItem="H8M-T9-uWV" secondAttribute="bottom" id="XaK-6X-rtW"/>
                             <constraint firstAttribute="centerX" secondItem="KtH-oj-JxA" secondAttribute="centerX" id="df0-fg-FKb"/>
                             <constraint firstItem="2a4-KO-XlT" firstAttribute="leading" secondItem="MwU-kp-Z8z" secondAttribute="leadingMargin" constant="-16" id="ecK-6A-vuY"/>
                             <constraint firstItem="2a4-KO-XlT" firstAttribute="top" secondItem="m54-6A-8QX" secondAttribute="bottom" constant="8" id="ggw-cM-ecO"/>
                             <constraint firstItem="A6s-Qv-zit" firstAttribute="top" secondItem="2a4-KO-XlT" secondAttribute="bottom" id="hqf-Xv-ws4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oxY-TI-zjq" secondAttribute="trailing" constant="-16" id="k2s-Ez-ngr"/>
                             <constraint firstItem="m54-6A-8QX" firstAttribute="leading" secondItem="MwU-kp-Z8z" secondAttribute="leadingMargin" constant="-16" id="l1r-ZQ-PbF"/>
+                            <constraint firstItem="A6s-Qv-zit" firstAttribute="top" secondItem="oxY-TI-zjq" secondAttribute="bottom" id="rTY-2m-lzZ"/>
+                            <constraint firstItem="2a4-KO-XlT" firstAttribute="width" secondItem="MwU-kp-Z8z" secondAttribute="width" multiplier="0.2" id="uLN-wr-NYQ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="uLN-wr-NYQ"/>
+                                <exclude reference="NgD-D5-P6g"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="ETE-FH-yoS"/>
+                                <include reference="uLN-wr-NYQ"/>
+                                <exclude reference="0Id-D2-dhv"/>
+                                <include reference="NgD-D5-P6g"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="KtH-oj-JxA" id="9kD-Q4-J4t"/>
                         <outlet property="addCommentCmd" destination="2a4-KO-XlT" id="gV2-qC-ooc"/>
                         <outlet property="collectionView" destination="m54-6A-8QX" id="8ve-VT-Uwa"/>
+                        <outlet property="commentAndFavCmd" destination="H8M-T9-uWV" id="7Hz-j8-Bjn"/>
+                        <outlet property="faveCmd" destination="oxY-TI-zjq" id="fgd-K4-aCz"/>
                         <segue destination="tEl-sz-A71" kind="show" identifier="ShowLargeImageInNewScreen" id="ZG5-1U-Itc"/>
                     </connections>
                 </viewController>

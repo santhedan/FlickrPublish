@@ -182,11 +182,6 @@
     [self.collectionView reloadData];
 }
 
-- (void) receivedFileData: (NSData *) imageData
-{
-    // Empty implementation
-}
-
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId
 {
     @synchronized (self.photosets) {

@@ -12,10 +12,6 @@
 
 @required
 
-- (void) receivedFileData: (NSData *) imageData;
-
-@optional
-
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
 
 @end
