@@ -10,6 +10,7 @@
 #import "Group.h"
 #import "Constants.h"
 #import "Utility.h"
+#import "NSString+HTML.h"
 
 @interface PeopleGetGroupsOperation()
 
@@ -62,7 +63,7 @@
                     // return groups that do not exist in the exclude groups list
                     if (![self.groupsToExclude containsObject:g.id])
                     {
-                        g.name = [group valueForKey:@"name"];
+                        g.name = [[group valueForKey:@"name"] stringByDecodingHTMLEntities];
                         g.members = [group valueForKey:@"members"];
                         g.poolPhotoCount = [group valueForKey:@"pool_count"];
                         

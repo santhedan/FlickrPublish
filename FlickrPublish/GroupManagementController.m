@@ -15,7 +15,6 @@
 #import "Group.h"
 #import "GroupDetailController.h"
 #import "GroupPoolPhotoDisplayController.h"
-#import "NSString+HTML.h"
 
 @interface GroupManagementController ()
 {
@@ -172,7 +171,7 @@
         g = [self.filteredGroups objectAtIndex:indexPath.item];
     }
 
-    cell.groupName.text = [g.name stringByDecodingHTMLEntities];
+    cell.groupName.text = g.name;
     
     cell.remainingCount.text = [NSString stringWithFormat:@"Remaining: %ld (%ld / %@)", (long)g.remaining, (long)g.throttleCount, g.throttleMode];
     cell.members.text = [NSString stringWithFormat:@"%@ members", g.members];

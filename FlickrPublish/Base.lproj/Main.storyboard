@@ -66,7 +66,7 @@
                                 <rect key="frame" x="24" y="223" width="568" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="KNu-Dp-bdD"/>
-                                    <constraint firstAttribute="height" constant="250" id="vKM-Bf-1eZ"/>
+                                    <constraint firstAttribute="height" constant="200" id="vKM-Bf-1eZ"/>
                                 </constraints>
                                 <string key="text">Click the link above and login using your Flickr credentials to grant requested access to this application. The application is requesting access to your Flickr photos so that you can publish your outstanding photos to Flickr Groups as well as comment on some awsome work of other photographers in Flickr Groups. The application will not modify or delete your photos.</string>
                                 <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="16"/>
@@ -92,7 +92,7 @@
                             <constraint firstAttribute="centerY" secondItem="9fq-JX-GZ2" secondAttribute="centerY" id="QCo-mv-IIq"/>
                             <constraint firstAttribute="centerX" secondItem="eBY-bB-E1e" secondAttribute="centerX" id="akM-yB-bdJ"/>
                             <constraint firstItem="TLC-kT-TWJ" firstAttribute="trailing" secondItem="Wv2-hz-5Ke" secondAttribute="trailingMargin" constant="8" id="luj-cj-xZj"/>
-                            <constraint firstAttribute="centerY" secondItem="eBY-bB-E1e" secondAttribute="centerY" constant="50" id="mPQ-fZ-Hx4"/>
+                            <constraint firstAttribute="centerY" secondItem="eBY-bB-E1e" secondAttribute="centerY" constant="80" id="mPQ-fZ-Hx4"/>
                             <constraint firstAttribute="centerX" secondItem="9fq-JX-GZ2" secondAttribute="centerX" id="nVK-Lb-I8f"/>
                             <constraint firstItem="TLC-kT-TWJ" firstAttribute="leading" secondItem="Wv2-hz-5Ke" secondAttribute="leadingMargin" constant="8" id="t27-PW-h02"/>
                         </constraints>
@@ -1189,7 +1189,7 @@
                                 <rect key="frame" x="0.0" y="150" width="600" height="450"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fNT-AB-wNe">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="240" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -1199,11 +1199,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="125"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTM-gK-fiB">
-                                                    <rect key="frame" x="4" y="4" width="232" height="117"/>
+                                                    <rect key="frame" x="4" y="4" width="232" height="142"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lnH-KL-RLI">
                                                             <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
@@ -1220,6 +1220,9 @@
                                                             <fontDescription key="fontDescription" name="GillSans-SemiBoldItalic" family="Gill Sans" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="76" y="0.0" width="0.0" height="68"/>
+                                                            </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="membership" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P9p-qf-eOp">
                                                             <rect key="frame" x="0.0" y="68" width="82" height="20"/>
@@ -1229,6 +1232,9 @@
                                                             <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="0.0" y="68" width="16" height="20"/>
+                                                            </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="remaining" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTv-xW-IYN">
                                                             <rect key="frame" x="82" y="68" width="150" height="20"/>
@@ -1238,6 +1244,9 @@
                                                             <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="16" y="68" width="26" height="20"/>
+                                                            </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="photos" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFg-gk-u6i">
                                                             <rect key="frame" x="116" y="92" width="116" height="20"/>
@@ -1247,6 +1256,9 @@
                                                             <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="21" y="92" width="21" height="20"/>
+                                                            </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="members" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQY-2c-dsL">
                                                             <rect key="frame" x="0.0" y="92" width="116" height="20"/>
@@ -1256,16 +1268,35 @@
                                                             <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="0.0" y="92" width="21" height="20"/>
+                                                            </variation>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oM1-yJ-ggN">
+                                                            <rect key="frame" x="0.0" y="117" width="232" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="wKn-RR-uMK"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                                            <state key="normal" title="Photos">
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <variation key="heightClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="0.0" y="17" width="42" height="25"/>
+                                                            </variation>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="MR1-1C-SlG" firstAttribute="leading" secondItem="lnH-KL-RLI" secondAttribute="trailing" constant="8" id="1Rx-W8-Lni"/>
                                                         <constraint firstItem="P9p-qf-eOp" firstAttribute="top" secondItem="MR1-1C-SlG" secondAttribute="bottom" id="3Vg-XF-sZH"/>
+                                                        <constraint firstAttribute="bottom" secondItem="oM1-yJ-ggN" secondAttribute="bottom" id="4Id-at-Y4X"/>
                                                         <constraint firstItem="hFg-gk-u6i" firstAttribute="leading" secondItem="fQY-2c-dsL" secondAttribute="trailing" id="Bgc-eg-T6Q"/>
                                                         <constraint firstItem="P9p-qf-eOp" firstAttribute="width" secondItem="XTM-gK-fiB" secondAttribute="width" multiplier="0.35" id="Cpo-O8-6D6"/>
+                                                        <constraint firstItem="oM1-yJ-ggN" firstAttribute="leading" secondItem="XTM-gK-fiB" secondAttribute="leading" id="Cr6-Ph-UU1"/>
                                                         <constraint firstAttribute="trailing" secondItem="MR1-1C-SlG" secondAttribute="trailing" priority="999" id="Cuh-Tg-ltY"/>
                                                         <constraint firstItem="fQY-2c-dsL" firstAttribute="width" secondItem="XTM-gK-fiB" secondAttribute="width" multiplier="0.5" id="ETR-dg-19i"/>
+                                                        <constraint firstAttribute="trailing" secondItem="oM1-yJ-ggN" secondAttribute="trailing" id="LaS-kZ-B8g"/>
                                                         <constraint firstItem="MR1-1C-SlG" firstAttribute="top" secondItem="XTM-gK-fiB" secondAttribute="top" id="P89-fu-wYn"/>
                                                         <constraint firstItem="lnH-KL-RLI" firstAttribute="leading" secondItem="XTM-gK-fiB" secondAttribute="leading" id="QDU-nh-Acr"/>
                                                         <constraint firstItem="P9p-qf-eOp" firstAttribute="leading" secondItem="XTM-gK-fiB" secondAttribute="leading" id="S47-z1-UTH"/>
@@ -1280,6 +1311,9 @@
                                                         <constraint firstItem="YTv-xW-IYN" firstAttribute="top" secondItem="MR1-1C-SlG" secondAttribute="bottom" id="wCl-8k-adH"/>
                                                         <constraint firstItem="hFg-gk-u6i" firstAttribute="width" secondItem="XTM-gK-fiB" secondAttribute="width" multiplier="0.5" id="yd9-5B-LsK"/>
                                                     </constraints>
+                                                    <variation key="heightClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="4" y="4" width="42" height="42"/>
+                                                    </variation>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1290,13 +1324,14 @@
                                             <constraint firstAttribute="trailingMargin" secondItem="XTM-gK-fiB" secondAttribute="trailing" constant="-4" id="hVh-Vb-ZQ0"/>
                                             <constraint firstItem="XTM-gK-fiB" firstAttribute="top" secondItem="9k3-oI-Otf" secondAttribute="topMargin" constant="-4" id="mqX-wY-rXt"/>
                                         </constraints>
-                                        <size key="customSize" width="240" height="125"/>
+                                        <size key="customSize" width="240" height="150"/>
                                         <connections>
                                             <outlet property="groupName" destination="MR1-1C-SlG" id="LgZ-dd-wpY"/>
                                             <outlet property="members" destination="fQY-2c-dsL" id="52U-SM-4vJ"/>
                                             <outlet property="membershipType" destination="P9p-qf-eOp" id="oMp-iw-byM"/>
                                             <outlet property="photos" destination="hFg-gk-u6i" id="xPK-m5-C6q"/>
                                             <outlet property="remainingCount" destination="YTv-xW-IYN" id="hzD-TT-FGA"/>
+                                            <outlet property="showPhotosBtn" destination="oM1-yJ-ggN" id="VC0-oH-C8m"/>
                                             <outlet property="thumbnail" destination="lnH-KL-RLI" id="NVt-JM-c1C"/>
                                         </connections>
                                     </collectionViewCell>
@@ -1405,7 +1440,7 @@
         <image name="views" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l7x-y1-mwl"/>
         <segue reference="NmL-Sr-huR"/>
+        <segue reference="ZG5-1U-Itc"/>
     </inferredMetricsTieBreakers>
 </document>
