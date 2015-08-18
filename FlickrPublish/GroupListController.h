@@ -28,6 +28,7 @@
 - (void)handleAdd;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIView *progressContainer;
 
 - (void) addedToGroups: (NSArray *) groups;
 - (void) showProgressMessage: (NSString *) progressMessage;

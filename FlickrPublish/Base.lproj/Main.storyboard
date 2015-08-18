@@ -1391,36 +1391,48 @@
                                     <outlet property="delegate" destination="RYN-cE-4CA" id="4Pw-gI-90D"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eyI-F0-Dss">
-                                <rect key="frame" x="200" y="268" width="200" height="65"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8u-fg-xny">
+                                <rect key="frame" x="180" y="248" width="240" height="105"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eyI-F0-Dss">
+                                        <rect key="frame" x="35" y="8" width="200" height="90"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="7mE-MZ-ewV"/>
+                                            <constraint firstAttribute="height" constant="90" id="nLh-JW-KkN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="K0z-gL-C85">
+                                        <rect key="frame" x="10" y="42" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="7mE-MZ-ewV"/>
-                                    <constraint firstAttribute="height" constant="65" id="nLh-JW-KkN"/>
+                                    <constraint firstAttribute="height" constant="105" id="Brj-bm-fls"/>
+                                    <constraint firstAttribute="centerY" secondItem="eyI-F0-Dss" secondAttribute="centerY" id="jVU-AD-3aE"/>
+                                    <constraint firstAttribute="centerY" secondItem="K0z-gL-C85" secondAttribute="centerY" id="lGR-JV-xVm"/>
+                                    <constraint firstAttribute="width" constant="240" id="rZj-As-AVZ"/>
+                                    <constraint firstAttribute="centerX" secondItem="K0z-gL-C85" secondAttribute="centerX" constant="100" id="y0b-7g-Be7"/>
+                                    <constraint firstAttribute="centerX" secondItem="eyI-F0-Dss" secondAttribute="centerX" constant="-15" id="yvi-he-kfL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="K0z-gL-C85">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
-                            </activityIndicatorView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ttf-VE-Bti" firstAttribute="top" secondItem="x9c-U2-I9o" secondAttribute="bottom" id="2cX-Ue-FK3"/>
-                            <constraint firstAttribute="centerY" secondItem="eyI-F0-Dss" secondAttribute="centerY" id="DAC-Io-BTC"/>
+                            <constraint firstAttribute="centerX" secondItem="d8u-fg-xny" secondAttribute="centerX" id="4sO-rm-Qsg"/>
                             <constraint firstItem="BIO-8Q-M3b" firstAttribute="top" secondItem="x9c-U2-I9o" secondAttribute="bottom" id="Evz-QE-1Zf"/>
                             <constraint firstItem="ttf-VE-Bti" firstAttribute="top" secondItem="BIO-8Q-M3b" secondAttribute="bottom" id="HB3-QL-WGe"/>
-                            <constraint firstAttribute="centerX" secondItem="eyI-F0-Dss" secondAttribute="centerX" id="ITY-tZ-EZm"/>
                             <constraint firstItem="x9c-U2-I9o" firstAttribute="leading" secondItem="6VX-dA-BAG" secondAttribute="leadingMargin" constant="-16" id="Iwy-UK-Ja3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="x9c-U2-I9o" secondAttribute="trailing" constant="-16" id="JdZ-OZ-hWt"/>
                             <constraint firstItem="ch3-gO-0S9" firstAttribute="centerX" secondItem="x9c-U2-I9o" secondAttribute="centerX" id="LmW-v0-T8a"/>
                             <constraint firstItem="BIO-8Q-M3b" firstAttribute="leading" secondItem="x9c-U2-I9o" secondAttribute="trailing" id="OYP-Bt-VTU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BIO-8Q-M3b" secondAttribute="trailing" constant="-16" id="TYe-s9-Ept"/>
-                            <constraint firstAttribute="centerY" secondItem="K0z-gL-C85" secondAttribute="centerY" id="Vh9-Ty-z3Y"/>
+                            <constraint firstAttribute="centerY" secondItem="d8u-fg-xny" secondAttribute="centerY" id="ZFY-s8-Ge1"/>
                             <constraint firstItem="BIO-8Q-M3b" firstAttribute="leading" secondItem="6VX-dA-BAG" secondAttribute="leadingMargin" constant="-16" id="nfI-fv-TYF"/>
-                            <constraint firstAttribute="centerX" secondItem="K0z-gL-C85" secondAttribute="centerX" id="uU3-Fy-ebd"/>
                             <constraint firstItem="x9c-U2-I9o" firstAttribute="top" secondItem="6VX-dA-BAG" secondAttribute="topMargin" id="vpI-zr-GAp"/>
                             <constraint firstItem="BIO-8Q-M3b" firstAttribute="top" secondItem="6VX-dA-BAG" secondAttribute="topMargin" id="wS7-sN-oM8"/>
                             <constraint firstItem="x9c-U2-I9o" firstAttribute="bottom" secondItem="ch3-gO-0S9" secondAttribute="bottom" constant="8" id="xPs-hj-Ny8"/>
@@ -1451,6 +1463,7 @@
                         <outlet property="commentCount" destination="TQF-Hf-q9o" id="IXu-9Q-Ple"/>
                         <outlet property="faveCount" destination="1p9-lA-P71" id="LBf-8d-aXW"/>
                         <outlet property="imageToAdd" destination="x9c-U2-I9o" id="MaB-ud-6v0"/>
+                        <outlet property="progressContainer" destination="d8u-fg-xny" id="7pU-Y0-53H"/>
                         <outlet property="progressLabel" destination="eyI-F0-Dss" id="AWZ-0d-bg7"/>
                         <outlet property="publicState" destination="uEO-Ul-zex" id="Ion-SS-dSx"/>
                         <outlet property="viewCount" destination="RSM-9p-8Y7" id="K4K-Ed-qP9"/>

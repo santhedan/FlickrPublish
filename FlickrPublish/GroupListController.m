@@ -44,10 +44,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = self.photo.name;
+    //
+    self.progressContainer.layer.cornerRadius = 3.0f;
+    self.progressContainer.layer.borderWidth = 0.5f;
+    self.progressContainer.layer.cornerRadius = 3.0f;
+    self.progressContainer.layer.borderColor = [self.progressLabel tintColor].CGColor;
     self.progressLabel.text = @"Fetching groups";
-    self.progressLabel.layer.borderWidth = 0.5f;
-    self.progressLabel.layer.cornerRadius = 3.0f;
-    self.progressLabel.layer.borderColor = [self.progressLabel tintColor].CGColor;
     //
     addItem = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStylePlain target:self action:@selector(handleAdd)];
     self.navigationItem.rightBarButtonItem = addItem;
@@ -230,6 +232,7 @@
         //
         [self.collectionView reloadData];
         //
+        self.progressContainer.hidden = YES;
         self.progressLabel.hidden = YES;
         [addItem setEnabled:YES];
     });
@@ -264,10 +267,11 @@
     {
         // DIsable Add
         [addItem setEnabled:NO];
+        self.progressContainer.hidden = NO;
         self.progressLabel.hidden = NO;
-        self.progressLabel.layer.borderWidth = 0.5f;
-        self.progressLabel.layer.cornerRadius = 3.0f;
-        self.progressLabel.layer.borderColor = [self.progressLabel tintColor].CGColor;
+        self.progressContainer.layer.borderWidth = 0.5f;
+        self.progressContainer.layer.cornerRadius = 3.0f;
+        self.progressContainer.layer.borderColor = [self.progressLabel tintColor].CGColor;
         self.progressLabel.text = @"Adding photo to selected groups";
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         // Create request
