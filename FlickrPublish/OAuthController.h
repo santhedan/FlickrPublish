@@ -12,9 +12,9 @@
 
 @interface OAuthController : UIViewController <RequestTokenResponseHandler, AccessTokenResponseHandler>
 
-- (void) receivedRequestToken: (NSString *) token Secret: (NSString *) secret;
-
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+- (void) receivedRequestToken: (NSString *) token Secret: (NSString *) secret;
 
 - (void) handleKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token Verifier: (NSString *) verifier;
 

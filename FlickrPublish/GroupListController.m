@@ -34,8 +34,6 @@
 
 @property (nonatomic, assign) NSInteger currentIndex;
 
-@property (nonatomic, assign) BOOL visible;
-
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 
 @end
@@ -82,17 +80,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.visible = YES;
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    self.visible = NO;
-    [super viewWillDisappear:animated];
-}
+#pragma mark Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -105,6 +93,8 @@
         ctrl.group = selGroup;
     }
 }
+
+#pragma mark UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -174,6 +164,8 @@
     return cell;
 }
 
+#pragma mark UICollectionViewDelegate
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Group* g = [self.groups objectAtIndex:indexPath.item];
@@ -224,6 +216,8 @@
     [self.collectionView reloadData];
 }
 
+#pragma mark PeopleGetGroupsOperationHandler
+
 - (void) receivedGroups: (NSArray *) groups
 {
     NSArray* sortedGroups = [groups sortedArrayUsingSelector:@selector(compare:)];
@@ -251,6 +245,8 @@
     });
 }
 
+#pragma mark PhotosGetAllContextsHandler
+
 - (void) receivedPhotoGroups: (NSArray *) groups Info: (PhotoInfo *) info
 {
     self.groupsToExclude = groups;
@@ -264,6 +260,8 @@
     //
     [delegate enqueueOperation:op];
 }
+
+#pragma mark UIBarButtonHandler
 
 - (void) handleAdd
 {
@@ -296,6 +294,8 @@
     }
 }
 
+#pragma mark GroupsPoolsAddOperationHandler
+
 - (void) addedToGroups: (NSArray *) groups
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -310,6 +310,15 @@
     //
     [delegate enqueueOperation:op];
 }
+
+- (void) showProgressMessage: (NSString *) progressMessage
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.progressLabel.text = progressMessage;
+    });
+}
+
+#pragma mark DownloadFileOperationDelegate
 
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId
 {
@@ -339,12 +348,7 @@
     }
 }
 
-- (void) showProgressMessage: (NSString *) progressMessage
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.progressLabel.text = progressMessage;
-    });
-}
+#pragma mark EventHandler
 
 - (IBAction)handleShowPhotos:(id)sender
 {

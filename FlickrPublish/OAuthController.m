@@ -28,12 +28,16 @@
     self.title = @"Authorize App";
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)handleAuthClick:(id)sender {
+#pragma mark EventHandlers
+
+- (IBAction)handleAuthClick:(id)sender
+{
     // Start activity indicator
     [self.activityIndicator startAnimating];
     RequestToken* request = [[RequestToken alloc] initWithKey:API_KEY Secret: SECRET CallbackUrl:CALLBACK_URL];
@@ -43,6 +47,8 @@
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [delegate enqueueOperation:op];
 }
+
+#pragma mark RequestTokenResponseHandler
 
 - (void) receivedRequestToken: (NSString *) token Secret: (NSString *) secret
 {
@@ -57,6 +63,8 @@
     });
 }
 
+#pragma mark AppDelegateCallback
+
 - (void) handleKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token Verifier: (NSString *) verifier
 {
     // Now create an access token request and execute it
@@ -67,6 +75,8 @@
     [delegate enqueueOperation:op];
 
 }
+
+#pragma mark AccessTokenResponseHandler
 
 - (void) receivedRequestToken: (NSString *) token Secret: (NSString *) secret FullName: (NSString *) fullName UserNSID: (NSString *) userNSID UserName: (NSString *) userName
 {

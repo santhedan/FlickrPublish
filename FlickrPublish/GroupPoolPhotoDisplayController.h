@@ -16,14 +16,13 @@
 @interface GroupPoolPhotoDisplayController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, GroupsPoolsGetPhotosOperationDelegate, PhotosCommentsAddCommentOperationDelegate, DownloadFileOperationDelegate, FavoritesAddOperationDelegate>
 
 @property (nonatomic, strong) Group* group;
-
-- (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
-
 @property (weak, nonatomic) IBOutlet UIButton *addCommentCmd;
 @property (weak, nonatomic) IBOutlet UIButton *commentAndFavCmd;
 @property (weak, nonatomic) IBOutlet UIButton *faveCmd;
 
 - (IBAction)handleViewPhoto:(id)sender;
+
+- (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
 
 - (void) favoritesAdded;
 

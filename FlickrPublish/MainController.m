@@ -27,8 +27,6 @@
 
 @property (nonatomic, assign) NSInteger currentIndex;
 
-@property (nonatomic, assign) BOOL visible;
-
 @end
 
 @implementation MainController
@@ -60,7 +58,6 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.visible = YES;
     //
     if (self.currentIndex < [self.photosets count])
     {
@@ -76,13 +73,7 @@
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    self.visible = NO;
     [super viewWillDisappear:animated];
-}
-
-- (void)showGroups
-{
-    [self performSegueWithIdentifier:@"ManageGroups" sender:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,6 +81,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark UIBarButtonHandler
+
+- (void)showGroups
+{
+    [self performSegueWithIdentifier:@"ManageGroups" sender:self];
+}
+
+#pragma mark PhotosetGetListHandler
 
 - (void) receivedPhotoSets: (NSArray *) photosets
 {
@@ -187,6 +187,8 @@
 {
     [self.collectionView reloadData];
 }
+
+#pragma mark DownloadFileOperationDelegate
 
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId
 {

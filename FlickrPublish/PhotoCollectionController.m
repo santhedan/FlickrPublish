@@ -28,8 +28,6 @@
 
 @property (nonatomic, assign) NSInteger currentIndex;
 
-@property (nonatomic, assign) BOOL visible;
-
 @end
 
 @implementation PhotoCollectionController
@@ -56,6 +54,19 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     //
     [self.activityIndicator startAnimating];
 }
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void) dealloc
+{
+    self.photos = nil;
+}
+
+#pragma mark UIBarButtonHandler
 
 - (void) showSortOption
 {
@@ -110,29 +121,6 @@ static NSString * const reuseIdentifier = @"PhotoCell";
             [self.collectionView reloadData];
         });
     }
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.visible = YES;
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    self.visible = NO;
-    [super viewWillDisappear:animated];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void) dealloc
-{
-    self.photos = nil;
 }
 
 #pragma mark - Navigation
@@ -236,6 +224,8 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     [self performSegueWithIdentifier:@"ShowGroups" sender:self];
 }
 
+#pragma mark PhotosetGetPhotosHandler
+
 - (void) receivedPhotos: (NSArray *) photos
 {
     self.photos = photos;
@@ -244,6 +234,8 @@ static NSString * const reuseIdentifier = @"PhotoCell";
         [self.activityIndicator stopAnimating];
     });
 }
+
+#pragma mark DownloadFileOperationDelegate
 
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId
 {
@@ -266,6 +258,8 @@ static NSString * const reuseIdentifier = @"PhotoCell";
         }
     }
 }
+
+#pragma mark EventHandler
 
 - (IBAction)handleViewPhoto:(id)sender
 {

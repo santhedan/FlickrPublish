@@ -12,10 +12,10 @@
 
 @interface MainController : UIViewController <PhotosetGetListHandler, UICollectionViewDataSource, UICollectionViewDelegate, DownloadFileOperationDelegate>
 
-- (void) receivedPhotoSets: (NSArray *) photosets;
-
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
+
+- (void) receivedPhotoSets: (NSArray *) photosets;
 
 @end

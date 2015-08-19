@@ -12,8 +12,6 @@
 
 @interface GroupManagementController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, PeopleGetGroupsOperationHandler, DownloadFileOperationDelegate, UISearchBarDelegate>
 
-- (void) receivedGroups: (NSArray *) groups;
-
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -21,6 +19,8 @@
 - (IBAction)handleShowPhotos:(id)sender;
 
 - (IBAction)handleConfigureComments:(id)sender;
+
+- (void) receivedGroups: (NSArray *) groups;
 
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
 

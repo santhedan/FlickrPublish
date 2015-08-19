@@ -15,28 +15,25 @@
 
 @interface GroupListController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, PhotosGetAllContextsHandler, PeopleGetGroupsOperationHandler, GroupsPoolsAddOperationHandler, DownloadFileOperationDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageToAdd;
-
 @property (nonatomic, strong) Photo* photo;
-
-- (void) receivedGroups: (NSArray *) groups;
-
-- (void) receivedPhotoGroups: (NSArray *) groups Info: (PhotoInfo *) info;
-
+@property (weak, nonatomic) IBOutlet UIImageView *imageToAdd;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
-- (void)handleAdd;
-
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIView *progressContainer;
-
-- (void) addedToGroups: (NSArray *) groups;
-- (void) showProgressMessage: (NSString *) progressMessage;
-
 @property (weak, nonatomic) IBOutlet UILabel *faveCount;
 @property (weak, nonatomic) IBOutlet UILabel *viewCount;
 @property (weak, nonatomic) IBOutlet UILabel *commentCount;
 @property (weak, nonatomic) IBOutlet UILabel *publicState;
+
+- (void) handleAdd;
+
+- (void) addedToGroups: (NSArray *) groups;
+
+- (void) showProgressMessage: (NSString *) progressMessage;
+
+- (void) receivedGroups: (NSArray *) groups;
+
+- (void) receivedPhotoGroups: (NSArray *) groups Info: (PhotoInfo *) info;
 
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
 

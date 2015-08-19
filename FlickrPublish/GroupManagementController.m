@@ -27,7 +27,6 @@
 
 @property (nonatomic, strong) Group* selGroup;
 @property (nonatomic, assign) NSInteger currentIndex;
-@property (nonatomic, assign) BOOL visible;
 
 @end
 
@@ -57,6 +56,14 @@
     //
     [self.collectionView setLayoutMargins:UIEdgeInsetsZero];
 }
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark UIBarButtonItemHandler
 
 - (void) showSortOption
 {
@@ -117,24 +124,6 @@
     }
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.visible = YES;
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    self.visible = NO;
-    [super viewWillDisappear:animated];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -154,7 +143,7 @@
     }
 }
 
-#pragma mark UITableViewDataSource
+#pragma mark UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -265,6 +254,8 @@
     });
 }
 
+#pragma mark EventHandler
+
 - (IBAction)handleShowPhotos:(id)sender
 {
     UIButton* btn = (UIButton *)sender;
@@ -278,6 +269,8 @@
     self.selGroup = [self.filteredGroups objectAtIndex:btn.tag];
     [self performSegueWithIdentifier:@"ShowGroupDetail" sender:self];
 }
+
+#pragma mark DownloadFileOperationDelegate
 
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId
 {
@@ -308,6 +301,8 @@
         }
     }
 }
+
+#pragma mark UISearchBarDelegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
@@ -348,6 +343,8 @@
         });
     }
 }
+
+#pragma mark UnwindSegueHandler
 
 - (IBAction)unwindToContainerVC:(UIStoryboardSegue *)segue
 {

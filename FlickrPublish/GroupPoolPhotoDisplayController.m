@@ -28,8 +28,6 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, assign) NSInteger currentIndex;
 
-@property (nonatomic, assign) BOOL visible;
-
 @end
 
 @implementation GroupPoolPhotoDisplayController
@@ -56,7 +54,26 @@
     [self.addCommentCmd setEnabled:NO];
     [self.commentAndFavCmd setEnabled:NO];
     [self.faveCmd setEnabled:NO];
+    //
+    if (self.currentIndex < [self.photos count])
+    {
+        // Start loading images
+        Photo* p = [self.photos objectAtIndex:self.currentIndex];
+        // Create download operation
+        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:p.smallImageURL Directory:nil Delegate:self];
+        // Delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate enqueueOperation:op];
+    }
 }
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark UIBarButtonItemHandler
 
 - (void) showSortOption
 {
@@ -91,34 +108,7 @@
     }
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.visible = YES;
-    //
-    if (self.currentIndex < [self.photos count])
-    {
-        // Start loading images
-        Photo* p = [self.photos objectAtIndex:self.currentIndex];
-        // Create download operation
-        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:p.smallImageURL Directory:nil Delegate:self];
-        // Delegate
-        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [delegate enqueueOperation:op];
-    }
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    self.visible = NO;
-    [super viewWillDisappear:animated];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark EventHandler
 
 - (IBAction)addComments:(id)sender
 {
@@ -210,6 +200,13 @@
         [delegate enqueueOperation:op];
         [self.activityIndicator startAnimating];
     }
+}
+
+- (IBAction)handleViewPhoto:(id)sender
+{
+    UIButton* btn = (UIButton *)sender;
+    selPhoto = [self.photos objectAtIndex:btn.tag];
+    [self performSegueWithIdentifier:@"ShowLargeImageInNewScreen" sender:self];
 }
 
 #pragma mark - Navigation
@@ -342,6 +339,8 @@
     });
 }
 
+#pragma mark PhotosCommentsAddCommentOperationDelegate
+
 - (void) commentsAdded
 {
     if (commentsAndFavs)
@@ -373,6 +372,8 @@
     }
 }
 
+#pragma mark FavoritesAddOperationDelegate
+
 - (void) favoritesAdded
 {
     commentsAndFavs = NO;
@@ -398,6 +399,8 @@
     });
 }
 
+#pragma mark DownloadFileOperationDelegate
+
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId
 {
     @synchronized (self.photos) {
@@ -418,13 +421,6 @@
             });
         }
     }
-}
-
-- (IBAction)handleViewPhoto:(id)sender
-{
-    UIButton* btn = (UIButton *)sender;
-    selPhoto = [self.photos objectAtIndex:btn.tag];
-    [self performSegueWithIdentifier:@"ShowLargeImageInNewScreen" sender:self];
 }
 
 @end

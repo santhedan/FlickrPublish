@@ -14,11 +14,10 @@
 @interface PhotoCollectionController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, PhotosetGetPhotosHandler, DownloadFileOperationDelegate>
 
 @property (nonatomic, strong) PhotoSet* set;
-
-- (void) receivedPhotos: (NSArray *) photos;
-
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+- (void) receivedPhotos: (NSArray *) photos;
 
 - (void) receivedFileData: (NSData *) imageData FileId: (NSString *) fileId;
 
