@@ -67,7 +67,7 @@
 
 - (void) showSortOption
 {
-    UIAlertController* ctrl = [UIAlertController alertControllerWithTitle:@"Sort photos by" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController* ctrl = [UIAlertController alertControllerWithTitle:@"Sort groups by" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     // Sort by views
     UIAlertAction* membersAction = [UIAlertAction actionWithTitle:@"Members" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){[self sortByMembers];}];
     UIAlertAction* photosAction = [UIAlertAction actionWithTitle:@"Photos" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){[self sortByPhotos];}];
