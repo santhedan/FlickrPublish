@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *addCommentCmd;
 @property (weak, nonatomic) IBOutlet UIButton *commentAndFavCmd;
 @property (weak, nonatomic) IBOutlet UIButton *faveCmd;
+@property (weak, nonatomic) IBOutlet UIView *progressViewContainer;
 
 - (IBAction)handleViewPhoto:(id)sender;
 

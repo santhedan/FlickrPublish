@@ -626,9 +626,6 @@
                                     <action selector="addComments:" destination="1FE-Pv-RGA" eventType="touchUpInside" id="jKK-Iw-rzz"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KtH-oj-JxA">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxY-TI-zjq">
                                 <rect key="frame" x="420" y="570" width="180" height="30"/>
                                 <constraints>
@@ -655,19 +652,46 @@
                                     <action selector="addCommentsAndFaves:" destination="1FE-Pv-RGA" eventType="touchUpInside" id="MYs-6p-Rd8"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwo-lr-iyC">
+                                <rect key="frame" x="240" y="280" width="120" height="40"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KtH-oj-JxA">
+                                        <rect key="frame" x="8" y="10" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVo-Dj-whg">
+                                        <rect key="frame" x="36" y="10" width="84" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="UbD-TZ-cBR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBoldItalic" family="Gill Sans" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="KtH-oj-JxA" firstAttribute="leading" secondItem="hwo-lr-iyC" secondAttribute="leading" constant="8" id="5Kt-ZO-FMF"/>
+                                    <constraint firstItem="KVo-Dj-whg" firstAttribute="leading" secondItem="KtH-oj-JxA" secondAttribute="trailing" constant="8" id="AnS-KF-NNH"/>
+                                    <constraint firstAttribute="width" constant="120" id="Vga-ds-Dq8"/>
+                                    <constraint firstAttribute="height" constant="40" id="X7p-HL-cVn"/>
+                                    <constraint firstAttribute="trailing" secondItem="KVo-Dj-whg" secondAttribute="trailing" id="cm7-Nv-Y2P"/>
+                                    <constraint firstAttribute="centerY" secondItem="KtH-oj-JxA" secondAttribute="centerY" id="ipl-k8-5Wi"/>
+                                    <constraint firstAttribute="centerY" secondItem="KVo-Dj-whg" secondAttribute="centerY" id="xaF-pg-ZvM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oxY-TI-zjq" firstAttribute="width" secondItem="MwU-kp-Z8z" secondAttribute="width" multiplier="0.3" id="0Id-D2-dhv"/>
                             <constraint firstItem="m54-6A-8QX" firstAttribute="top" secondItem="MwU-kp-Z8z" secondAttribute="topMargin" id="1mu-Vz-Pr6"/>
-                            <constraint firstAttribute="centerY" secondItem="KtH-oj-JxA" secondAttribute="centerY" id="6Uy-F6-lNb"/>
+                            <constraint firstAttribute="centerX" secondItem="hwo-lr-iyC" secondAttribute="centerX" id="ATM-Ef-HGe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="m54-6A-8QX" secondAttribute="trailing" constant="-16" id="D5k-RM-1Hy"/>
                             <constraint firstItem="2a4-KO-XlT" firstAttribute="width" secondItem="MwU-kp-Z8z" secondAttribute="width" multiplier="0.3" id="ETE-FH-yoS"/>
                             <constraint firstItem="H8M-T9-uWV" firstAttribute="leading" secondItem="2a4-KO-XlT" secondAttribute="trailing" id="MnW-9R-M8R"/>
                             <constraint firstItem="oxY-TI-zjq" firstAttribute="width" secondItem="MwU-kp-Z8z" secondAttribute="width" multiplier="0.2" id="NgD-D5-P6g"/>
                             <constraint firstItem="oxY-TI-zjq" firstAttribute="leading" secondItem="H8M-T9-uWV" secondAttribute="trailing" id="T9k-jG-NNg"/>
                             <constraint firstItem="A6s-Qv-zit" firstAttribute="top" secondItem="H8M-T9-uWV" secondAttribute="bottom" id="XaK-6X-rtW"/>
-                            <constraint firstAttribute="centerX" secondItem="KtH-oj-JxA" secondAttribute="centerX" id="df0-fg-FKb"/>
+                            <constraint firstAttribute="centerY" secondItem="hwo-lr-iyC" secondAttribute="centerY" id="dpt-XW-0RK"/>
                             <constraint firstItem="2a4-KO-XlT" firstAttribute="leading" secondItem="MwU-kp-Z8z" secondAttribute="leadingMargin" constant="-16" id="ecK-6A-vuY"/>
                             <constraint firstItem="2a4-KO-XlT" firstAttribute="top" secondItem="m54-6A-8QX" secondAttribute="bottom" constant="8" id="ggw-cM-ecO"/>
                             <constraint firstItem="A6s-Qv-zit" firstAttribute="top" secondItem="2a4-KO-XlT" secondAttribute="bottom" id="hqf-Xv-ws4"/>
@@ -697,6 +721,7 @@
                         <outlet property="collectionView" destination="m54-6A-8QX" id="8ve-VT-Uwa"/>
                         <outlet property="commentAndFavCmd" destination="H8M-T9-uWV" id="7Hz-j8-Bjn"/>
                         <outlet property="faveCmd" destination="oxY-TI-zjq" id="fgd-K4-aCz"/>
+                        <outlet property="progressViewContainer" destination="hwo-lr-iyC" id="7zz-mg-GjJ"/>
                         <segue destination="tEl-sz-A71" kind="show" identifier="ShowLargeImageInNewScreen" id="ZG5-1U-Itc"/>
                     </connections>
                 </viewController>

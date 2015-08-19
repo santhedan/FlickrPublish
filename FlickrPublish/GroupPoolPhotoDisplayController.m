@@ -48,6 +48,7 @@
     GroupsPoolsGetPhotos* request = [[GroupsPoolsGetPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token GroupId:self.group.id];
     GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithRequest:request Delegate:self];
     [delegate enqueueOperation:op];
+    self.progressViewContainer.hidden = NO;
     [self.activityIndicator startAnimating];
     //
     selectedCount = 0;
@@ -139,6 +140,7 @@
         // Create operation
         PhotosCommentsAddCommentOperation* op = [[PhotosCommentsAddCommentOperation alloc] initWithPhotoIds:photoIds GroupId:self.group.id Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
         [delegate enqueueOperation:op];
+        self.progressViewContainer.hidden = NO;
         [self.activityIndicator startAnimating];
     }
 }
@@ -165,6 +167,7 @@
         // Create operation
         FavoritesAddOperation* op = [[FavoritesAddOperation alloc] initWithPhotoIds:photoIds GroupId:self.group.id Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
         [delegate enqueueOperation:op];
+        self.progressViewContainer.hidden = NO;
         [self.activityIndicator startAnimating];
     }
 }
@@ -198,6 +201,7 @@
         // Create operation
         PhotosCommentsAddCommentOperation* op = [[PhotosCommentsAddCommentOperation alloc] initWithPhotoIds:photoIds GroupId:self.group.id Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
         [delegate enqueueOperation:op];
+        self.progressViewContainer.hidden = NO;
         [self.activityIndicator startAnimating];
     }
 }
@@ -335,6 +339,7 @@
     self.photos = photos;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.collectionView reloadData];
+        self.progressViewContainer.hidden = YES;
         [self.activityIndicator stopAnimating];
     });
 }
@@ -364,6 +369,7 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.collectionView reloadItemsAtIndexPaths:indexes];
+            self.progressViewContainer.hidden = YES;
             [self.activityIndicator stopAnimating];
             [self.addCommentCmd setEnabled:NO];
             [self.commentAndFavCmd setEnabled:NO];
@@ -392,6 +398,7 @@
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.collectionView reloadItemsAtIndexPaths:indexes];
+        self.progressViewContainer.hidden = YES;
         [self.activityIndicator stopAnimating];
         [self.addCommentCmd setEnabled:NO];
         [self.commentAndFavCmd setEnabled:NO];
