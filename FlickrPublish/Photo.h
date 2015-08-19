@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Photo : NSObject
 
@@ -16,7 +17,7 @@
 
 @property (nonatomic, strong) NSString* smallImageURL;
 
-@property (nonatomic, strong) NSData* imageData;
+@property (nonatomic, strong) UIImage* imageData;
 
 @property (nonatomic, assign) NSInteger height;
 

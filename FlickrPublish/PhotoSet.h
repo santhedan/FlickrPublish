@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface PhotoSet : NSObject
 
@@ -20,7 +21,7 @@
 
 @property (nonatomic, strong) NSString* views;
 
-@property (nonatomic, strong) NSData* photosetPhoto;
+@property (nonatomic, strong) UIImage* photosetPhoto;
 
 @property (nonatomic, strong) NSString* photosetPhotoUrl;
 

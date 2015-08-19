@@ -15,6 +15,9 @@
 #import "PhotoCollectionController.h"
 
 @interface MainController ()
+{
+    UIImage* placeHolderImage;
+}
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
@@ -45,7 +48,7 @@
     // Create operation
     PhotosetGetListOperation* op = [[PhotosetGetListOperation alloc] initWithRequest:request Delegate:self];
     //
-    UIBarButtonItem* groupItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"group"] style:UIBarButtonItemStylePlain target:self action:@selector(showGroups)];
+    UIBarButtonItem* groupItem = [[UIBarButtonItem alloc] initWithTitle:@"Group" style:UIBarButtonItemStylePlain target:self action:@selector(showGroups)];
     self.navigationItem.rightBarButtonItem = groupItem;
     //
     [delegate enqueueOperation:op];
@@ -130,11 +133,15 @@
     cell.views.text = set.views;
     if (set.photosetPhoto != nil)
     {
-        cell.photosetPhoto.image = [UIImage imageWithData:set.photosetPhoto];
+        cell.photosetPhoto.image = set.photosetPhoto;
     }
     else
     {
-        cell.photosetPhoto.image = [UIImage imageNamed:@"small_placeholder"];
+        if (placeHolderImage == nil)
+        {
+            placeHolderImage = [UIImage imageNamed:@"small_placeholder"];
+        }
+        cell.photosetPhoto.image = placeHolderImage;
         // Request download - Create download operation
         DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:set.photosetPhotoUrl Directory:set.id FileId:set.id Delegate:self];
         // Delegate
@@ -191,7 +198,7 @@
         if (filteredPhotoset.count == 1)
         {
             PhotoSet* pset = [filteredPhotoset objectAtIndex:0];
-            pset.photosetPhoto = imageData;
+            pset.photosetPhoto = [UIImage imageWithData: imageData];
             // get index of p
             NSInteger index = [self.photosets indexOfObject:pset];
             // Create indexPath

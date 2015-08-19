@@ -51,7 +51,7 @@
     {
         self.membershipType.text = @"Member";
     }
-    self.thumbnail.image = [UIImage imageWithData:self.group.imageData];
+    self.thumbnail.image = self.group.imageData;
     self.thumbnail.layer.borderWidth = 3.0f;
     self.thumbnail.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.thumbnail.layer.cornerRadius = self.thumbnail.frame.size.width / 2;;

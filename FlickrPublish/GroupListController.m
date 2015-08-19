@@ -23,6 +23,7 @@
     NSInteger selectedCount;
     UIBarButtonItem* addItem;
     Group* selGroup;
+    UIImage* placeHolderImage;
 }
 
 @property (nonatomic, strong) NSArray* groupsToExclude;
@@ -57,7 +58,7 @@
     self.navigationItem.rightBarButtonItem = addItem;
     //
     self.currentIndex = 0;
-    self.imageToAdd.image = [UIImage imageWithData:self.photo.imageData];
+    self.imageToAdd.image = self.photo.imageData;
     //
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     // Create request and operation and execute
@@ -133,11 +134,15 @@
     }
     if (g.imageData != nil)
     {
-        cell.thumbnail.image = [UIImage imageWithData:g.imageData];
+        cell.thumbnail.image = g.imageData;
     }
     else
     {
-        cell.thumbnail.image = [UIImage imageNamed:@"small_placeholder"];
+        if (placeHolderImage == nil)
+        {
+            placeHolderImage = [UIImage imageNamed:@"small_placeholder"];
+        }
+        cell.thumbnail.image = placeHolderImage;
         // Request download of image - Create download operation
         DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:g.groupImagePath Directory:g.id FileId:g.id Delegate:self];
         // Get delegate
@@ -317,7 +322,7 @@
             if (tempGroups.count == 1)
             {
                 Group* g = [tempGroups objectAtIndex:0];
-                g.imageData = imageData;
+                g.imageData = [UIImage imageWithData: imageData];
                 // get index of g in filtered group
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSInteger index = [self.groups indexOfObject:g];

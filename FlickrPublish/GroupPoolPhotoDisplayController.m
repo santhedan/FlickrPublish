@@ -20,6 +20,7 @@
     NSInteger selectedCount;
     Photo* selPhoto;
     BOOL commentsAndFavs;
+    UIImage* placeHolderImage;
 }
 
 @property (nonatomic, strong) NSArray* photos;
@@ -245,11 +246,15 @@
     //
     if (p.imageData != nil)
     {
-        cell.thumbnailSmall.image = [UIImage imageWithData:p.imageData];
+        cell.thumbnailSmall.image = p.imageData;
     }
     else
     {
-        cell.thumbnailSmall.image = [UIImage imageNamed:@"large_placeholder"];
+        if (placeHolderImage == nil)
+        {
+            placeHolderImage = [UIImage imageNamed:@"large_placeholder"];
+        }
+        cell.thumbnailSmall.image = placeHolderImage;
         // Request download of image
         // Get app delegate
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -402,7 +407,7 @@
         if (filteredPhotos.count == 1)
         {
             Photo* p = [filteredPhotos objectAtIndex:0];
-            p.imageData = imageData;
+            p.imageData = [UIImage imageWithData: imageData];
             // get index of p
             NSInteger index = [self.photos indexOfObject:p];
             // Create indexPath

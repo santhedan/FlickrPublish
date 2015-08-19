@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Constants.h"
+#import <UIKit/UIKit.h>
 
 @interface Group : NSObject
 
@@ -45,7 +46,7 @@
 
 @property (nonatomic, assign) MembershipType memType;
 
-@property (nonatomic, strong) NSData* imageData;
+@property (nonatomic, strong) UIImage* imageData;
 
 - (NSString *) getDefaultComment;
 

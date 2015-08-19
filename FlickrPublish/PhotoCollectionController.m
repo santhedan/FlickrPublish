@@ -19,6 +19,7 @@
 {
     UIBarButtonItem* sortItem;
     Photo* selPhoto;
+    UIImage* placeHolderImage;
 }
 
 @property (nonatomic, strong) NSArray* photos;
@@ -182,11 +183,15 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     //
     if (p.imageData != nil)
     {
-        cell.thumbnailSmall.image = [UIImage imageWithData:p.imageData];
+        cell.thumbnailSmall.image = p.imageData;
     }
     else
     {
-        cell.thumbnailSmall.image = [UIImage imageNamed:@"large_placeholder"];
+        if (placeHolderImage == nil)
+        {
+            placeHolderImage = [UIImage imageNamed:@"large_placeholder"];
+        }
+        cell.thumbnailSmall.image = placeHolderImage;
         // Request photo download - Get app delegate
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         // Create operation
@@ -249,7 +254,7 @@ static NSString * const reuseIdentifier = @"PhotoCell";
         if (filteredPhotos.count == 1)
         {
             Photo* p = [filteredPhotos objectAtIndex:0];
-            p.imageData = imageData;
+            p.imageData = [UIImage imageWithData: imageData];
             // get index of p
             NSInteger index = [self.photos indexOfObject:p];
             // Create indexPath
