@@ -969,18 +969,52 @@
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R86-o4-Edy">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="h4l-ww-dTX" id="l47-nY-ECj"/>
+                                </connections>
                             </webView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCS-Nt-NaP">
+                                <rect key="frame" x="232" y="275" width="136" height="50"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ssm-dR-7Dc">
+                                        <rect key="frame" x="8" y="15" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myT-WH-gCF">
+                                        <rect key="frame" x="41" y="14" width="80" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="K6E-3W-bHm"/>
+                                            <constraint firstAttribute="width" constant="80" id="oDk-C2-T8x"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBoldItalic" family="Gill Sans" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="136" id="HnZ-fl-Jik"/>
+                                    <constraint firstItem="Ssm-dR-7Dc" firstAttribute="leading" secondItem="OCS-Nt-NaP" secondAttribute="leading" constant="8" id="R6e-I0-Ift"/>
+                                    <constraint firstAttribute="height" constant="50" id="YdE-m7-vzf"/>
+                                    <constraint firstAttribute="centerY" secondItem="Ssm-dR-7Dc" secondAttribute="centerY" id="bDE-rQ-0EZ"/>
+                                    <constraint firstAttribute="centerY" secondItem="myT-WH-gCF" secondAttribute="centerY" id="nl0-U7-7ZP"/>
+                                    <constraint firstItem="myT-WH-gCF" firstAttribute="leading" secondItem="Ssm-dR-7Dc" secondAttribute="trailing" constant="13" id="tCA-sA-dKg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="R86-o4-Edy" firstAttribute="top" secondItem="7BC-1Q-9Br" secondAttribute="topMargin" id="An8-vn-mj8"/>
                             <constraint firstItem="R86-o4-Edy" firstAttribute="leading" secondItem="7BC-1Q-9Br" secondAttribute="leadingMargin" constant="-16" id="Aut-b6-ilq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="R86-o4-Edy" secondAttribute="trailing" constant="-16" id="IHZ-My-BOg"/>
+                            <constraint firstAttribute="centerX" secondItem="OCS-Nt-NaP" secondAttribute="centerX" id="WMm-vO-C8h"/>
+                            <constraint firstAttribute="centerY" secondItem="OCS-Nt-NaP" secondAttribute="centerY" id="Xhf-bw-UWl"/>
                             <constraint firstItem="d5a-05-A8y" firstAttribute="top" secondItem="R86-o4-Edy" secondAttribute="bottom" id="ld2-OP-v0R"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Ssm-dR-7Dc" id="5mg-OI-4Qj"/>
+                        <outlet property="progressContainer" destination="OCS-Nt-NaP" id="3ZM-uk-BcH"/>
                         <outlet property="webView" destination="R86-o4-Edy" id="R5D-Q6-bFR"/>
                     </connections>
                 </viewController>

@@ -24,6 +24,8 @@
     // Load the URL
     self.webView.delegate = self;
     [self.webView loadRequest:request];
+    //
+    [self.activityIndicator startAnimating];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,5 +58,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicator stopAnimating];
+        self.progressContainer.hidden = YES;
+    });
+}
 
 @end
