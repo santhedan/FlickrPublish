@@ -607,6 +607,32 @@
                                             <outlet property="viewButton" destination="ta2-55-aNd" id="YSW-ff-KIc"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MorePhotoCell" id="mBv-lk-6jT" customClass="PhotoCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Load More Photos" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wlz-GP-nvU">
+                                                    <rect key="frame" x="2" y="2" width="146" height="146"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="GillSans-BoldItalic" family="Gill Sans" pointSize="32"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="Wlz-GP-nvU" firstAttribute="leading" secondItem="mBv-lk-6jT" secondAttribute="leadingMargin" constant="-6" id="7z3-HX-xBc"/>
+                                            <constraint firstItem="Wlz-GP-nvU" firstAttribute="trailing" secondItem="mBv-lk-6jT" secondAttribute="trailingMargin" constant="6" id="bq3-je-bQG"/>
+                                            <constraint firstItem="Wlz-GP-nvU" firstAttribute="bottom" secondItem="mBv-lk-6jT" secondAttribute="bottomMargin" constant="6" id="jVh-y8-mzU"/>
+                                            <constraint firstItem="Wlz-GP-nvU" firstAttribute="top" secondItem="mBv-lk-6jT" secondAttribute="topMargin" constant="-6" id="t6f-1A-PEE"/>
+                                        </constraints>
+                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="1FE-Pv-RGA" id="N0i-Cs-dIc"/>

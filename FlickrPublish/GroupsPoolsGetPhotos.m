@@ -36,8 +36,45 @@
         self.format = @"format=json";
         self.extras = @"extras=views,url_s";
         self.perPage = @"per_page=50";
+        self.pageNo = @"page=1";
         //
         self.groupId = [NSString stringWithFormat:@"group_id=%@", groupId];;
+        //
+        NSString* signow = [self calculateSignature];
+        signow = [signow stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
+        self.signature = [NSString stringWithFormat:@"oauth_signature=%@", signow];
+    }
+    return self;
+}
+
+- (instancetype) initWithKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token GroupId: (NSString *) groupId PageNumber: (NSInteger) pageNumber
+{
+    self = [super init];
+    if (self)
+    {
+        // Additional initialization
+        self.httpVerb = @"GET";
+        self.url = @"https://api.flickr.com/services/rest/";
+        self.version = @"oauth_version=1.0";
+        self.signatureMethod = @"oauth_signature_method=HMAC-SHA1";
+        // timestamp
+        NSString* ts = [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]];
+        self.timeStamp = [NSString stringWithFormat:@"oauth_timestamp=%@", ts];
+        self.nonce = [NSString stringWithFormat:@"oauth_nonce=%@", ts];
+        //
+        self.consumerKey = [NSString stringWithFormat:@"oauth_consumer_key=%@", key];
+        self.consumerSecret = secret;
+        //
+        self.authToken = [NSString stringWithFormat:@"oauth_token=%@", token];
+        //
+        self.method = @"method=flickr.groups.pools.getPhotos";
+        self.nojsoncallback = @"nojsoncallback=1";
+        self.format = @"format=json";
+        self.extras = @"extras=views,url_s";
+        self.perPage = @"per_page=50";
+        self.pageNo = [NSString stringWithFormat:@"page=%d", pageNumber];
+        //
+        self.groupId = [NSString stringWithFormat:@"group_id=%@", groupId];
         //
         NSString* signow = [self calculateSignature];
         signow = [signow stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
@@ -63,6 +100,7 @@
     [array addObject:self.groupId];
     [array addObject:self.extras];
     [array addObject:self.perPage];
+    [array addObject:self.pageNo];
     // Sort the array
     NSArray* sortedArray = [array sortedArrayUsingSelector:@selector(compare:)];
     // Create string buffer
@@ -84,7 +122,7 @@
 
 - (NSString *) getUrl
 {
-    return [NSString stringWithFormat:@"%@?%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@", self.url, self.nojsoncallback, self.format, self.consumerKey, self.authToken, self.method, self.signature, self.nonce, self.timeStamp, self.signatureMethod, self.version, self.groupId, self.extras, self.perPage];
+    return [NSString stringWithFormat:@"%@?%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@", self.url, self.nojsoncallback, self.format, self.consumerKey, self.authToken, self.method, self.signature, self.nonce, self.timeStamp, self.signatureMethod, self.version, self.groupId, self.extras, self.perPage, self.pageNo];
 }
 
 @end

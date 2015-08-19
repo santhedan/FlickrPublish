@@ -24,7 +24,11 @@
 
 @property (nonatomic, strong) NSString* perPage;
 
+@property (nonatomic, strong) NSString* pageNo;
+
 - (instancetype) initWithKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token GroupId: (NSString *) groupId;
+
+- (instancetype) initWithKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token GroupId: (NSString *) groupId PageNumber: (NSInteger) pageNumber;
 
 - (NSString *) getUrl;
 

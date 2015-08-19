@@ -21,6 +21,7 @@
     Photo* selPhoto;
     BOOL commentsAndFavs;
     UIImage* placeHolderImage;
+    NSInteger currentPage;
 }
 
 @property (nonatomic, strong) NSArray* photos;
@@ -36,6 +37,7 @@
 {
     [super viewDidLoad];
     self.currentIndex = 0;
+    currentPage = 1;
     commentsAndFavs = NO;
     // Do any additional setup after loading the view.
     self.title = self.group.name;
@@ -55,17 +57,6 @@
     [self.addCommentCmd setEnabled:NO];
     [self.commentAndFavCmd setEnabled:NO];
     [self.faveCmd setEnabled:NO];
-    //
-    if (self.currentIndex < [self.photos count])
-    {
-        // Start loading images
-        Photo* p = [self.photos objectAtIndex:self.currentIndex];
-        // Create download operation
-        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:p.smallImageURL Directory:nil Delegate:self];
-        // Delegate
-        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [delegate enqueueOperation:op];
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -228,83 +219,118 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.photos.count;
+    if (self.photos != nil)
+    {
+        return (self.photos.count + 1);
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
-    
-    // Configure the cell
-    Photo* p = [self.photos objectAtIndex:indexPath.item];
-    cell.imageTitle.text = p.name;
-    cell.imageViews.text = [NSString stringWithFormat:@"%ld", (long)p.views];
-    //
-    cell.viewButton.layer.borderWidth = 1.0f;
-    cell.viewButton.layer.borderColor = [cell.viewButton tintColor].CGColor;
-    cell.viewButton.tag = indexPath.item;
-    //
-    if (p.imageData != nil)
+    if (indexPath.item < self.photos.count)
     {
-        cell.thumbnailSmall.image = p.imageData;
-    }
-    else
-    {
-        if (placeHolderImage == nil)
+        PhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
+        
+        // Configure the cell
+        Photo* p = [self.photos objectAtIndex:indexPath.item];
+        cell.imageTitle.text = p.name;
+        cell.imageViews.text = [NSString stringWithFormat:@"%ld", (long)p.views];
+        //
+        cell.viewButton.layer.borderWidth = 1.0f;
+        cell.viewButton.layer.borderColor = [cell.viewButton tintColor].CGColor;
+        cell.viewButton.tag = indexPath.item;
+        //
+        if (p.imageData != nil)
         {
-            placeHolderImage = [UIImage imageNamed:@"large_placeholder"];
+            cell.thumbnailSmall.image = p.imageData;
         }
-        cell.thumbnailSmall.image = placeHolderImage;
-        // Request download of image
-        // Get app delegate
-        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        // Create operation
-        DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:p.smallImageURL Directory:nil FileId:p.id Delegate:self];
-        // Start download
-        [delegate enqueueOperation:op];
-    }
-    if (p.selected)
-    {
-        [cell.selState setHidden:NO];
+        else
+        {
+            if (placeHolderImage == nil)
+            {
+                placeHolderImage = [UIImage imageNamed:@"large_placeholder"];
+            }
+            cell.thumbnailSmall.image = placeHolderImage;
+            // Request download of image
+            // Get app delegate
+            AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            // Create operation
+            DownloadFileOperation* op = [[DownloadFileOperation alloc] initWithURL:p.smallImageURL Directory:nil FileId:p.id Delegate:self];
+            // Start download
+            [delegate enqueueOperation:op];
+        }
+        if (p.selected)
+        {
+            [cell.selState setHidden:NO];
+        }
+        else
+        {
+            [cell.selState setHidden:YES];
+        }
+        
+        return cell;
     }
     else
     {
-        [cell.selState setHidden:YES];
+        UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MorePhotoCell" forIndexPath:indexPath];
+        return cell;
     }
-    
-    return cell;
 }
 
 #pragma mark UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    Photo* p = [self.photos objectAtIndex:indexPath.item];
-    p.selected = !(p.selected);
-    if (p.selected)
+    if (indexPath.item < self.photos.count)
     {
-        selectedCount++;
-    }
-    else
-    {
-        selectedCount--;
-    }
-    [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (selectedCount > 0)
+        Photo* p = [self.photos objectAtIndex:indexPath.item];
+        p.selected = !(p.selected);
+        if (p.selected)
         {
-            [self.addCommentCmd setEnabled:YES];
-            [self.commentAndFavCmd setEnabled:YES];
-            [self.faveCmd setEnabled:YES];
+            selectedCount++;
         }
         else
         {
-            [self.addCommentCmd setEnabled:NO];
-            [self.commentAndFavCmd setEnabled:NO];
-            [self.faveCmd setEnabled:NO];
+            selectedCount--;
         }
-    });
+        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (selectedCount > 0)
+            {
+                [self.addCommentCmd setEnabled:YES];
+                [self.commentAndFavCmd setEnabled:YES];
+                [self.faveCmd setEnabled:YES];
+            }
+            else
+            {
+                [self.addCommentCmd setEnabled:NO];
+                [self.commentAndFavCmd setEnabled:NO];
+                [self.faveCmd setEnabled:NO];
+            }
+        });
+    }
+    else if (indexPath.item == self.photos.count)
+    {
+        currentPage = currentPage + 1;
+        //
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        // Get group description
+        GroupsPoolsGetPhotos* request = [[GroupsPoolsGetPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token GroupId:self.group.id PageNumber:currentPage];
+        GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithRequest:request Delegate:self];
+        [delegate enqueueOperation:op];
+        self.progressViewContainer.hidden = NO;
+        [self.activityIndicator startAnimating];
+        //
+        selectedCount = 0;
+        [self.addCommentCmd setEnabled:NO];
+        [self.commentAndFavCmd setEnabled:NO];
+        [self.faveCmd setEnabled:NO];
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -336,7 +362,18 @@
 
 - (void) receivedGroupPhotos: (NSArray *) photos
 {
-    self.photos = photos;
+    if (self.photos == nil)
+    {
+        self.photos = photos;
+    }
+    else
+    {
+        NSMutableArray* tempArr = [[NSMutableArray alloc] init];
+        [tempArr addObjectsFromArray:self.photos];
+        [tempArr addObjectsFromArray:photos];
+        // Now assign the photos to self.photos
+        self.photos = tempArr;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.collectionView reloadData];
         self.progressViewContainer.hidden = YES;
