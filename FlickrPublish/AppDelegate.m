@@ -148,7 +148,6 @@
 
 - (void) loadedGroupComments: (NSDictionary*) groupComments
 {
-    NSLog(@"Group comments loaded");
     if (groupComments != nil)
     {
         self.groupComments = [[NSMutableDictionary alloc] initWithDictionary:groupComments];
@@ -157,7 +156,6 @@
 
 - (void) didSaveGroupComments
 {
-    NSLog(@"Group comments saved");
     [self destroyQueue];
 }
 

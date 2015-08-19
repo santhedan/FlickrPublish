@@ -270,7 +270,6 @@ static NSString * const reuseIdentifier = @"PhotoCell";
 - (IBAction)handleViewPhoto:(id)sender
 {
     UIButton* btn = (UIButton *)sender;
-    NSLog(@"btn.tag -> %ld", (long)btn.tag);
     selPhoto = [self.photos objectAtIndex:btn.tag];
     [self performSegueWithIdentifier:@"ShowLargeImageInNewScreen" sender:self];
 }

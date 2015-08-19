@@ -349,7 +349,6 @@
 - (IBAction)handleShowPhotos:(id)sender
 {
     UIButton* btn = (UIButton *)sender;
-    NSLog(@"btn.tag -> %ld", (long)btn.tag);
     selGroup = [self.groups objectAtIndex:btn.tag];
     [self performSegueWithIdentifier:@"ShowGroupPhotos" sender:self];
 }

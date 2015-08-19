@@ -268,7 +268,6 @@
 - (IBAction)handleShowPhotos:(id)sender
 {
     UIButton* btn = (UIButton *)sender;
-    NSLog(@"btn.tag -> %ld", (long)btn.tag);
     self.selGroup = [self.filteredGroups objectAtIndex:btn.tag];
     [self performSegueWithIdentifier:@"ShowGroupPhotos" sender:self];
 }
@@ -276,7 +275,6 @@
 - (IBAction)handleConfigureComments:(id)sender
 {
     UIButton* btn = (UIButton *)sender;
-    NSLog(@"btn.tag -> %ld", (long)btn.tag);
     self.selGroup = [self.filteredGroups objectAtIndex:btn.tag];
     [self performSegueWithIdentifier:@"ShowGroupDetail" sender:self];
 }
@@ -315,12 +313,14 @@
 {
     if (searchText.length > 0)
     {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[cd] %@", searchText];
-        NSArray *filteredGroups = [self.groups filteredArrayUsingPredicate:predicate];
         @synchronized (self.filteredGroups) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[cd] %@", searchText];
+            NSArray *filteredGroups = [self.groups filteredArrayUsingPredicate:predicate];
             self.filteredGroups = filteredGroups;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.collectionView reloadData];
+                @synchronized (self.filteredGroups) {
+                    [self.collectionView reloadData];
+                }
             });
         }
     }

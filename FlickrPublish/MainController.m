@@ -82,7 +82,6 @@
 
 - (void)showGroups
 {
-    NSLog(@"Show groups");
     [self performSegueWithIdentifier:@"ManageGroups" sender:self];
 }
 

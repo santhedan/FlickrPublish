@@ -66,10 +66,6 @@
         {
             NSDictionary* responseStatus = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
             NSString* status = [responseStatus objectForKey:@"stat"];
-            // Convery response to string
-            NSString* strResponse = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-            NSLog(@"strResponse -> %@", strResponse);
-            //
             // Did this call succeed?
             if ([status isEqualToString:@"ok"])
             {
