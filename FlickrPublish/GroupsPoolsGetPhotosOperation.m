@@ -57,6 +57,8 @@
                     p.id = [photo valueForKey:@"id"];
                     p.name = [photo valueForKey:@"title"];
                     p.views = ((NSString *)[photo valueForKey:@"views"]).intValue;
+                    p.ownerId = [photo valueForKey:@"owner"];
+                    p.ownerName = [photo valueForKey:@"ownername"];
                     p.smallImageURL = [[photo valueForKey:@"url_s"] stringByReplacingOccurrencesOfString:@"_m.jpg" withString:@"_q.jpg"];
                     p.height = ((NSString *)[photo valueForKey:@"height_s"]).intValue;
                     p.width = ((NSString *)[photo valueForKey:@"width_s"]).intValue;

@@ -34,7 +34,7 @@
         self.method = @"method=flickr.groups.pools.getPhotos";
         self.nojsoncallback = @"nojsoncallback=1";
         self.format = @"format=json";
-        self.extras = @"extras=views,url_s";
+        self.extras = @"extras=views,url_s,owner_name";
         self.perPage = @"per_page=50";
         self.pageNo = @"page=1";
         //

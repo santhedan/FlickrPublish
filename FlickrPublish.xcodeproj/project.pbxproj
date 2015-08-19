@@ -59,6 +59,9 @@
 		06A027B81B53A4B10000ED81 /* PhotosetGetList.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027B71B53A4B10000ED81 /* PhotosetGetList.m */; };
 		06A027BB1B53AA940000ED81 /* PhotosetGetListOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A027BA1B53AA940000ED81 /* PhotosetGetListOperation.m */; };
 		06A7A3EA1B635CE900E163C0 /* WebAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7A3E91B635CE900E163C0 /* WebAuthController.m */; };
+		06C502891B848E7A0010AC9C /* PeopleGetInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C502881B848E7A0010AC9C /* PeopleGetInfo.m */; };
+		06C5028C1B84908B0010AC9C /* PeopleGetInfoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C5028B1B84908B0010AC9C /* PeopleGetInfoOperation.m */; };
+		06C5028F1B8490CA0010AC9C /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C5028E1B8490CA0010AC9C /* Person.m */; };
 		06C7F89B1B7070ED002B54D8 /* GroupDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C7F89A1B7070ED002B54D8 /* GroupDetailController.m */; };
 		06C7F89E1B7086C6002B54D8 /* LoadGroupComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C7F89D1B7086C6002B54D8 /* LoadGroupComments.m */; };
 		06C7F8A11B7087A8002B54D8 /* SaveGroupComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C7F8A01B7087A8002B54D8 /* SaveGroupComments.m */; };
@@ -181,6 +184,12 @@
 		06A027BA1B53AA940000ED81 /* PhotosetGetListOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosetGetListOperation.m; sourceTree = "<group>"; };
 		06A7A3E81B635CE900E163C0 /* WebAuthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebAuthController.h; sourceTree = "<group>"; };
 		06A7A3E91B635CE900E163C0 /* WebAuthController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAuthController.m; sourceTree = "<group>"; };
+		06C502871B848E7A0010AC9C /* PeopleGetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleGetInfo.h; sourceTree = "<group>"; };
+		06C502881B848E7A0010AC9C /* PeopleGetInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleGetInfo.m; sourceTree = "<group>"; };
+		06C5028A1B84908B0010AC9C /* PeopleGetInfoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleGetInfoOperation.h; sourceTree = "<group>"; };
+		06C5028B1B84908B0010AC9C /* PeopleGetInfoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleGetInfoOperation.m; sourceTree = "<group>"; };
+		06C5028D1B8490CA0010AC9C /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		06C5028E1B8490CA0010AC9C /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		06C7F8991B7070ED002B54D8 /* GroupDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailController.h; sourceTree = "<group>"; };
 		06C7F89A1B7070ED002B54D8 /* GroupDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailController.m; sourceTree = "<group>"; };
 		06C7F89C1B7086C6002B54D8 /* LoadGroupComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadGroupComments.h; sourceTree = "<group>"; };
@@ -230,6 +239,8 @@
 				065138E41B5617DB0034A3CB /* Group.m */,
 				063A9D171B6254C200EF05F3 /* PhotoInfo.h */,
 				063A9D181B6254C200EF05F3 /* PhotoInfo.m */,
+				06C5028D1B8490CA0010AC9C /* Person.h */,
+				06C5028E1B8490CA0010AC9C /* Person.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -396,6 +407,8 @@
 				069DBD391B73463C003588D7 /* DownloadFileOperation.m */,
 				06F1A7DD1B83038400C95589 /* FavoritesAddOperation.h */,
 				06F1A7DE1B83038400C95589 /* FavoritesAddOperation.m */,
+				06C5028A1B84908B0010AC9C /* PeopleGetInfoOperation.h */,
+				06C5028B1B84908B0010AC9C /* PeopleGetInfoOperation.m */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -466,6 +479,8 @@
 				0663BF431B6B328900A044D0 /* PhotosCommentsAddComment.m */,
 				06F1A7DA1B83018400C95589 /* FavoritesAdd.h */,
 				06F1A7DB1B83018400C95589 /* FavoritesAdd.m */,
+				06C502871B848E7A0010AC9C /* PeopleGetInfo.h */,
+				06C502881B848E7A0010AC9C /* PeopleGetInfo.m */,
 			);
 			name = FlickrRequests;
 			sourceTree = "<group>";
@@ -586,6 +601,7 @@
 			files = (
 				0663BF471B6B461A00A044D0 /* GroupsGetInfoOperation.m in Sources */,
 				065138F71B564AC00034A3CB /* GroupsPoolsAdd.m in Sources */,
+				06C5028F1B8490CA0010AC9C /* Person.m in Sources */,
 				0663BF441B6B328900A044D0 /* PhotosCommentsAddComment.m in Sources */,
 				065138E21B5616780034A3CB /* PhotosGetAllContextsOperation.m in Sources */,
 				06A7A3EA1B635CE900E163C0 /* WebAuthController.m in Sources */,
@@ -603,6 +619,7 @@
 				065138CA1B54C7D00034A3CB /* PhotoSetCell.m in Sources */,
 				06F1A7DC1B83018400C95589 /* FavoritesAdd.m in Sources */,
 				067BFB531B7A125800A2A5F7 /* NSString+HTML.m in Sources */,
+				06C5028C1B84908B0010AC9C /* PeopleGetInfoOperation.m in Sources */,
 				065138F11B562E690034A3CB /* GroupListController.m in Sources */,
 				065138DF1B5614F00034A3CB /* PhotosGetAllContexts.m in Sources */,
 				06A027AA1B4F82370000ED81 /* RequestTokenOperation.m in Sources */,
@@ -621,6 +638,7 @@
 				065138DC1B5503AF0034A3CB /* Utility.m in Sources */,
 				065138E51B5617DB0034A3CB /* Group.m in Sources */,
 				06F1A7DF1B83038400C95589 /* FavoritesAddOperation.m in Sources */,
+				06C502891B848E7A0010AC9C /* PeopleGetInfo.m in Sources */,
 				06C7F8AA1B70C7A4002B54D8 /* PhotosCommentsAddCommentOperation.m in Sources */,
 				06A027A71B4F81480000ED81 /* AccessToken.m in Sources */,
 				067BFB561B7A12BF00A2A5F7 /* GTMNSString+HTML.m in Sources */,

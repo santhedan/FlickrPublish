@@ -17,6 +17,10 @@
 
 @property (nonatomic, strong) NSString* smallImageURL;
 
+@property (nonatomic, strong) NSString* ownerId;
+
+@property (nonatomic, strong) NSString* ownerName;
+
 @property (nonatomic, strong) UIImage* imageData;
 
 @property (nonatomic, assign) NSInteger height;
