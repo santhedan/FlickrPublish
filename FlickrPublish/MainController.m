@@ -46,7 +46,7 @@
     // Create operation
     PhotosetGetListOperation* op = [[PhotosetGetListOperation alloc] initWithRequest:request Delegate:self];
     //
-    UIBarButtonItem* groupItem = [[UIBarButtonItem alloc] initWithTitle:@"Group" style:UIBarButtonItemStylePlain target:self action:@selector(showGroups)];
+    UIBarButtonItem* groupItem = [[UIBarButtonItem alloc] initWithTitle:@"Groups" style:UIBarButtonItemStylePlain target:self action:@selector(showGroups)];
     self.navigationItem.rightBarButtonItem = groupItem;
     //
     [delegate enqueueOperation:op];
