@@ -213,6 +213,7 @@
     // Pass the selected object to the new view controller.
     LargePhotoViewerController* ctrl = (LargePhotoViewerController *)segue.destinationViewController;
     ctrl.photo = selPhoto;
+    ctrl.showProfile = YES;
 }
 
 #pragma mark UICollectionViewDataSource

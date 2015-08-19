@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Person : NSObject
 
@@ -24,6 +25,6 @@
 
 @property (nonatomic, strong) NSString* photoCount;
 
-@property (nonatomic, strong) NSString* buddyIconURL;
+@property (nonatomic, strong) UIImage* buddyIcon;
 
 @end

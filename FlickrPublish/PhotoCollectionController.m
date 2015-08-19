@@ -138,6 +138,7 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     {
         LargePhotoViewerController* ctrl = (LargePhotoViewerController *)segue.destinationViewController;
         ctrl.photo = selPhoto;
+        ctrl.showProfile = NO;
     }
 }
 

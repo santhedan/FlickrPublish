@@ -48,6 +48,7 @@
             NSString* status = [dictPerson valueForKey:@"stat"];
             if ([status isEqualToString:@"ok"])
             {
+                dictPerson = [dictPerson valueForKey:@"person"];
                 person = [[Person alloc] init];
                 person.id = [dictPerson valueForKey:@"nsid"];
                 person.iconServer = [dictPerson valueForKey:@"iconserver"];
@@ -56,7 +57,8 @@
                 person.realName = [[dictPerson valueForKey:@"realname"] valueForKey:@"_content"];
                 person.location = [[dictPerson valueForKey:@"location"] valueForKey:@"_content"];
                 person.photoCount = [[[dictPerson valueForKey:@"photos"] valueForKey:@"count"] valueForKey:@"_content"];
-                person.buddyIconURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", person.iconFarm, person.iconServer, person.id];
+                NSString* url = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", person.iconFarm, person.iconServer, person.id];
+                person.buddyIcon = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
             }
         }
     }
