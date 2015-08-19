@@ -1334,6 +1334,9 @@
                                                             <variation key="heightClass=compact" misplaced="YES">
                                                                 <rect key="frame" x="0.0" y="17" width="42" height="25"/>
                                                             </variation>
+                                                            <connections>
+                                                                <action selector="handleShowPhotos:" destination="RYN-cE-4CA" eventType="touchUpInside" id="ylH-uK-Mgd"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1467,6 +1470,7 @@
                         <outlet property="progressLabel" destination="eyI-F0-Dss" id="AWZ-0d-bg7"/>
                         <outlet property="publicState" destination="uEO-Ul-zex" id="Ion-SS-dSx"/>
                         <outlet property="viewCount" destination="RSM-9p-8Y7" id="K4K-Ed-qP9"/>
+                        <segue destination="1FE-Pv-RGA" kind="show" identifier="ShowGroupPhotos" id="HdW-r8-vtH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNY-4x-zvS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1504,6 +1508,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NmL-Sr-huR"/>
+        <segue reference="HdW-r8-vtH"/>
         <segue reference="ZG5-1U-Itc"/>
     </inferredMetricsTieBreakers>
 </document>

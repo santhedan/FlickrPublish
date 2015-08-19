@@ -16,11 +16,13 @@
 #import "Group.h"
 #import "GroupCell.h"
 #import "GroupsPoolsAddOperation.h"
+#import "GroupPoolPhotoDisplayController.h"
 
 @interface GroupListController ()
 {
     NSInteger selectedCount;
     UIBarButtonItem* addItem;
+    Group* selGroup;
 }
 
 @property (nonatomic, strong) NSArray* groupsToExclude;
@@ -91,15 +93,17 @@
     [super viewWillDisappear:animated];
 }
 
-/*
-#pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ShowGroupPhotos"])
+    {
+        GroupPoolPhotoDisplayController* ctrl = (GroupPoolPhotoDisplayController *) segue.destinationViewController;
+        ctrl.group = selGroup;
+    }
 }
-*/
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -145,6 +149,10 @@
     cell.thumbnail.layer.borderColor = [UIColor darkGrayColor].CGColor;
     cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.size.width / 2;;
     cell.thumbnail.clipsToBounds = YES;
+    //
+    cell.showPhotosBtn.layer.borderWidth = 0.5f;
+    cell.showPhotosBtn.layer.borderColor = [cell.showPhotosBtn tintColor].CGColor;
+    cell.showPhotosBtn.tag = indexPath.item;
     //
     cell.layer.borderWidth = 0.5f;
     cell.layer.borderColor = [cell tintColor].CGColor;
@@ -198,7 +206,7 @@
     int desiredItemWidth = (collectionViewWidth - (itemsInRow - 1) * 10) / itemsInRow;
     
     // Height is fixed
-    int desiredItemHeight = 125;
+    int desiredItemHeight = 150;
     
     // Create size object from above and return
     CGSize itemSize = CGSizeMake(desiredItemWidth, desiredItemHeight);
@@ -331,6 +339,14 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.progressLabel.text = progressMessage;
     });
+}
+
+- (IBAction)handleShowPhotos:(id)sender
+{
+    UIButton* btn = (UIButton *)sender;
+    NSLog(@"btn.tag -> %ld", (long)btn.tag);
+    selGroup = [self.groups objectAtIndex:btn.tag];
+    [self performSegueWithIdentifier:@"ShowGroupPhotos" sender:self];
 }
 
 @end
