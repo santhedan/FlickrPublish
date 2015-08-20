@@ -38,7 +38,7 @@
         self.format = @"format=json";
         self.extras = @"extras=views,url_s,owner_name";
         self.perPage = @"per_page=50";
-        self.pageNo = [NSString stringWithFormat:@"page=%d", pageNumber];
+        self.pageNo = [NSString stringWithFormat:@"page=%ld", (long)pageNumber];
         //
         NSString* signow = [self calculateSignature];
         signow = [signow stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];

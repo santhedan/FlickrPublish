@@ -72,7 +72,7 @@
         self.format = @"format=json";
         self.extras = @"extras=views,url_s";
         self.perPage = @"per_page=50";
-        self.pageNo = [NSString stringWithFormat:@"page=%d", pageNumber];
+        self.pageNo = [NSString stringWithFormat:@"page=%ld", (long)pageNumber];
         //
         self.groupId = [NSString stringWithFormat:@"group_id=%@", groupId];
         //
