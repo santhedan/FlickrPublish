@@ -25,6 +25,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *realName;
 @property (weak, nonatomic) IBOutlet UILabel *locationAndPhotos;
 @property (weak, nonatomic) IBOutlet UIView *profileContainerView;
+@property (weak, nonatomic) IBOutlet UIButton *commentCmd;
+@property (weak, nonatomic) IBOutlet UIButton *photosCmd;
+@property (weak, nonatomic) IBOutlet UIButton *faceCmd;
 
 - (IBAction)handlePhotos:(id)sender;
 - (IBAction)handleComment:(id)sender;

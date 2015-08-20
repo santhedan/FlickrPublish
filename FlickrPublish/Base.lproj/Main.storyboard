@@ -810,7 +810,7 @@
                                             <action selector="handleFavorite:" destination="tEl-sz-A71" eventType="touchUpInside" id="otk-2Y-47y"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnF-Lq-zIV">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnF-Lq-zIV">
                                         <rect key="frame" x="56" y="0.0" width="536" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="1Vx-CH-eyx"/>
@@ -908,7 +908,10 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="LWd-cB-wAr" id="ZfW-PG-Ywc"/>
+                        <outlet property="commentCmd" destination="gfD-sl-W6b" id="Efd-tL-yr6"/>
+                        <outlet property="faceCmd" destination="icK-ox-YId" id="Kcn-1Y-FNU"/>
                         <outlet property="locationAndPhotos" destination="9hR-lF-bt3" id="mHA-CJ-rJR"/>
+                        <outlet property="photosCmd" destination="TsV-zF-2Vu" id="KoR-7t-FoW"/>
                         <outlet property="profileContainer" destination="0Tz-oy-XVb" id="2GN-by-gB3"/>
                         <outlet property="profileContainerHeightConstraint" destination="crE-EU-CoB" id="k3l-hj-GAz"/>
                         <outlet property="profileContainerView" destination="0Tz-oy-XVb" id="mfi-xu-BcG"/>
@@ -917,6 +920,7 @@
                         <outlet property="realName" destination="RnF-Lq-zIV" id="Ugd-Y4-fnp"/>
                         <outlet property="webView" destination="mQ5-aM-fDT" id="4fQ-tV-8lh"/>
                         <outlet property="webViewVerticalSpaceConstraint" destination="BWK-28-QCq" id="dQH-4H-3wd"/>
+                        <segue destination="1FE-Pv-RGA" kind="show" identifier="ShowUserPhotos" id="Vye-yX-Dkm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Med-Us-P9t" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1728,7 +1732,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NmL-Sr-huR"/>
-        <segue reference="HdW-r8-vtH"/>
         <segue reference="ZG5-1U-Itc"/>
+        <segue reference="Vye-yX-Dkm"/>
     </inferredMetricsTieBreakers>
 </document>

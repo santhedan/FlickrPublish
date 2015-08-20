@@ -40,16 +40,33 @@
     currentPage = 1;
     commentsAndFavs = NO;
     // Do any additional setup after loading the view.
-    self.title = self.group.name;
+    if (self.showGroupPhotos)
+    {
+        self.title = self.group.name;
+    }
+    else
+    {
+        self.title = [NSString stringWithFormat:@"%@'s Photos", self.userName];
+    }
     //
     sortItem = [[UIBarButtonItem alloc] initWithTitle:@"Sort" style:UIBarButtonItemStylePlain target:self action:@selector(showSortOption)];
     self.navigationItem.rightBarButtonItem = sortItem;
     //
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    // Get group description
-    GroupsPoolsGetPhotos* request = [[GroupsPoolsGetPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token GroupId:self.group.id];
-    GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithRequest:request Delegate:self];
-    [delegate enqueueOperation:op];
+    if (self.showGroupPhotos)
+    {
+        // Get group description
+        GroupsPoolsGetPhotos* request = [[GroupsPoolsGetPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token GroupId:self.group.id];
+        GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithRequest:request Delegate:self];
+        [delegate enqueueOperation:op];
+    }
+    else
+    {
+        // Get group description
+        PeopleGetPublicPhotos* request = [[PeopleGetPublicPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token UserID:self.userId PageNumber:currentPage];
+        PeopleGetPublicPhotosOperation* op = [[PeopleGetPublicPhotosOperation alloc] initWithRequest:request Delegate:self];
+        [delegate enqueueOperation:op];
+    }
     self.progressViewContainer.hidden = NO;
     [self.activityIndicator startAnimating];
     //
@@ -105,34 +122,76 @@
 - (IBAction)addComments:(id)sender
 {
     commentsAndFavs = NO;
-    NSMutableArray* photoIds = [[NSMutableArray alloc] init];
-    for (Photo* p in self.photos) {
-        if (p.selected)
+    if (self.showGroupPhotos)
+    {
+        NSMutableArray* photoIds = [[NSMutableArray alloc] init];
+        for (Photo* p in self.photos) {
+            if (p.selected)
+            {
+                [photoIds addObject:p.id];
+            }
+        }
+        // Get app delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        // Get comment for the group
+        NSString* comment = [delegate getCommentForGroup:self.group.id];
+        if (comment == nil)
         {
-            [photoIds addObject:p.id];
+            comment = [self.group getDefaultComment];
+            [delegate addComment:comment forGroup:self.group.id];
+        }
+        //
+        if (photoIds.count > 0)
+        {
+            // Disable add comment button
+            [self.addCommentCmd setEnabled:NO];
+            [self.commentAndFavCmd setEnabled:NO];
+            [self.faveCmd setEnabled:NO];
+            // Create operation
+            PhotosCommentsAddCommentOperation* op = [[PhotosCommentsAddCommentOperation alloc] initWithPhotoIds:photoIds GroupId:self.group.id Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
+            [delegate enqueueOperation:op];
+            self.progressViewContainer.hidden = NO;
+            [self.activityIndicator startAnimating];
         }
     }
-    // Get app delegate
-    AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    // Get comment for the group
-    NSString* comment = [delegate getCommentForGroup:self.group.id];
-    if (comment == nil)
+    else
     {
-        comment = [self.group getDefaultComment];
-        [delegate addComment:comment forGroup:self.group.id];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Comment" message:@"Enter your comment" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+        alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alertView show];
     }
-    //
-    if (photoIds.count > 0)
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
     {
-        // Disable add comment button
-        [self.addCommentCmd setEnabled:NO];
-        [self.commentAndFavCmd setEnabled:NO];
-        [self.faveCmd setEnabled:NO];
-        // Create operation
-        PhotosCommentsAddCommentOperation* op = [[PhotosCommentsAddCommentOperation alloc] initWithPhotoIds:photoIds GroupId:self.group.id Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
-        [delegate enqueueOperation:op];
-        self.progressViewContainer.hidden = NO;
-        [self.activityIndicator startAnimating];
+        UITextField *commentField = [alertView textFieldAtIndex:0];
+        //
+        NSMutableArray* photoIds = [[NSMutableArray alloc] init];
+        for (Photo* p in self.photos) {
+            if (p.selected)
+            {
+                [photoIds addObject:p.id];
+            }
+        }
+        // Get app delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        // Get comment for the group
+        NSString* comment = commentField.text;
+        //
+        if (photoIds.count > 0)
+        {
+            // Disable add comment button
+            [self.addCommentCmd setEnabled:NO];
+            [self.commentAndFavCmd setEnabled:NO];
+            [self.faveCmd setEnabled:NO];
+            // Create operation
+            PhotosCommentsAddCommentOperation* op = [[PhotosCommentsAddCommentOperation alloc] initWithPhotoIds:photoIds Comment:comment Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
+            [delegate enqueueOperation:op];
+            self.progressViewContainer.hidden = NO;
+            [self.activityIndicator startAnimating];
+        }
     }
 }
 
@@ -166,34 +225,43 @@
 - (IBAction)addCommentsAndFaves:(id)sender
 {
     commentsAndFavs = YES;
-    NSMutableArray* photoIds = [[NSMutableArray alloc] init];
-    for (Photo* p in self.photos) {
-        if (p.selected)
+    if (self.showGroupPhotos)
+    {
+        NSMutableArray* photoIds = [[NSMutableArray alloc] init];
+        for (Photo* p in self.photos) {
+            if (p.selected)
+            {
+                [photoIds addObject:p.id];
+            }
+        }
+        // Get app delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        // Get comment for the group
+        NSString* comment = [delegate getCommentForGroup:self.group.id];
+        if (comment == nil)
         {
-            [photoIds addObject:p.id];
+            comment = [self.group getDefaultComment];
+            [delegate addComment:comment forGroup:self.group.id];
+        }
+        //
+        if (photoIds.count > 0)
+        {
+            // Disable add comment button
+            [self.addCommentCmd setEnabled:NO];
+            [self.commentAndFavCmd setEnabled:NO];
+            [self.faveCmd setEnabled:NO];
+            // Create operation
+            PhotosCommentsAddCommentOperation* op = [[PhotosCommentsAddCommentOperation alloc] initWithPhotoIds:photoIds GroupId:self.group.id Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
+            [delegate enqueueOperation:op];
+            self.progressViewContainer.hidden = NO;
+            [self.activityIndicator startAnimating];
         }
     }
-    // Get app delegate
-    AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    // Get comment for the group
-    NSString* comment = [delegate getCommentForGroup:self.group.id];
-    if (comment == nil)
+    else
     {
-        comment = [self.group getDefaultComment];
-        [delegate addComment:comment forGroup:self.group.id];
-    }
-    //
-    if (photoIds.count > 0)
-    {
-        // Disable add comment button
-        [self.addCommentCmd setEnabled:NO];
-        [self.commentAndFavCmd setEnabled:NO];
-        [self.faveCmd setEnabled:NO];
-        // Create operation
-        PhotosCommentsAddCommentOperation* op = [[PhotosCommentsAddCommentOperation alloc] initWithPhotoIds:photoIds GroupId:self.group.id Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
-        [delegate enqueueOperation:op];
-        self.progressViewContainer.hidden = NO;
-        [self.activityIndicator startAnimating];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Comment" message:@"Enter your comment" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+        alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alertView show];
     }
 }
 
@@ -213,7 +281,14 @@
     // Pass the selected object to the new view controller.
     LargePhotoViewerController* ctrl = (LargePhotoViewerController *)segue.destinationViewController;
     ctrl.photo = selPhoto;
-    ctrl.showProfile = YES;
+    if (self.showGroupPhotos)
+    {
+        ctrl.showProfile = YES;
+    }
+    else
+    {
+        ctrl.showProfile = NO;
+    }
 }
 
 #pragma mark UICollectionViewDataSource
@@ -320,10 +395,20 @@
         currentPage = currentPage + 1;
         //
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        // Get group description
-        GroupsPoolsGetPhotos* request = [[GroupsPoolsGetPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token GroupId:self.group.id PageNumber:currentPage];
-        GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithRequest:request Delegate:self];
-        [delegate enqueueOperation:op];
+        if (self.showGroupPhotos)
+        {
+            // Get group description
+            GroupsPoolsGetPhotos* request = [[GroupsPoolsGetPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token GroupId:self.group.id PageNumber:currentPage];
+            GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithRequest:request Delegate:self];
+            [delegate enqueueOperation:op];
+        }
+        else
+        {
+            // Get group description
+            PeopleGetPublicPhotos* request = [[PeopleGetPublicPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token UserID:self.userId PageNumber:currentPage];
+            PeopleGetPublicPhotosOperation* op = [[PeopleGetPublicPhotosOperation alloc] initWithRequest:request Delegate:self];
+            [delegate enqueueOperation:op];
+        }
         self.progressViewContainer.hidden = NO;
         [self.activityIndicator startAnimating];
         //

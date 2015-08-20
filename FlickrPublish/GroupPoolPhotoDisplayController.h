@@ -12,10 +12,15 @@
 #import "PhotosCommentsAddCommentOperation.h"
 #import "DownloadFileOperation.h"
 #import "FavoritesAddOperation.h"
+#import "PeopleGetPublicPhotosOperation.h"
 
-@interface GroupPoolPhotoDisplayController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, GroupsPoolsGetPhotosOperationDelegate, PhotosCommentsAddCommentOperationDelegate, DownloadFileOperationDelegate, FavoritesAddOperationDelegate>
+@interface GroupPoolPhotoDisplayController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, GroupsPoolsGetPhotosOperationDelegate, PhotosCommentsAddCommentOperationDelegate, DownloadFileOperationDelegate, FavoritesAddOperationDelegate, PeopleGetPublicPhotosOperationDelegate>
 
 @property (nonatomic, strong) Group* group;
+@property (nonatomic, assign) BOOL showGroupPhotos;
+@property (nonatomic, strong) NSString* userId;
+@property (nonatomic, strong) NSString* userName;
+
 @property (weak, nonatomic) IBOutlet UIButton *addCommentCmd;
 @property (weak, nonatomic) IBOutlet UIButton *commentAndFavCmd;
 @property (weak, nonatomic) IBOutlet UIButton *faveCmd;

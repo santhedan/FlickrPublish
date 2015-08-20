@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "AppDelegate.h"
 #import "PeopleGetInfo.h"
+#import "GroupPoolPhotoDisplayController.h"
 
 @interface LargePhotoViewerController ()
 {
@@ -29,6 +30,10 @@
     self.title = self.photo.name;
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    //
+    self.commentCmd.enabled = NO;
+    self.photosCmd.enabled = NO;
+    self.faceCmd.enabled = NO;
     // Load the large image in webview
     NSString* largeImageUrl = [self.photo.smallImageURL stringByReplacingOccurrencesOfString:@"_q.jpg" withString:@"_b.jpg"];
     // Create NSURL
@@ -78,10 +83,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark Navigation
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    GroupPoolPhotoDisplayController* ctrl = (GroupPoolPhotoDisplayController *)segue.destinationViewController;
+    ctrl.userId = storedPerson.id;
+    ctrl.showGroupPhotos = NO;
+    if (storedPerson.realName != nil && storedPerson.realName.length > 0)
+    {
+        ctrl.userName = storedPerson.realName;
+    }
+    else
+    {
+        ctrl.userName = storedPerson.userName;
+    }
+}
+
 #pragma mark EventHandler
 
 - (IBAction)handlePhotos:(id)sender
 {
+    [self performSegueWithIdentifier:@"ShowUserPhotos" sender:self];
 }
 
 - (IBAction)handleComment:(id)sender
@@ -93,6 +116,10 @@
 
 - (IBAction)handleFavorite:(id)sender
 {
+    //
+    self.commentCmd.enabled = NO;
+    self.photosCmd.enabled = NO;
+    self.faceCmd.enabled = NO;
     // Get app delegate
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     // Create operation
@@ -106,8 +133,12 @@
 {
     if (buttonIndex == 1)
     {
+        //
+        self.commentCmd.enabled = NO;
+        self.photosCmd.enabled = NO;
+        self.faceCmd.enabled = NO;
+        //
         UITextField *commentField = [alertView textFieldAtIndex:0];
-        NSLog(@"%@",commentField.text);
         //
         // Get app delegate
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -125,7 +156,6 @@
 {
     storedPerson = person;
     counter--;
-    NSLog(@"person.realName -> %@", person.realName);
     dispatch_async(dispatch_get_main_queue(), ^{
         if (storedPerson.realName != nil && storedPerson.realName.length > 0)
         {
@@ -148,6 +178,10 @@
         {
             self.progressViewContainer.hidden = YES;
             [self.activityIndicator stopAnimating];
+            //
+            self.commentCmd.enabled = YES;
+            self.photosCmd.enabled = YES;
+            self.faceCmd.enabled = YES;
         }
     });
 }
@@ -162,6 +196,10 @@
         {
             self.progressViewContainer.hidden = YES;
             [self.activityIndicator stopAnimating];
+            //
+            self.commentCmd.enabled = YES;
+            self.photosCmd.enabled = YES;
+            self.faceCmd.enabled = YES;
         }
     });
 }
@@ -173,6 +211,10 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.progressViewContainer.hidden = YES;
         [self.activityIndicator stopAnimating];
+        //
+        self.commentCmd.enabled = YES;
+        self.photosCmd.enabled = YES;
+        self.faceCmd.enabled = YES;
     });
 }
 
@@ -183,6 +225,10 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.progressViewContainer.hidden = YES;
         [self.activityIndicator stopAnimating];
+        //
+        self.commentCmd.enabled = YES;
+        self.photosCmd.enabled = YES;
+        self.faceCmd.enabled = YES;
     });
 }
 

@@ -9,6 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "PeopleGetPublicPhotos.h"
 
+@protocol PeopleGetPublicPhotosOperationDelegate <NSObject>
+
+@required
+
+- (void) receivedGroupPhotos: (NSArray *) photos;
+
+@end
+
 @interface PeopleGetPublicPhotosOperation : NSOperation
+
+- (instancetype) initWithRequest: (PeopleGetPublicPhotos *) request Delegate:(id<PeopleGetPublicPhotosOperationDelegate>) delegate;
 
 @end

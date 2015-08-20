@@ -62,6 +62,21 @@
     return self;
 }
 
+- (instancetype) initWithPhotoIds: (NSArray *) photos Comment: (NSString *) comment Key: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token Delegate: (id<PhotosCommentsAddCommentOperationDelegate>) delegate
+{
+    self = [super init];
+    if (self)
+    {
+        self.photos = photos;
+        self.comment = comment;
+        self.key = key;
+        self.secret = secret;
+        self.token = token;
+        self.delegate = delegate;
+    }
+    return self;
+}
+
 - (void) main
 {
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -74,7 +89,10 @@
     else
     {
         comment = self.comment;
-        self.photos = [NSArray arrayWithObjects:self.photoid, nil];
+        if (self.photos == nil)
+        {
+            self.photos = [NSArray arrayWithObjects:self.photoid, nil];
+        }
     }
     // For each photo add the comment
     for (NSString* photoId in self.photos)
