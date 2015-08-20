@@ -14,7 +14,10 @@
 @interface LargePhotoViewerController ()
 {
     Person* storedPerson;
+    NSInteger counter;
 }
+@property (weak, nonatomic) IBOutlet UIView *progressViewContainer;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation LargePhotoViewerController
@@ -38,6 +41,9 @@
     //
     if (self.showProfile)
     {
+        self.progressViewContainer.hidden = NO;
+        [self.activityIndicator startAnimating];
+        counter = 2;
         //
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         // Create request and operation and execute
@@ -47,6 +53,12 @@
         // Queue for execution
         [delegate enqueueOperation:op];
     }
+    else
+    {
+        self.progressViewContainer.hidden = NO;
+        [self.activityIndicator startAnimating];
+        counter = 1;
+    }
 }
 
 - (void)viewWillLayoutSubviews
@@ -55,7 +67,7 @@
     {
         self.profileContainerHeightConstraint.constant = 0;
         self.webViewVerticalSpaceConstraint.constant = 0;
-        [self.view setNeedsUpdateConstraints];
+        [self.view setNeedsLayout];
     }
 }
 
@@ -65,23 +77,57 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)handlePhotos:(id)sender {
+#pragma mark EventHandler
+
+- (IBAction)handlePhotos:(id)sender
+{
 }
 
-- (IBAction)handleComment:(id)sender {
+- (IBAction)handleComment:(id)sender
+{
 }
 
-- (IBAction)handleFavorite:(id)sender {
+- (IBAction)handleFavorite:(id)sender
+{
 }
+
+#pragma mark PeopleGetInfoOperationHandler
 
 - (void) receivedInfo: (Person *) person
 {
     storedPerson = person;
+    counter--;
     NSLog(@"person.realName -> %@", person.realName);
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.realName.text = storedPerson.realName;
-        self.locationAndPhotos.text = [NSString stringWithFormat:@"%@, %@ photos", storedPerson.location, storedPerson.photoCount];
+        if (storedPerson.realName != nil && storedPerson.realName.length > 0)
+        {
+            self.realName.text = storedPerson.realName;
+        }
+        else
+        {
+            self.realName.text = storedPerson.userName;
+        }
+        self.locationAndPhotos.text = [NSString stringWithFormat:@"%@ %@ photos", storedPerson.location, storedPerson.photoCount];
         self.profileImage.image = storedPerson.buddyIcon;
+        if (counter == 0)
+        {
+            self.progressViewContainer.hidden = YES;
+            [self.activityIndicator stopAnimating];
+        }
+    });
+}
+
+#pragma mark UIWebViewDelegate
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    counter--;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (counter == 0)
+        {
+            self.progressViewContainer.hidden = YES;
+            [self.activityIndicator stopAnimating];
+        }
     });
 }
 
