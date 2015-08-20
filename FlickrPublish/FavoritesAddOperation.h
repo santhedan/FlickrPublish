@@ -18,6 +18,6 @@
 
 @interface FavoritesAddOperation : NSOperation
 
-- (instancetype) initWithPhotoIds: (NSArray *) photos GroupId: (NSString *) groupId Key: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token Delegate: (id<FavoritesAddOperationDelegate>) delegate;
+- (instancetype) initWithPhotoIds: (NSArray *) photos Key: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token Delegate: (id<FavoritesAddOperationDelegate>) delegate;
 
 @end

@@ -20,4 +20,6 @@
 
 - (instancetype) initWithPhotoIds: (NSArray *) photos GroupId: (NSString *) groupId Key: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token Delegate: (id<PhotosCommentsAddCommentOperationDelegate>) delegate;
 
+- (instancetype) initWithPhotoId: (NSString *) photoId Comment: (NSString *) comment Key: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token Delegate: (id<PhotosCommentsAddCommentOperationDelegate>) delegate;
+
 @end

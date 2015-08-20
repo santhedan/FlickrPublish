@@ -911,6 +911,7 @@
                         <outlet property="locationAndPhotos" destination="9hR-lF-bt3" id="mHA-CJ-rJR"/>
                         <outlet property="profileContainer" destination="0Tz-oy-XVb" id="2GN-by-gB3"/>
                         <outlet property="profileContainerHeightConstraint" destination="crE-EU-CoB" id="k3l-hj-GAz"/>
+                        <outlet property="profileContainerView" destination="0Tz-oy-XVb" id="mfi-xu-BcG"/>
                         <outlet property="profileImage" destination="jtw-f7-1TQ" id="Zf3-c8-ivw"/>
                         <outlet property="progressViewContainer" destination="aYW-9W-eQM" id="J7q-wg-G1J"/>
                         <outlet property="realName" destination="RnF-Lq-zIV" id="Ugd-Y4-fnp"/>

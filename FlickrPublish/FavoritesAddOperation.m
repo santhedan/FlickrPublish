@@ -13,8 +13,6 @@
 
 @property (nonatomic, strong) NSArray* photos;
 
-@property (nonatomic, strong) NSString* groupId;
-
 @property (nonatomic, strong) NSString* key;
 
 @property (nonatomic, strong) NSString* secret;
@@ -27,13 +25,12 @@
 
 @implementation FavoritesAddOperation
 
-- (instancetype) initWithPhotoIds: (NSArray *) photos GroupId: (NSString *) groupId Key: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token Delegate: (id<FavoritesAddOperationDelegate>) delegate
+- (instancetype) initWithPhotoIds: (NSArray *) photos Key: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token Delegate: (id<FavoritesAddOperationDelegate>) delegate
 {
     self = [super init];
     if (self)
     {
         self.photos = photos;
-        self.groupId = groupId;
         self.key = key;
         self.secret = secret;
         self.token = token;

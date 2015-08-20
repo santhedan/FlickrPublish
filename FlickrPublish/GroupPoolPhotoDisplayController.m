@@ -156,7 +156,7 @@
         [self.commentAndFavCmd setEnabled:NO];
         [self.faveCmd setEnabled:NO];
         // Create operation
-        FavoritesAddOperation* op = [[FavoritesAddOperation alloc] initWithPhotoIds:photoIds GroupId:self.group.id Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
+        FavoritesAddOperation* op = [[FavoritesAddOperation alloc] initWithPhotoIds:photoIds Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
         [delegate enqueueOperation:op];
         self.progressViewContainer.hidden = NO;
         [self.activityIndicator startAnimating];

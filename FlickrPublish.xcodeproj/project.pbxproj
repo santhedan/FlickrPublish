@@ -32,6 +32,8 @@
 		0663BF441B6B328900A044D0 /* PhotosCommentsAddComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0663BF431B6B328900A044D0 /* PhotosCommentsAddComment.m */; };
 		0663BF471B6B461A00A044D0 /* GroupsGetInfoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0663BF461B6B461A00A044D0 /* GroupsGetInfoOperation.m */; };
 		0663BF4A1B6B694E00A044D0 /* GroupManagementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0663BF491B6B694E00A044D0 /* GroupManagementController.m */; };
+		0673DC6C1B85C04100F6D68F /* PeopleGetPublicPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673DC6B1B85C04100F6D68F /* PeopleGetPublicPhotos.m */; };
+		0673DC6F1B85C26300F6D68F /* PeopleGetPublicPhotosOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673DC6E1B85C26300F6D68F /* PeopleGetPublicPhotosOperation.m */; };
 		067BFB531B7A125800A2A5F7 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 067BFB521B7A125800A2A5F7 /* NSString+HTML.m */; };
 		067BFB561B7A12BF00A2A5F7 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 067BFB551B7A12BF00A2A5F7 /* GTMNSString+HTML.m */; };
 		067C2F391B4E927C004A7E55 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F381B4E927C004A7E55 /* main.m */; };
@@ -134,6 +136,10 @@
 		0663BF461B6B461A00A044D0 /* GroupsGetInfoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsGetInfoOperation.m; sourceTree = "<group>"; };
 		0663BF481B6B694E00A044D0 /* GroupManagementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupManagementController.h; sourceTree = "<group>"; };
 		0663BF491B6B694E00A044D0 /* GroupManagementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupManagementController.m; sourceTree = "<group>"; };
+		0673DC6A1B85C04100F6D68F /* PeopleGetPublicPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleGetPublicPhotos.h; sourceTree = "<group>"; };
+		0673DC6B1B85C04100F6D68F /* PeopleGetPublicPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleGetPublicPhotos.m; sourceTree = "<group>"; };
+		0673DC6D1B85C26300F6D68F /* PeopleGetPublicPhotosOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleGetPublicPhotosOperation.h; sourceTree = "<group>"; };
+		0673DC6E1B85C26300F6D68F /* PeopleGetPublicPhotosOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleGetPublicPhotosOperation.m; sourceTree = "<group>"; };
 		067BFB511B7A125800A2A5F7 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		067BFB521B7A125800A2A5F7 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		067BFB541B7A12BF00A2A5F7 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
@@ -409,6 +415,8 @@
 				06F1A7DE1B83038400C95589 /* FavoritesAddOperation.m */,
 				06C5028A1B84908B0010AC9C /* PeopleGetInfoOperation.h */,
 				06C5028B1B84908B0010AC9C /* PeopleGetInfoOperation.m */,
+				0673DC6D1B85C26300F6D68F /* PeopleGetPublicPhotosOperation.h */,
+				0673DC6E1B85C26300F6D68F /* PeopleGetPublicPhotosOperation.m */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -481,6 +489,8 @@
 				06F1A7DB1B83018400C95589 /* FavoritesAdd.m */,
 				06C502871B848E7A0010AC9C /* PeopleGetInfo.h */,
 				06C502881B848E7A0010AC9C /* PeopleGetInfo.m */,
+				0673DC6A1B85C04100F6D68F /* PeopleGetPublicPhotos.h */,
+				0673DC6B1B85C04100F6D68F /* PeopleGetPublicPhotos.m */,
 			);
 			name = FlickrRequests;
 			sourceTree = "<group>";
@@ -625,6 +635,7 @@
 				06A027AA1B4F82370000ED81 /* RequestTokenOperation.m in Sources */,
 				067C2F3C1B4E927C004A7E55 /* AppDelegate.m in Sources */,
 				06A0279D1B4F7AFE0000ED81 /* BaseRequest.m in Sources */,
+				0673DC6C1B85C04100F6D68F /* PeopleGetPublicPhotos.m in Sources */,
 				06A027BB1B53AA940000ED81 /* PhotosetGetListOperation.m in Sources */,
 				065138F41B5639F70034A3CB /* GroupCell.m in Sources */,
 				06C7F89B1B7070ED002B54D8 /* GroupDetailController.m in Sources */,
@@ -648,6 +659,7 @@
 				06C7F8A41B70ACFF002B54D8 /* GroupPoolPhotoDisplayController.m in Sources */,
 				06A027A41B4F80560000ED81 /* RequestToken.m in Sources */,
 				065138FA1B564C8D0034A3CB /* GroupsPoolsAddOperation.m in Sources */,
+				0673DC6F1B85C26300F6D68F /* PeopleGetPublicPhotosOperation.m in Sources */,
 				06A027B81B53A4B10000ED81 /* PhotosetGetList.m in Sources */,
 				065138D91B54D7DC0034A3CB /* PhotosetGetPhotosOperation.m in Sources */,
 				067C2F391B4E927C004A7E55 /* main.m in Sources */,

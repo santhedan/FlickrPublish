@@ -22,6 +22,10 @@
 
 @property (nonatomic, strong) NSString* token;
 
+@property (nonatomic, strong) NSString* comment;
+
+@property (nonatomic, strong) NSString* photoid;
+
 @property (nonatomic, strong) id<PhotosCommentsAddCommentOperationDelegate> delegate;
 
 @end
@@ -43,11 +47,35 @@
     return self;
 }
 
+- (instancetype) initWithPhotoId: (NSString *) photoId Comment: (NSString *) comment Key: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token Delegate: (id<PhotosCommentsAddCommentOperationDelegate>) delegate;
+{
+    self = [super init];
+    if (self)
+    {
+        self.photoid = photoId;
+        self.comment = comment;
+        self.key = key;
+        self.secret = secret;
+        self.token = token;
+        self.delegate = delegate;
+    }
+    return self;
+}
+
 - (void) main
 {
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     // Get comment for the group
-    NSString* comment = [delegate getCommentForGroup:self.groupId];
+    NSString* comment = @"Good photo";
+    if (self.groupId != nil)
+    {
+        comment = [delegate getCommentForGroup:self.groupId];
+    }
+    else
+    {
+        comment = self.comment;
+        self.photos = [NSArray arrayWithObjects:self.photoid, nil];
+    }
     // For each photo add the comment
     for (NSString* photoId in self.photos)
     {

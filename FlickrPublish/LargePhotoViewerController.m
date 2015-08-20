@@ -67,6 +67,7 @@
     {
         self.profileContainerHeightConstraint.constant = 0;
         self.webViewVerticalSpaceConstraint.constant = 0;
+        self.profileContainerView.hidden = YES;
         [self.view setNeedsLayout];
     }
 }
@@ -85,10 +86,37 @@
 
 - (IBAction)handleComment:(id)sender
 {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Comment" message:@"Enter your comment" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
 }
 
 - (IBAction)handleFavorite:(id)sender
 {
+    // Get app delegate
+    AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    // Create operation
+    FavoritesAddOperation* op = [[FavoritesAddOperation alloc] initWithPhotoIds:[NSArray arrayWithObjects:self.photo.id, nil] Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
+    [delegate enqueueOperation:op];
+    self.progressViewContainer.hidden = NO;
+    [self.activityIndicator startAnimating];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        UITextField *commentField = [alertView textFieldAtIndex:0];
+        NSLog(@"%@",commentField.text);
+        //
+        // Get app delegate
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        // Create operation
+        PhotosCommentsAddCommentOperation* op = [[PhotosCommentsAddCommentOperation alloc] initWithPhotoId:self.photo.id Comment:commentField.text Key:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token Delegate:self];
+        [delegate enqueueOperation:op];
+        self.progressViewContainer.hidden = NO;
+        [self.activityIndicator startAnimating];
+    }
 }
 
 #pragma mark PeopleGetInfoOperationHandler
@@ -107,7 +135,14 @@
         {
             self.realName.text = storedPerson.userName;
         }
-        self.locationAndPhotos.text = [NSString stringWithFormat:@"%@ %@ photos", storedPerson.location, storedPerson.photoCount];
+        if (storedPerson.location.length > 0 && storedPerson.photoCount.length > 0)
+        {
+            self.locationAndPhotos.text = [NSString stringWithFormat:@"%@ %@ photos", storedPerson.location, storedPerson.photoCount];
+        }
+        else if (storedPerson.photoCount.length > 0)
+        {
+            self.locationAndPhotos.text = [NSString stringWithFormat:@"%@ photos", storedPerson.photoCount];
+        }
         self.profileImage.image = storedPerson.buddyIcon;
         if (counter == 0)
         {
@@ -128,6 +163,26 @@
             self.progressViewContainer.hidden = YES;
             [self.activityIndicator stopAnimating];
         }
+    });
+}
+
+#pragma mark PhotosCommentsAddCommentOperationDelegate
+
+- (void) commentsAdded
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.progressViewContainer.hidden = YES;
+        [self.activityIndicator stopAnimating];
+    });
+}
+
+#pragma mark FavoritesAddOperationDelegate
+
+- (void) favoritesAdded
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.progressViewContainer.hidden = YES;
+        [self.activityIndicator stopAnimating];
     });
 }
 
