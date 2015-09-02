@@ -28,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *commentCmd;
 @property (weak, nonatomic) IBOutlet UIButton *photosCmd;
 @property (weak, nonatomic) IBOutlet UIButton *faceCmd;
+@property (weak, nonatomic) IBOutlet UIButton *blockUserCmd;
+@property (weak, nonatomic) IBOutlet UIButton *flagPhotoCmd;
 
 - (IBAction)handlePhotos:(id)sender;
 - (IBAction)handleComment:(id)sender;

@@ -11,11 +11,15 @@
 #import "AppDelegate.h"
 #import "PeopleGetInfo.h"
 #import "GroupPoolPhotoDisplayController.h"
+#import "WebPageController.h"
 
 @interface LargePhotoViewerController ()
 {
     Person* storedPerson;
     NSInteger counter;
+    NSString* urlToLoad;
+    NSString* titleOfWebCtrl;
+    BOOL navigateAway;
 }
 @property (weak, nonatomic) IBOutlet UIView *progressViewContainer;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -34,6 +38,8 @@
     self.commentCmd.enabled = NO;
     self.photosCmd.enabled = NO;
     self.faceCmd.enabled = NO;
+    self.blockUserCmd.enabled = NO;
+    self.flagPhotoCmd.enabled = NO;
     // Load the large image in webview
     NSString* largeImageUrl = [self.photo.smallImageURL stringByReplacingOccurrencesOfString:@"_q.jpg" withString:@"_b.jpg"];
     // Create NSURL
@@ -87,16 +93,25 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    GroupPoolPhotoDisplayController* ctrl = (GroupPoolPhotoDisplayController *)segue.destinationViewController;
-    ctrl.userId = storedPerson.id;
-    ctrl.showGroupPhotos = NO;
-    if (storedPerson.realName != nil && storedPerson.realName.length > 0)
+    if ([segue.identifier isEqualToString:@"ShowUserPhotos"])
     {
-        ctrl.userName = storedPerson.realName;
+        GroupPoolPhotoDisplayController* ctrl = (GroupPoolPhotoDisplayController *)segue.destinationViewController;
+        ctrl.userId = storedPerson.id;
+        ctrl.showGroupPhotos = NO;
+        if (storedPerson.realName != nil && storedPerson.realName.length > 0)
+        {
+            ctrl.userName = storedPerson.realName;
+        }
+        else
+        {
+            ctrl.userName = storedPerson.userName;
+        }
     }
-    else
+    else if ([segue.identifier isEqualToString:@"ShowWebPage"])
     {
-        ctrl.userName = storedPerson.userName;
+        WebPageController* ctrl = (WebPageController *)segue.destinationViewController;
+        ctrl.urlToLoad = urlToLoad;
+        ctrl.titleOfWebCtrl = titleOfWebCtrl;
     }
 }
 
@@ -107,8 +122,33 @@
     [self performSegueWithIdentifier:@"ShowUserPhotos" sender:self];
 }
 
+- (IBAction)handleBlockUser:(id)sender
+{
+    urlToLoad = storedPerson.profileUrl;
+    navigateAway = YES;
+    titleOfWebCtrl = @"Block User";
+    // Show message to block user
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Block User" message:@"The application will show user's profile page on Flickr. You may need to login using your Flickr credentials to block the user." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    alertView.alertViewStyle = UIAlertViewStyleDefault;
+    [alertView show];
+}
+
+- (IBAction)handleFlagPhoto:(id)sender
+{
+    NSString* urlFormat = @"https://www.flickr.com/photos/%@/%@";
+    NSString* url = [NSString stringWithFormat:urlFormat, storedPerson.id, self.photo.id];
+    urlToLoad = url;
+    titleOfWebCtrl = @"Flag Photo / Report Abuse";
+    navigateAway = YES;
+    // Show message to flag photo
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Flag Content" message:@"The application will show photo page on Flickr. You may need to login using your Flickr credentials to report abuse / flag content." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    alertView.alertViewStyle = UIAlertViewStyleDefault;
+    [alertView show];
+}
+
 - (IBAction)handleComment:(id)sender
 {
+    navigateAway = NO;
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Comment" message:@"Enter your comment" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alertView show];
@@ -131,12 +171,18 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1)
+    if (buttonIndex == 1 && navigateAway == YES)
+    {
+        [self performSegueWithIdentifier:@"ShowWebPage" sender:self];
+    }
+    else if (buttonIndex == 1 && navigateAway == NO)
     {
         //
         self.commentCmd.enabled = NO;
         self.photosCmd.enabled = NO;
         self.faceCmd.enabled = NO;
+        self.blockUserCmd.enabled = NO;
+        self.flagPhotoCmd.enabled = NO;
         //
         UITextField *commentField = [alertView textFieldAtIndex:0];
         //
@@ -182,6 +228,8 @@
             self.commentCmd.enabled = YES;
             self.photosCmd.enabled = YES;
             self.faceCmd.enabled = YES;
+            self.blockUserCmd.enabled = YES;
+            self.flagPhotoCmd.enabled = YES;
         }
     });
 }
@@ -200,6 +248,8 @@
             self.commentCmd.enabled = YES;
             self.photosCmd.enabled = YES;
             self.faceCmd.enabled = YES;
+            self.blockUserCmd.enabled = YES;
+            self.flagPhotoCmd.enabled = YES;
         }
     });
 }
@@ -215,6 +265,8 @@
         self.commentCmd.enabled = YES;
         self.photosCmd.enabled = YES;
         self.faceCmd.enabled = YES;
+        self.blockUserCmd.enabled = YES;
+        self.flagPhotoCmd.enabled = YES;
     });
 }
 
@@ -229,6 +281,8 @@
         self.commentCmd.enabled = YES;
         self.photosCmd.enabled = YES;
         self.faceCmd.enabled = YES;
+        self.blockUserCmd.enabled = YES;
+        self.flagPhotoCmd.enabled = YES;
     });
 }
 

@@ -46,6 +46,7 @@
 		067C2F621B4E93CE004A7E55 /* OAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F611B4E93CE004A7E55 /* OAuthController.m */; };
 		067C2F651B4E93EB004A7E55 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C2F641B4E93EB004A7E55 /* MainController.m */; };
 		067C2F671B4E9866004A7E55 /* flickr.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 067C2F661B4E9866004A7E55 /* flickr.jpg */; };
+		068070761B96CC27000D7F04 /* WebPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 068070751B96CC27000D7F04 /* WebPageController.m */; };
 		069DBD3A1B73463C003588D7 /* DownloadFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 069DBD391B73463C003588D7 /* DownloadFileOperation.m */; };
 		069EFCA51B5A52FA004AD2E2 /* FlickrPublish.png in Resources */ = {isa = PBXBuildFile; fileRef = 069EFCA41B5A52FA004AD2E2 /* FlickrPublish.png */; };
 		069EFCA81B5A5695004AD2E2 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 069EFCA61B5A5695004AD2E2 /* iTunesArtwork.png */; };
@@ -162,6 +163,8 @@
 		067C2F631B4E93EB004A7E55 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		067C2F641B4E93EB004A7E55 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		067C2F661B4E9866004A7E55 /* flickr.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flickr.jpg; sourceTree = "<group>"; };
+		068070741B96CC27000D7F04 /* WebPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPageController.h; sourceTree = "<group>"; };
+		068070751B96CC27000D7F04 /* WebPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPageController.m; sourceTree = "<group>"; };
 		069DBD381B73463C003588D7 /* DownloadFileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadFileOperation.h; sourceTree = "<group>"; };
 		069DBD391B73463C003588D7 /* DownloadFileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadFileOperation.m; sourceTree = "<group>"; };
 		069EFCA41B5A52FA004AD2E2 /* FlickrPublish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FlickrPublish.png; sourceTree = "<group>"; };
@@ -364,6 +367,8 @@
 				06C7F8A31B70ACFF002B54D8 /* GroupPoolPhotoDisplayController.m */,
 				06DCD2F21B7B696000B90751 /* LargePhotoViewerController.h */,
 				06DCD2F31B7B696000B90751 /* LargePhotoViewerController.m */,
+				068070741B96CC27000D7F04 /* WebPageController.h */,
+				068070751B96CC27000D7F04 /* WebPageController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -650,6 +655,7 @@
 				065138E51B5617DB0034A3CB /* Group.m in Sources */,
 				06F1A7DF1B83038400C95589 /* FavoritesAddOperation.m in Sources */,
 				06C502891B848E7A0010AC9C /* PeopleGetInfo.m in Sources */,
+				068070761B96CC27000D7F04 /* WebPageController.m in Sources */,
 				06C7F8AA1B70C7A4002B54D8 /* PhotosCommentsAddCommentOperation.m in Sources */,
 				06A027A71B4F81480000ED81 /* AccessToken.m in Sources */,
 				067BFB561B7A12BF00A2A5F7 /* GTMNSString+HTML.m in Sources */,

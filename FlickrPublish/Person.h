@@ -27,4 +27,6 @@
 
 @property (nonatomic, strong) UIImage* buddyIcon;
 
+@property (nonatomic, strong) NSString* profileUrl;
+
 @end
