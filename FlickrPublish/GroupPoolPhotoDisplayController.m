@@ -175,7 +175,9 @@
     }
     else
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Comment" message:@"Enter your comment" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Comment" message:@"Enter your comment - Leave blank for default comment" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+        UITextField *commentField = [alertView textFieldAtIndex:0];
+        commentField.placeholder = @"Leave blank for default comment";
         alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
         [alertView show];
     }
@@ -283,7 +285,7 @@
     }
     else
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Comment" message:@"Enter your comment" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Comment" message:@"Enter your comment - Leave blank for default comment" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
         alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
         [alertView show];
     }
