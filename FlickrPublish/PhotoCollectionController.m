@@ -66,6 +66,13 @@ static NSString * const reuseIdentifier = @"PhotoCell";
     self.photos = nil;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegate cancelAllOperation];
+    [super viewWillDisappear:animated];
+}
+
 #pragma mark UIBarButtonHandler
 
 - (void) showSortOption

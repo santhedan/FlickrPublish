@@ -54,7 +54,8 @@
         NSString* fullFilePath = [NSString pathWithComponents:[NSArray arrayWithObjects:[Utility applicationDocumentsDirectory], self.localDirectory, fileName, nil]];
         if (![[NSFileManager defaultManager] fileExistsAtPath:fullFilePath])
         {
-            NSData* imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.urlOfImage]];
+            NSString* tempUrl = [self.urlOfImage stringByReplacingOccurrencesOfString:@"http://" withString:@"https://"];
+            NSData* imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:tempUrl]];
             // Create directory
             NSString* dirPath = [fullFilePath stringByDeletingLastPathComponent];
             [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&localError];

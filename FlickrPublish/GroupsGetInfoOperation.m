@@ -36,7 +36,7 @@
     //
     NSData* response = [NSData dataWithContentsOfURL:url];
     // Parse the data
-    if (response != nil)
+    if (!self.isCancelled && response != nil)
     {
         // Error code
         NSError* localError = nil;
@@ -48,7 +48,10 @@
             {
                 Group* group = [[Group alloc] init];
                 group.groupDescription = [[[groupDetails valueForKey:@"group"] valueForKey:@"description"] valueForKey:@"_content"];
-                [self.delegate receivedGroupInformation:group];
+                if (!self.isCancelled)
+                {
+                    [self.delegate receivedGroupInformation:group];
+                }
             }
         }
     }

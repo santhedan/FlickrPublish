@@ -109,8 +109,16 @@
         NSURLResponse* response = nil;
         NSError* error = nil;
         [PhotosCommentsAddCommentOperation sendSynchronousDataTaskWithURL:urlRequest returningResponse:&response error:&error];
+        if (self.isCancelled)
+        {
+            // Break as we are cancelled
+            break;
+        }
     }
-    [self.delegate commentsAdded];
+    if (!self.isCancelled)
+    {
+        [self.delegate commentsAdded];
+    }
 }
 
 + (NSData *)sendSynchronousDataTaskWithURL:(NSURLRequest *)request returningResponse:(NSURLResponse **)response error:(NSError **)error {

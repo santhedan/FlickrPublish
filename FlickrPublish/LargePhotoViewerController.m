@@ -72,6 +72,12 @@
     }
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.webView stopLoading];
+    [super viewWillDisappear:animated];
+}
+
 - (void)viewWillLayoutSubviews
 {
     if (self.showProfile == NO)

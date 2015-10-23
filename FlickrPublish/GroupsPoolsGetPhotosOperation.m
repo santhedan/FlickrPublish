@@ -39,7 +39,7 @@
     // Create empty return value
     NSMutableArray* photos = [[NSMutableArray alloc] init];
     // Parse the data
-    if (response != nil)
+    if (!self.isCancelled && response != nil)
     {
         // Error code
         NSError* localError = nil;
@@ -64,12 +64,20 @@
                     p.width = ((NSString *)[photo valueForKey:@"width_s"]).intValue;
                     p.selected = NO;
                     [photos addObject:p];
+                    if (self.isCancelled)
+                    {
+                        // Break as we are cancelled
+                        break;
+                    }
                 }
             }
         }
     }
-    // Call delegate
-    [self.delegate receivedGroupPhotos:photos];
+    if (!self.isCancelled)
+    {
+        // Call delegate
+        [self.delegate receivedGroupPhotos:photos];
+    }
 }
 
 @end

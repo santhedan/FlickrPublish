@@ -42,5 +42,7 @@
 
 - (void) performSaveComment;
 
+- (void) cancelAllOperation;
+
 @end
 

@@ -45,7 +45,7 @@
     // Create empty return value
     NSMutableArray* groups = [[NSMutableArray alloc] init];
     // Parse the data
-    if (response != nil)
+    if (!self.isCancelled && response != nil)
     {
         // Error code
         NSError* localError = nil;
@@ -94,13 +94,22 @@
                         NSString* imageUrlPath = [NSString stringWithFormat:GROUP_IMAGE_URL, iconFarm, iconServer, g.id];
                         g.groupImagePath = imageUrlPath;
                         [groups addObject:g];
+                        if (self.isCancelled)
+                        {
+                            // Break as we are cancelled
+                            NSLog(@"Cancelled!");
+                            break;
+                        }
                     }
                 }
             }
         }
     }
-    // Call delegate
-    [self.delegate receivedGroups: groups];
+    if (!self.isCancelled)
+    {
+        // Call delegate
+        [self.delegate receivedGroups: groups];
+    }
 }
 
 @end

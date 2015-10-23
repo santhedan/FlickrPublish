@@ -40,7 +40,7 @@
     // Create empty return value
     NSMutableArray* photosets = [[NSMutableArray alloc] init];
     // Parse the data
-    if (response != nil)
+    if (!self.isCancelled && response != nil)
     {
         // Error code
         NSError* localError = nil;
@@ -64,12 +64,20 @@
                     NSString* thumbnailPath = [[extraDict valueForKey:@"url_s"] stringByReplacingOccurrencesOfString:@"_m.jpg" withString:@"_q.jpg"];
                     pset.photosetPhotoUrl = thumbnailPath;
                     [photosets addObject:pset];
+                    if (self.isCancelled)
+                    {
+                        // Break as we are cancelled
+                        break;
+                    }
                 }
             }
         }
     }
-    // Call delegate
-    [self.delegate receivedPhotoSets: photosets];
+    if (!self.isCancelled)
+    {
+        // Call delegate
+        [self.delegate receivedPhotoSets: photosets];
+    }
 }
 
 @end

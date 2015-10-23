@@ -27,6 +27,12 @@
     [self.activityIndicator startAnimating];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.webView stopLoading];
+    [super viewWillDisappear:animated];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

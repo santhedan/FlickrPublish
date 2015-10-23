@@ -79,9 +79,17 @@
                 [self.delegate showProgressMessage: [NSString stringWithFormat:@"%@ : %@", group.name, message]];
             }
         }
+        if (self.isCancelled)
+        {
+            // Break as we are cancelled
+            break;
+        }
     }
-    // Call the delegate
-    [self.delegate addedToGroups:successGroups];
+    if (!self.isCancelled)
+    {
+        // Call the delegate
+        [self.delegate addedToGroups:successGroups];
+    }
 }
 
 + (NSData *)sendSynchronousDataTaskWithURL:(NSURLRequest *)request returningResponse:(NSURLResponse **)response error:(NSError **)error {

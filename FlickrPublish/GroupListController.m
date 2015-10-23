@@ -80,6 +80,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegate cancelAllOperation];
+    [super viewWillDisappear:animated];
+}
+
 #pragma mark Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

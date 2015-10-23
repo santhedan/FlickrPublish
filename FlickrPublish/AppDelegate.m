@@ -146,6 +146,15 @@
     }
 }
 
+- (void) cancelAllOperation
+{
+    if (self.queue)
+    {
+        NSLog(@"Cancelling all operations");
+        [self.queue cancelAllOperations];
+    }
+}
+
 - (void) loadedGroupComments: (NSDictionary*) groupComments
 {
     if (groupComments != nil)

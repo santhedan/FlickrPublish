@@ -145,7 +145,7 @@
 		067BFB521B7A125800A2A5F7 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		067BFB541B7A12BF00A2A5F7 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		067BFB551B7A12BF00A2A5F7 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
-		067C2F331B4E927C004A7E55 /* FlickrPublish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrPublish.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		067C2F331B4E927C004A7E55 /* FotoPub for Flickr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FotoPub for Flickr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		067C2F371B4E927C004A7E55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		067C2F381B4E927C004A7E55 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		067C2F3A1B4E927C004A7E55 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -290,7 +290,7 @@
 		067C2F341B4E927C004A7E55 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				067C2F331B4E927C004A7E55 /* FlickrPublish.app */,
+				067C2F331B4E927C004A7E55 /* FotoPub for Flickr.app */,
 				067C2F4C1B4E927C004A7E55 /* FlickrPublishTests.xctest */,
 			);
 			name = Products;
@@ -512,9 +512,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		067C2F321B4E927C004A7E55 /* FlickrPublish */ = {
+		067C2F321B4E927C004A7E55 /* FotoPub for Flickr */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 067C2F561B4E927C004A7E55 /* Build configuration list for PBXNativeTarget "FlickrPublish" */;
+			buildConfigurationList = 067C2F561B4E927C004A7E55 /* Build configuration list for PBXNativeTarget "FotoPub for Flickr" */;
 			buildPhases = (
 				067C2F2F1B4E927C004A7E55 /* Sources */,
 				067C2F301B4E927C004A7E55 /* Frameworks */,
@@ -524,9 +524,9 @@
 			);
 			dependencies = (
 			);
-			name = FlickrPublish;
+			name = "FotoPub for Flickr";
 			productName = FlickrPublish;
-			productReference = 067C2F331B4E927C004A7E55 /* FlickrPublish.app */;
+			productReference = 067C2F331B4E927C004A7E55 /* FotoPub for Flickr.app */;
 			productType = "com.apple.product-type.application";
 		};
 		067C2F4B1B4E927C004A7E55 /* FlickrPublishTests */ = {
@@ -553,7 +553,7 @@
 		067C2F2B1B4E927C004A7E55 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Sanjay Dandekar";
 				TargetAttributes = {
 					067C2F321B4E927C004A7E55 = {
@@ -579,7 +579,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				067C2F321B4E927C004A7E55 /* FlickrPublish */,
+				067C2F321B4E927C004A7E55 /* FotoPub for Flickr */,
 				067C2F4B1B4E927C004A7E55 /* FlickrPublishTests */,
 			);
 		};
@@ -689,7 +689,7 @@
 /* Begin PBXTargetDependency section */
 		067C2F4E1B4E927C004A7E55 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 067C2F321B4E927C004A7E55 /* FlickrPublish */;
+			target = 067C2F321B4E927C004A7E55 /* FotoPub for Flickr */;
 			targetProxy = 067C2F4D1B4E927C004A7E55 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -731,10 +731,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -750,7 +752,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -775,7 +777,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -788,7 +791,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -804,6 +807,7 @@
 				INFOPLIST_FILE = FlickrPublish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dandekar.flickrpublish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "911cf2b0-68d5-4031-ad4b-ed13ee7ba212";
 			};
@@ -818,6 +822,7 @@
 				INFOPLIST_FILE = FlickrPublish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dandekar.flickrpublish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "911cf2b0-68d5-4031-ad4b-ed13ee7ba212";
 			};
@@ -827,16 +832,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = FlickrPublishTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dandekar.flickrpublish.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlickrPublish.app/FlickrPublish";
 			};
@@ -846,12 +849,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = FlickrPublishTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dandekar.flickrpublish.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlickrPublish.app/FlickrPublish";
 			};
@@ -869,7 +870,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		067C2F561B4E927C004A7E55 /* Build configuration list for PBXNativeTarget "FlickrPublish" */ = {
+		067C2F561B4E927C004A7E55 /* Build configuration list for PBXNativeTarget "FotoPub for Flickr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				067C2F571B4E927C004A7E55 /* Debug */,

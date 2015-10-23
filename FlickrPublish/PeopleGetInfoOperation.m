@@ -38,7 +38,7 @@
     // Create empty return value
     Person* person = nil;
     // Parse the data
-    if (response != nil)
+    if (!self.isCancelled && response != nil)
     {
         // Error code
         NSError* localError = nil;
@@ -59,13 +59,16 @@
                 person.profileUrl = [[dictPerson valueForKey:@"profileurl"] valueForKey:@"_content"];
                 NSNumber* cnt = [[[dictPerson valueForKey:@"photos"] valueForKey:@"count"] valueForKey:@"_content"];
                 person.photoCount = [NSString stringWithFormat:@"%@", cnt];
-                NSString* url = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", person.iconFarm, person.iconServer, person.id];
+                NSString* url = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", person.iconFarm, person.iconServer, person.id];
                 person.buddyIcon = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
             }
         }
     }
-    // Call delegate
-    [self.delegate receivedInfo: person];
+    if (!self.isCancelled)
+    {
+        // Call delegate
+        [self.delegate receivedInfo: person];
+    }
 }
 
 @end

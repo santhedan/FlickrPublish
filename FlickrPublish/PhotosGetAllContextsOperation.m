@@ -41,7 +41,7 @@
     // Create empty return value
     NSMutableArray* groups = [[NSMutableArray alloc] init];
     // Parse the data
-    if (response != nil)
+    if (!self.isCancelled && response != nil)
     {
         // Error code
         NSError* localError = nil;
@@ -69,7 +69,7 @@
     url = [NSURL URLWithString:[infoRequest getUrl]];
     response = [NSData dataWithContentsOfURL:url];
     // Parse the data
-    if (response != nil)
+    if (!self.isCancelled && response != nil)
     {
         // Error code
         NSError* localError = nil;
@@ -91,7 +91,7 @@
     url = [NSURL URLWithString:[favRequest getUrl]];
     response = [NSData dataWithContentsOfURL:url];
     // Parse the data
-    if (response != nil)
+    if (!self.isCancelled && response != nil)
     {
         // Error code
         NSError* localError = nil;
@@ -106,8 +106,11 @@
             }
         }
     }
-    // Call delegate
-    [self.delegate receivedPhotoGroups:groups Info: info];
+    if (!self.isCancelled)
+    {
+        // Call delegate
+        [self.delegate receivedPhotoGroups:groups Info: info];
+    }
 }
 
 @end

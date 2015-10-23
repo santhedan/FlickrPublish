@@ -56,8 +56,16 @@
         NSURLResponse* response = nil;
         NSError* error = nil;
         [FavoritesAddOperation sendSynchronousDataTaskWithURL:urlRequest returningResponse:&response error:&error];
+        if (self.isCancelled)
+        {
+            // Break as we are cancelled
+            break;
+        }
     }
-    [self.delegate favoritesAdded];
+    if (!self.isCancelled)
+    {
+        [self.delegate favoritesAdded];
+    }
 }
 
 + (NSData *)sendSynchronousDataTaskWithURL:(NSURLRequest *)request returningResponse:(NSURLResponse **)response error:(NSError **)error {
