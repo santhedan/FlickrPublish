@@ -800,12 +800,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
 				INFOPLIST_FILE = FlickrPublish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b87f631f-8ded-4cad-8c96-7bb8ead78ca8";
+				PROVISIONING_PROFILE = "911cf2b0-68d5-4031-ad4b-ed13ee7ba212";
 			};
 			name = Debug;
 		};
@@ -813,13 +813,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
 				INFOPLIST_FILE = FlickrPublish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b87f631f-8ded-4cad-8c96-7bb8ead78ca8";
+				PROVISIONING_PROFILE = "911cf2b0-68d5-4031-ad4b-ed13ee7ba212";
 			};
 			name = Release;
 		};
