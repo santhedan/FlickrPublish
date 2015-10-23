@@ -84,6 +84,11 @@
 {
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [delegate cancelAllOperation];
+    if (self.isMovingFromParentViewController || self.isBeingDismissed) {
+        // Do your stuff here
+        self.groups = nil;
+        self.groupsToExclude = nil;
+    }
     [super viewWillDisappear:animated];
 }
 

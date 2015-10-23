@@ -70,6 +70,10 @@ static NSString * const reuseIdentifier = @"PhotoCell";
 {
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [delegate cancelAllOperation];
+    if (self.isMovingFromParentViewController || self.isBeingDismissed) {
+        // Do your stuff here
+        self.photos = nil;
+    }
     [super viewWillDisappear:animated];
 }
 

@@ -146,7 +146,7 @@
 		067BFB521B7A125800A2A5F7 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		067BFB541B7A12BF00A2A5F7 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		067BFB551B7A12BF00A2A5F7 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
-		067C2F331B4E927C004A7E55 /* FotoPub for Flickr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FotoPub for Flickr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		067C2F331B4E927C004A7E55 /* FotoPub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FotoPub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		067C2F371B4E927C004A7E55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		067C2F381B4E927C004A7E55 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		067C2F3A1B4E927C004A7E55 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -293,7 +293,7 @@
 		067C2F341B4E927C004A7E55 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				067C2F331B4E927C004A7E55 /* FotoPub for Flickr.app */,
+				067C2F331B4E927C004A7E55 /* FotoPub.app */,
 				067C2F4C1B4E927C004A7E55 /* FlickrPublishTests.xctest */,
 			);
 			name = Products;
@@ -517,9 +517,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		067C2F321B4E927C004A7E55 /* FotoPub for Flickr */ = {
+		067C2F321B4E927C004A7E55 /* FotoPub */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 067C2F561B4E927C004A7E55 /* Build configuration list for PBXNativeTarget "FotoPub for Flickr" */;
+			buildConfigurationList = 067C2F561B4E927C004A7E55 /* Build configuration list for PBXNativeTarget "FotoPub" */;
 			buildPhases = (
 				067C2F2F1B4E927C004A7E55 /* Sources */,
 				067C2F301B4E927C004A7E55 /* Frameworks */,
@@ -529,9 +529,9 @@
 			);
 			dependencies = (
 			);
-			name = "FotoPub for Flickr";
+			name = FotoPub;
 			productName = FlickrPublish;
-			productReference = 067C2F331B4E927C004A7E55 /* FotoPub for Flickr.app */;
+			productReference = 067C2F331B4E927C004A7E55 /* FotoPub.app */;
 			productType = "com.apple.product-type.application";
 		};
 		067C2F4B1B4E927C004A7E55 /* FlickrPublishTests */ = {
@@ -585,7 +585,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				067C2F321B4E927C004A7E55 /* FotoPub for Flickr */,
+				067C2F321B4E927C004A7E55 /* FotoPub */,
 				067C2F4B1B4E927C004A7E55 /* FlickrPublishTests */,
 			);
 		};
@@ -696,7 +696,7 @@
 /* Begin PBXTargetDependency section */
 		067C2F4E1B4E927C004A7E55 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 067C2F321B4E927C004A7E55 /* FotoPub for Flickr */;
+			target = 067C2F321B4E927C004A7E55 /* FotoPub */;
 			targetProxy = 067C2F4D1B4E927C004A7E55 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -883,7 +883,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		067C2F561B4E927C004A7E55 /* Build configuration list for PBXNativeTarget "FotoPub for Flickr" */ = {
+		067C2F561B4E927C004A7E55 /* Build configuration list for PBXNativeTarget "FotoPub" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				067C2F571B4E927C004A7E55 /* Debug */,

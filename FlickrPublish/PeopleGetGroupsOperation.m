@@ -97,7 +97,6 @@
                         if (self.isCancelled)
                         {
                             // Break as we are cancelled
-                            NSLog(@"Cancelled!");
                             break;
                         }
                     }

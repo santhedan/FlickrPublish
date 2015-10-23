@@ -30,6 +30,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.webView stopLoading];
+    self.webView.delegate = nil;
+    self.webView = nil;
     [super viewWillDisappear:animated];
 }
 
