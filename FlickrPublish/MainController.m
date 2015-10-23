@@ -13,6 +13,7 @@
 #import "PhotosetCell.h"
 #import "PhotoSet.h"
 #import "PhotoCollectionController.h"
+#import "GroupPoolPhotoDisplayController.h"
 
 @interface MainController ()
 {
@@ -49,6 +50,9 @@
     UIBarButtonItem* groupItem = [[UIBarButtonItem alloc] initWithTitle:@"Groups" style:UIBarButtonItemStylePlain target:self action:@selector(showGroups)];
     self.navigationItem.rightBarButtonItem = groupItem;
     //
+    UIBarButtonItem* exploreItem = [[UIBarButtonItem alloc] initWithTitle:@"Explore" style:UIBarButtonItemStylePlain target:self action:@selector(showExplore)];
+    self.navigationItem.leftBarButtonItem = exploreItem;
+    //
     [delegate enqueueOperation:op];
     //
     [self.collectionView setLayoutMargins:UIEdgeInsetsZero];
@@ -75,6 +79,11 @@
     [self performSegueWithIdentifier:@"ManageGroups" sender:self];
 }
 
+- (void)showExplore
+{
+    [self performSegueWithIdentifier:@"ShowExplore" sender:self];
+}
+
 #pragma mark PhotosetGetListHandler
 
 - (void) receivedPhotoSets: (NSArray *) photosets
@@ -97,6 +106,12 @@
         // Pass the selected object to the new view controller.
         PhotoCollectionController* ctrl = segue.destinationViewController;
         ctrl.set = self.selectedSet;
+    }
+    else if ([segue.identifier isEqualToString:@"ShowExplore"])
+    {
+        GroupPoolPhotoDisplayController* ctrl = segue.destinationViewController;
+        ctrl.showExplorePhotos = YES;
+        ctrl.showGroupPhotos = NO;
     }
 }
 

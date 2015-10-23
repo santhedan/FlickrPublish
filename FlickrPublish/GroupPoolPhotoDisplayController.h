@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) Group* group;
 @property (nonatomic, assign) BOOL showGroupPhotos;
+@property (nonatomic, assign) BOOL showExplorePhotos;
 @property (nonatomic, strong) NSString* userId;
 @property (nonatomic, strong) NSString* userName;
 

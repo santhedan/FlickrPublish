@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) GroupsPoolsGetPhotos *request;
 
+@property (nonatomic, strong) InterestingnessGetList *intRequest;
+
 @property (nonatomic, strong) id<GroupsPoolsGetPhotosOperationDelegate> delegate;
 
 @end
@@ -25,6 +27,19 @@
     if (self)
     {
         self.request = request;
+        self.intRequest = nil;
+        self.delegate = delegate;
+    }
+    return self;
+}
+
+- (instancetype) initWithIntRequest: (InterestingnessGetList *) request Delegate:(id<GroupsPoolsGetPhotosOperationDelegate>) delegate
+{
+    self = [super init];
+    if (self)
+    {
+        self.intRequest = request;
+        self.request = nil;
         self.delegate = delegate;
     }
     return self;
@@ -33,7 +48,15 @@
 - (void) main
 {
     // Create a NSURL from the request
-    NSURL *url = [NSURL URLWithString:[self.request getUrl]];
+    NSURL *url = nil;
+    if (self.request != nil)
+    {
+        url = [NSURL URLWithString:[self.request getUrl]];
+    }
+    else if (self.intRequest != nil)
+    {
+        url = [NSURL URLWithString:[self.intRequest getUrl]];
+    }
     //
     NSData* response = [NSData dataWithContentsOfURL:url];
     // Create empty return value

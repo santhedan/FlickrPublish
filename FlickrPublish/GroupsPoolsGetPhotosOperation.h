@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GroupsPoolsGetPhotos.h"
+#import "InterestingnessGetList.h"
 
 @protocol GroupsPoolsGetPhotosOperationDelegate <NSObject>
 
@@ -20,5 +21,7 @@
 @interface GroupsPoolsGetPhotosOperation : NSOperation
 
 - (instancetype) initWithRequest: (GroupsPoolsGetPhotos *) request Delegate:(id<GroupsPoolsGetPhotosOperationDelegate>) delegate;
+
+- (instancetype) initWithIntRequest: (InterestingnessGetList *) request Delegate:(id<GroupsPoolsGetPhotosOperationDelegate>) delegate;
 
 @end

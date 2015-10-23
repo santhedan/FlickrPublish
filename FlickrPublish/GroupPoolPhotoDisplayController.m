@@ -13,6 +13,7 @@
 #import "PhotoCell.h"
 #import "Photo.h"
 #import "LargePhotoViewerController.h"
+#import "InterestingnessGetList.h"
 
 @interface GroupPoolPhotoDisplayController ()
 {
@@ -44,6 +45,10 @@
     {
         self.title = self.group.name;
     }
+    else if (self.showExplorePhotos)
+    {
+        self.title = @"Explore";
+    }
     else
     {
         self.title = [NSString stringWithFormat:@"%@'s Photos", self.userName];
@@ -58,6 +63,13 @@
         // Get group description
         GroupsPoolsGetPhotos* request = [[GroupsPoolsGetPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token GroupId:self.group.id];
         GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithRequest:request Delegate:self];
+        [delegate enqueueOperation:op];
+    }
+    else if (self.showExplorePhotos)
+    {
+        // Get group description
+        InterestingnessGetList* request = [[InterestingnessGetList alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token PageNumber:currentPage];
+        GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithIntRequest:request Delegate:self];
         [delegate enqueueOperation:op];
     }
     else
@@ -186,6 +198,11 @@
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         // Get comment for the group
         NSString* comment = commentField.text;
+        if (comment.length == 0)
+        {
+            comment = @"Good capture. Thank you for sharing.";
+        }
+        comment = [comment stringByAppendingString:@"\n<b>Commented using </b><a href='https://itunes.apple.com/us/app/fotopub-for-flickr/id1020917730?mt=8'>&nbsp;&nbsp;FotoPub for Flickr</a>\n<img src='https://c2.staticflickr.com/4/3761/20292546278_f0fcbec8f7_s.jpg' width='75' height='75' alt='FotoPub for Flickr' />\n"];
         //
         if (photoIds.count > 0)
         {
@@ -289,6 +306,10 @@
     LargePhotoViewerController* ctrl = (LargePhotoViewerController *)segue.destinationViewController;
     ctrl.photo = selPhoto;
     if (self.showGroupPhotos)
+    {
+        ctrl.showProfile = YES;
+    }
+    else if (self.showExplorePhotos)
     {
         ctrl.showProfile = YES;
     }
@@ -407,6 +428,13 @@
             // Get group description
             GroupsPoolsGetPhotos* request = [[GroupsPoolsGetPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token GroupId:self.group.id PageNumber:currentPage];
             GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithRequest:request Delegate:self];
+            [delegate enqueueOperation:op];
+        }
+        else if (self.showExplorePhotos)
+        {
+            // Get group description
+            InterestingnessGetList* request = [[InterestingnessGetList alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token PageNumber:currentPage];
+            GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithIntRequest:request Delegate:self];
             [delegate enqueueOperation:op];
         }
         else

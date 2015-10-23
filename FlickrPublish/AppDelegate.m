@@ -150,7 +150,6 @@
 {
     if (self.queue)
     {
-        NSLog(@"Cancelling all operations");
         [self.queue cancelAllOperations];
     }
 }

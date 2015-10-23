@@ -72,6 +72,7 @@
 		06C7F8A71B70B3FE002B54D8 /* GroupsPoolsGetPhotosOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C7F8A61B70B3FE002B54D8 /* GroupsPoolsGetPhotosOperation.m */; };
 		06C7F8AA1B70C7A4002B54D8 /* PhotosCommentsAddCommentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C7F8A91B70C7A4002B54D8 /* PhotosCommentsAddCommentOperation.m */; };
 		06DCD2F41B7B696000B90751 /* LargePhotoViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DCD2F31B7B696000B90751 /* LargePhotoViewerController.m */; };
+		06E7D02A1BDA4D1D002B8F36 /* InterestingnessGetList.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E7D0291BDA4D1D002B8F36 /* InterestingnessGetList.m */; };
 		06F1A7DC1B83018400C95589 /* FavoritesAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F1A7DB1B83018400C95589 /* FavoritesAdd.m */; };
 		06F1A7DF1B83038400C95589 /* FavoritesAddOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F1A7DE1B83038400C95589 /* FavoritesAddOperation.m */; };
 /* End PBXBuildFile section */
@@ -213,6 +214,8 @@
 		06C7F8A91B70C7A4002B54D8 /* PhotosCommentsAddCommentOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosCommentsAddCommentOperation.m; sourceTree = "<group>"; };
 		06DCD2F21B7B696000B90751 /* LargePhotoViewerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargePhotoViewerController.h; sourceTree = "<group>"; };
 		06DCD2F31B7B696000B90751 /* LargePhotoViewerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargePhotoViewerController.m; sourceTree = "<group>"; };
+		06E7D0281BDA4D1D002B8F36 /* InterestingnessGetList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestingnessGetList.h; sourceTree = "<group>"; };
+		06E7D0291BDA4D1D002B8F36 /* InterestingnessGetList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestingnessGetList.m; sourceTree = "<group>"; };
 		06F1A7DA1B83018400C95589 /* FavoritesAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesAdd.h; sourceTree = "<group>"; };
 		06F1A7DB1B83018400C95589 /* FavoritesAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesAdd.m; sourceTree = "<group>"; };
 		06F1A7DD1B83038400C95589 /* FavoritesAddOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesAddOperation.h; sourceTree = "<group>"; };
@@ -496,6 +499,8 @@
 				06C502881B848E7A0010AC9C /* PeopleGetInfo.m */,
 				0673DC6A1B85C04100F6D68F /* PeopleGetPublicPhotos.h */,
 				0673DC6B1B85C04100F6D68F /* PeopleGetPublicPhotos.m */,
+				06E7D0281BDA4D1D002B8F36 /* InterestingnessGetList.h */,
+				06E7D0291BDA4D1D002B8F36 /* InterestingnessGetList.m */,
 			);
 			name = FlickrRequests;
 			sourceTree = "<group>";
@@ -562,6 +567,7 @@
 					};
 					067C2F4B1B4E927C004A7E55 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = CBFUA7FHM5;
 						TestTargetID = 067C2F321B4E927C004A7E55;
 					};
 				};
@@ -630,6 +636,7 @@
 				06A027981B4F7A550000ED81 /* StartupSegue.m in Sources */,
 				06C7F8A71B70B3FE002B54D8 /* GroupsPoolsGetPhotosOperation.m in Sources */,
 				065138CD1B54D0AB0034A3CB /* PhotoCollectionController.m in Sources */,
+				06E7D02A1BDA4D1D002B8F36 /* InterestingnessGetList.m in Sources */,
 				067C2F621B4E93CE004A7E55 /* OAuthController.m in Sources */,
 				065138CA1B54C7D00034A3CB /* PhotoSetCell.m in Sources */,
 				06F1A7DC1B83018400C95589 /* FavoritesAdd.m in Sources */,
@@ -803,13 +810,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
 				INFOPLIST_FILE = FlickrPublish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dandekar.flickrpublish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "911cf2b0-68d5-4031-ad4b-ed13ee7ba212";
+				PROVISIONING_PROFILE = "a8b4e6de-7659-4d9f-8ca4-315100811b6c";
 			};
 			name = Debug;
 		};
@@ -817,14 +824,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
 				INFOPLIST_FILE = FlickrPublish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dandekar.flickrpublish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "911cf2b0-68d5-4031-ad4b-ed13ee7ba212";
+				PROVISIONING_PROFILE = "a8b4e6de-7659-4d9f-8ca4-315100811b6c";
 			};
 			name = Release;
 		};
@@ -832,6 +839,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -841,6 +850,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dandekar.flickrpublish.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlickrPublish.app/FlickrPublish";
 			};
 			name = Debug;
@@ -849,11 +859,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = FlickrPublishTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dandekar.flickrpublish.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlickrPublish.app/FlickrPublish";
 			};
 			name = Release;
