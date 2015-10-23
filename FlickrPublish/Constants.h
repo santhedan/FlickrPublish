@@ -9,9 +9,9 @@
 #ifndef FlickrPublish_Constants_h
 #define FlickrPublish_Constants_h
 
-#define API_KEY @"<<YOUR API KEY HERE>>"
+#define API_KEY @"0da7e7e51f5f84f35379ec9c1fd4bd18"
 
-#define SECRET @"<<YOUR SECRET HERE>>"
+#define SECRET @"249ea97b7dfe7468"
 
 #define CALLBACK_URL @"flickrpublish://authhandler"
 
