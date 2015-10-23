@@ -463,7 +463,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // Get the width of the collection view after removing the padding
-    float collectionViewWidth = collectionView.frame.size.width - 20;
+    float collectionViewWidth = collectionView.frame.size.width - 28;
     
     // Divide this with the minimum desired width of the cell
     int itemsInRow = collectionViewWidth / 150;
