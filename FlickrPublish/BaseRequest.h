@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define kEscapeChars @"`~!@#$^&*()=+[]\\{}|;':\",/<>?"
+#define kEscapeChars @"`!@#$^&*()=+[]\\{}|;':\",/<>?"
 
 @interface BaseRequest : NSObject
 

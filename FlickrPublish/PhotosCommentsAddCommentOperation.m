@@ -108,7 +108,14 @@
         // Create response and error object
         NSURLResponse* response = nil;
         NSError* error = nil;
-        [PhotosCommentsAddCommentOperation sendSynchronousDataTaskWithURL:urlRequest returningResponse:&response error:&error];
+        NSData* respData = [PhotosCommentsAddCommentOperation sendSynchronousDataTaskWithURL:urlRequest returningResponse:&response error:&error];
+        NSString* respStr = [[NSString alloc] initWithData:respData encoding:NSUTF8StringEncoding];
+        if ([respStr containsString:@"\"code\":9"])
+        {
+            // Wait for 1 second to post comment
+            [NSThread sleepForTimeInterval:50.0f];
+            [PhotosCommentsAddCommentOperation sendSynchronousDataTaskWithURL:urlRequest returningResponse:&response error:&error];
+        }
         if (self.isCancelled)
         {
             // Break as we are cancelled
