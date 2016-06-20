@@ -158,20 +158,19 @@
     cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.size.width / 2;;
     cell.thumbnail.clipsToBounds = YES;
     //
-    cell.showPhotosBtn.layer.borderWidth = 0.5f;
-    cell.showPhotosBtn.layer.borderColor = [cell.showPhotosBtn tintColor].CGColor;
+    cell.showPhotosBtn.layer.backgroundColor = [UIColor darkGrayColor].CGColor;
     cell.showPhotosBtn.tag = indexPath.item;
     //
-    cell.layer.borderWidth = 0.5f;
-    cell.layer.borderColor = [cell tintColor].CGColor;
+    cell.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
     //
     if (g.selected)
     {
-        cell.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
+        cell.selectedImg.hidden = NO;
+        cell.selectedImg.image = [UIImage imageNamed:@"selectedState"];
     }
     else
     {
-        cell.backgroundColor = [UIColor clearColor];
+        cell.selectedImg.hidden = YES;
     }
     //
     return cell;
@@ -293,9 +292,11 @@
         [addItem setEnabled:NO];
         self.progressContainer.hidden = NO;
         self.progressLabel.hidden = NO;
-        self.progressContainer.layer.borderWidth = 0.5f;
+        self.progressContainer.layer.backgroundColor = [UIColor grayColor].CGColor;
         self.progressContainer.layer.cornerRadius = 3.0f;
         self.progressContainer.layer.borderColor = [self.progressLabel tintColor].CGColor;
+        self.progressLabel.backgroundColor = [UIColor grayColor];
+        self.progressLabel.textColor = [UIColor whiteColor];
         self.progressLabel.text = @"Adding photo to selected groups";
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         // Create request

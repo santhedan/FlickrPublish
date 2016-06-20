@@ -214,15 +214,12 @@
     cell.thumbnail.layer.cornerRadius = cell.thumbnail.frame.size.width / 2;;
     cell.thumbnail.clipsToBounds = YES;
     //
-    cell.showPhotosBtn.layer.borderWidth = 0.5f;
-    cell.showPhotosBtn.layer.borderColor = [cell.showPhotosBtn tintColor].CGColor;
+    cell.showPhotosBtn.layer.backgroundColor = [UIColor darkGrayColor].CGColor;
     cell.showPhotosBtn.tag = indexPath.item;
-    cell.configureCommentsBtn.layer.borderWidth = 0.5f;
-    cell.configureCommentsBtn.layer.borderColor = [cell.configureCommentsBtn tintColor].CGColor;
+    cell.configureCommentsBtn.layer.backgroundColor = [UIColor darkGrayColor].CGColor;
     cell.configureCommentsBtn.tag = indexPath.item;
     //
-    cell.layer.borderWidth = 0.5f;
-    cell.layer.borderColor = [cell tintColor].CGColor;
+    cell.contentView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
     //
     return cell;
 }

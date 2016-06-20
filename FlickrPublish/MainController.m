@@ -202,8 +202,7 @@
         [delegate enqueueOperation:op];
     }
     //
-    cell.layer.borderWidth = 0.5f;
-    cell.layer.borderColor = [cell tintColor].CGColor;
+    cell.layer.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5].CGColor;
     //
     return cell;
 }

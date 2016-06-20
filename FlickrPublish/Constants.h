@@ -9,9 +9,9 @@
 #ifndef FlickrPublish_Constants_h
 #define FlickrPublish_Constants_h
 
-#define API_KEY @"<<YOUR API KEY HERE>>"
+#define API_KEY @"<<Your API Key>>"
 
-#define SECRET @"<<YOUR SECRET HERE>>"
+#define SECRET @"<<Your Secret Key>>"
 
 #define CALLBACK_URL @"flickrpublish://authhandler"
 
@@ -30,6 +30,14 @@ typedef NS_ENUM(NSInteger, MembershipType)
     MEMBER,
     MODERATOR,
     ADMIN
+};
+
+typedef NS_ENUM(NSInteger, PhotoListType)
+{
+    GROUP,
+    EXPLORE,
+    USER,
+    CONTACTS
 };
 
 #define GROUP_IMAGE_URL @"http://c3.staticflickr.com/%@/%@/buddyicons/%@.jpg"

@@ -1665,6 +1665,13 @@
                                                                 <action selector="handleShowPhotos:" destination="RYN-cE-4CA" eventType="touchUpInside" id="ylH-uK-Mgd"/>
                                                             </connections>
                                                         </button>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="40q-dV-JO6">
+                                                            <rect key="frame" x="19" y="19" width="30" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="H0O-9h-Mr7"/>
+                                                                <constraint firstAttribute="width" constant="30" id="hlO-O6-7i0"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -1681,7 +1688,9 @@
                                                         <constraint firstItem="lnH-KL-RLI" firstAttribute="leading" secondItem="XTM-gK-fiB" secondAttribute="leading" id="QDU-nh-Acr"/>
                                                         <constraint firstItem="P9p-qf-eOp" firstAttribute="leading" secondItem="XTM-gK-fiB" secondAttribute="leading" id="S47-z1-UTH"/>
                                                         <constraint firstItem="hFg-gk-u6i" firstAttribute="top" secondItem="YTv-xW-IYN" secondAttribute="bottom" constant="4" id="Tj0-zC-tR8"/>
+                                                        <constraint firstItem="40q-dV-JO6" firstAttribute="centerX" secondItem="lnH-KL-RLI" secondAttribute="centerX" id="VIx-HO-8RK"/>
                                                         <constraint firstAttribute="trailing" secondItem="hFg-gk-u6i" secondAttribute="trailing" id="WRZ-4Q-wWo"/>
+                                                        <constraint firstItem="40q-dV-JO6" firstAttribute="centerY" secondItem="lnH-KL-RLI" secondAttribute="centerY" id="YE5-8a-m8u"/>
                                                         <constraint firstItem="YTv-xW-IYN" firstAttribute="width" secondItem="XTM-gK-fiB" secondAttribute="width" multiplier="0.65" id="e2e-UI-XiB"/>
                                                         <constraint firstAttribute="trailing" secondItem="YTv-xW-IYN" secondAttribute="trailing" id="hLz-zc-oRS"/>
                                                         <constraint firstItem="lnH-KL-RLI" firstAttribute="top" secondItem="XTM-gK-fiB" secondAttribute="top" id="kkK-lt-v0X"/>
@@ -1711,6 +1720,7 @@
                                             <outlet property="membershipType" destination="P9p-qf-eOp" id="oMp-iw-byM"/>
                                             <outlet property="photos" destination="hFg-gk-u6i" id="xPK-m5-C6q"/>
                                             <outlet property="remainingCount" destination="YTv-xW-IYN" id="hzD-TT-FGA"/>
+                                            <outlet property="selectedImg" destination="40q-dV-JO6" id="s7W-fI-7wG"/>
                                             <outlet property="showPhotosBtn" destination="oM1-yJ-ggN" id="VC0-oH-C8m"/>
                                             <outlet property="thumbnail" destination="lnH-KL-RLI" id="NVt-JM-c1C"/>
                                         </connections>
