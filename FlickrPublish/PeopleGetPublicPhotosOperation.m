@@ -76,7 +76,7 @@
     if (!self.isCancelled)
     {
         // Call delegate
-        [self.delegate receivedGroupPhotos:photos];
+        [self.delegate receivedPhotos:photos];
     }
 }
 

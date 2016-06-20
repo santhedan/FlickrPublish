@@ -13,12 +13,14 @@
 #import "DownloadFileOperation.h"
 #import "FavoritesAddOperation.h"
 #import "PeopleGetPublicPhotosOperation.h"
+#import "PhotosGetContactsPhotosOperation.h"
 
-@interface GroupPoolPhotoDisplayController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, GroupsPoolsGetPhotosOperationDelegate, PhotosCommentsAddCommentOperationDelegate, DownloadFileOperationDelegate, FavoritesAddOperationDelegate, PeopleGetPublicPhotosOperationDelegate>
+@interface GroupPoolPhotoDisplayController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, GroupsPoolsGetPhotosOperationDelegate, PhotosCommentsAddCommentOperationDelegate, DownloadFileOperationDelegate, FavoritesAddOperationDelegate, PeopleGetPublicPhotosOperationDelegate, PhotosGetContactsPhotosOperationDelegate>
 
 @property (nonatomic, strong) Group* group;
-@property (nonatomic, assign) BOOL showGroupPhotos;
-@property (nonatomic, assign) BOOL showExplorePhotos;
+
+@property (nonatomic, assign) PhotoListType photoListType;
+
 @property (nonatomic, strong) NSString* userId;
 @property (nonatomic, strong) NSString* userName;
 

@@ -105,7 +105,7 @@
     {
         GroupPoolPhotoDisplayController* ctrl = (GroupPoolPhotoDisplayController *)segue.destinationViewController;
         ctrl.userId = storedPerson.id;
-        ctrl.showGroupPhotos = NO;
+        ctrl.photoListType = USER;
         if (storedPerson.realName != nil && storedPerson.realName.length > 0)
         {
             ctrl.userName = storedPerson.realName;

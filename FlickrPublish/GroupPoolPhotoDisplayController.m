@@ -14,6 +14,7 @@
 #import "Photo.h"
 #import "LargePhotoViewerController.h"
 #import "InterestingnessGetList.h"
+#import "PhotosGetContactsPhotos.h"
 
 @interface GroupPoolPhotoDisplayController ()
 {
@@ -41,42 +42,53 @@
     currentPage = 1;
     commentsAndFavs = NO;
     // Do any additional setup after loading the view.
-    if (self.showGroupPhotos)
+    if (self.photoListType == GROUP)
     {
         self.title = self.group.name;
     }
-    else if (self.showExplorePhotos)
+    else if (self.photoListType == EXPLORE)
     {
         self.title = @"Explore";
     }
-    else
+    else if (self.photoListType == USER)
     {
         self.title = [NSString stringWithFormat:@"%@'s Photos", self.userName];
+    }
+    else if (self.photoListType == CONTACTS)
+    {
+        self.title = @"People you follow";
     }
     //
     sortItem = [[UIBarButtonItem alloc] initWithTitle:@"Sort" style:UIBarButtonItemStylePlain target:self action:@selector(showSortOption)];
     self.navigationItem.rightBarButtonItem = sortItem;
     //
     AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (self.showGroupPhotos)
+    if (self.photoListType == GROUP)
     {
-        // Get group description
+        // Get group photos
         GroupsPoolsGetPhotos* request = [[GroupsPoolsGetPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token GroupId:self.group.id];
         GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithRequest:request Delegate:self];
         [delegate enqueueOperation:op];
     }
-    else if (self.showExplorePhotos)
+    else if (self.photoListType == EXPLORE)
     {
-        // Get group description
+        // Get explore photos
         InterestingnessGetList* request = [[InterestingnessGetList alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token PageNumber:currentPage];
         GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithIntRequest:request Delegate:self];
         [delegate enqueueOperation:op];
     }
-    else
+    else if (self.photoListType == USER)
     {
-        // Get group description
+        // Get user photos
         PeopleGetPublicPhotos* request = [[PeopleGetPublicPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token UserID:self.userId PageNumber:currentPage];
         PeopleGetPublicPhotosOperation* op = [[PeopleGetPublicPhotosOperation alloc] initWithRequest:request Delegate:self];
+        [delegate enqueueOperation:op];
+    }
+    else if (self.photoListType == CONTACTS)
+    {
+        // Get contacts photos
+        PhotosGetContactsPhotos* request = [[PhotosGetContactsPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token PageNumber:currentPage];
+        PhotosGetContactsPhotosOperation* op = [[PhotosGetContactsPhotosOperation alloc] initWithRequest:request Delegate:self];
         [delegate enqueueOperation:op];
     }
     self.progressViewContainer.hidden = NO;
@@ -145,7 +157,7 @@
 - (IBAction)addComments:(id)sender
 {
     commentsAndFavs = NO;
-    if (self.showGroupPhotos)
+    if (self.photoListType == GROUP)
     {
         NSMutableArray* photoIds = [[NSMutableArray alloc] init];
         for (Photo* p in self.photos) {
@@ -255,7 +267,7 @@
 - (IBAction)addCommentsAndFaves:(id)sender
 {
     commentsAndFavs = YES;
-    if (self.showGroupPhotos)
+    if (self.photoListType == GROUP)
     {
         NSMutableArray* photoIds = [[NSMutableArray alloc] init];
         for (Photo* p in self.photos) {
@@ -311,11 +323,15 @@
     // Pass the selected object to the new view controller.
     LargePhotoViewerController* ctrl = (LargePhotoViewerController *)segue.destinationViewController;
     ctrl.photo = selPhoto;
-    if (self.showGroupPhotos)
+    if (self.photoListType == GROUP)
     {
         ctrl.showProfile = YES;
     }
-    else if (self.showExplorePhotos)
+    else if (self.photoListType == EXPLORE)
+    {
+        ctrl.showProfile = YES;
+    }
+    else if (self.photoListType == CONTACTS)
     {
         ctrl.showProfile = YES;
     }
@@ -429,21 +445,28 @@
         currentPage = currentPage + 1;
         //
         AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        if (self.showGroupPhotos)
+        if (self.photoListType == GROUP)
         {
             // Get group description
             GroupsPoolsGetPhotos* request = [[GroupsPoolsGetPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token GroupId:self.group.id PageNumber:currentPage];
             GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithRequest:request Delegate:self];
             [delegate enqueueOperation:op];
         }
-        else if (self.showExplorePhotos)
+        else if (self.photoListType == EXPLORE)
         {
             // Get group description
             InterestingnessGetList* request = [[InterestingnessGetList alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token PageNumber:currentPage];
             GroupsPoolsGetPhotosOperation* op = [[GroupsPoolsGetPhotosOperation alloc] initWithIntRequest:request Delegate:self];
             [delegate enqueueOperation:op];
         }
-        else
+        else if (self.photoListType == CONTACTS)
+        {
+            // Get contacts photos
+            PhotosGetContactsPhotos* request = [[PhotosGetContactsPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token PageNumber:currentPage];
+            PhotosGetContactsPhotosOperation* op = [[PhotosGetContactsPhotosOperation alloc] initWithRequest:request Delegate:self];
+            [delegate enqueueOperation:op];
+        }
+        else if (self.photoListType == USER)
         {
             // Get group description
             PeopleGetPublicPhotos* request = [[PeopleGetPublicPhotos alloc] initWithKey:API_KEY Secret:delegate.hmacsha1Key Token:delegate.token UserID:self.userId PageNumber:currentPage];
@@ -487,7 +510,7 @@
 
 #pragma mark GroupsPoolsGetPhotosOperationDelegate
 
-- (void) receivedGroupPhotos: (NSArray *) photos
+- (void) receivedPhotos: (NSArray *) photos
 {
     if (self.photos == nil)
     {

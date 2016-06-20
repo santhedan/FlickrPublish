@@ -13,7 +13,7 @@
 
 @required
 
-- (void) receivedGroupPhotos: (NSArray *) photos;
+- (void) receivedPhotos: (NSArray *) photos;
 
 @end
 

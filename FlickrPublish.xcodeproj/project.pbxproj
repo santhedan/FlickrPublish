@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0602E9161D17BB5200DE7C50 /* PhotosGetContactsPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = 0602E9151D17BB5200DE7C50 /* PhotosGetContactsPhotos.m */; };
+		0602E9191D17BC0800DE7C50 /* PhotosGetContactsPhotosOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0602E9181D17BC0800DE7C50 /* PhotosGetContactsPhotosOperation.m */; };
 		063A9D131B62510100EF05F3 /* PhotosGetFavorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 063A9D121B62510100EF05F3 /* PhotosGetFavorites.m */; };
 		063A9D161B62511F00EF05F3 /* PhotosGetInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 063A9D151B62511F00EF05F3 /* PhotosGetInfo.m */; };
 		063A9D191B6254C200EF05F3 /* PhotoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 063A9D181B6254C200EF05F3 /* PhotoInfo.m */; };
@@ -88,6 +90,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0602E9141D17BB5200DE7C50 /* PhotosGetContactsPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosGetContactsPhotos.h; sourceTree = "<group>"; };
+		0602E9151D17BB5200DE7C50 /* PhotosGetContactsPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosGetContactsPhotos.m; sourceTree = "<group>"; };
+		0602E9171D17BC0800DE7C50 /* PhotosGetContactsPhotosOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosGetContactsPhotosOperation.h; sourceTree = "<group>"; };
+		0602E9181D17BC0800DE7C50 /* PhotosGetContactsPhotosOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosGetContactsPhotosOperation.m; sourceTree = "<group>"; };
 		063A9D111B62510100EF05F3 /* PhotosGetFavorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosGetFavorites.h; sourceTree = "<group>"; };
 		063A9D121B62510100EF05F3 /* PhotosGetFavorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosGetFavorites.m; sourceTree = "<group>"; };
 		063A9D141B62511F00EF05F3 /* PhotosGetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosGetInfo.h; sourceTree = "<group>"; };
@@ -425,6 +431,8 @@
 				06C5028B1B84908B0010AC9C /* PeopleGetInfoOperation.m */,
 				0673DC6D1B85C26300F6D68F /* PeopleGetPublicPhotosOperation.h */,
 				0673DC6E1B85C26300F6D68F /* PeopleGetPublicPhotosOperation.m */,
+				0602E9171D17BC0800DE7C50 /* PhotosGetContactsPhotosOperation.h */,
+				0602E9181D17BC0800DE7C50 /* PhotosGetContactsPhotosOperation.m */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -501,6 +509,8 @@
 				0673DC6B1B85C04100F6D68F /* PeopleGetPublicPhotos.m */,
 				06E7D0281BDA4D1D002B8F36 /* InterestingnessGetList.h */,
 				06E7D0291BDA4D1D002B8F36 /* InterestingnessGetList.m */,
+				0602E9141D17BB5200DE7C50 /* PhotosGetContactsPhotos.h */,
+				0602E9151D17BB5200DE7C50 /* PhotosGetContactsPhotos.m */,
 			);
 			name = FlickrRequests;
 			sourceTree = "<group>";
@@ -642,6 +652,7 @@
 				06F1A7DC1B83018400C95589 /* FavoritesAdd.m in Sources */,
 				067BFB531B7A125800A2A5F7 /* NSString+HTML.m in Sources */,
 				06C5028C1B84908B0010AC9C /* PeopleGetInfoOperation.m in Sources */,
+				0602E9161D17BB5200DE7C50 /* PhotosGetContactsPhotos.m in Sources */,
 				065138F11B562E690034A3CB /* GroupListController.m in Sources */,
 				065138DF1B5614F00034A3CB /* PhotosGetAllContexts.m in Sources */,
 				06A027AA1B4F82370000ED81 /* RequestTokenOperation.m in Sources */,
@@ -658,6 +669,7 @@
 				06A027B51B4FDE760000ED81 /* AccessTokenOperation.m in Sources */,
 				063A9D191B6254C200EF05F3 /* PhotoInfo.m in Sources */,
 				067C2F651B4E93EB004A7E55 /* MainController.m in Sources */,
+				0602E9191D17BC0800DE7C50 /* PhotosGetContactsPhotosOperation.m in Sources */,
 				065138DC1B5503AF0034A3CB /* Utility.m in Sources */,
 				065138E51B5617DB0034A3CB /* Group.m in Sources */,
 				06F1A7DF1B83038400C95589 /* FavoritesAddOperation.m in Sources */,
@@ -810,13 +822,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
 				INFOPLIST_FILE = FlickrPublish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dandekar.flickrpublish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "911cf2b0-68d5-4031-ad4b-ed13ee7ba212";
+				PROVISIONING_PROFILE = "a8b4e6de-7659-4d9f-8ca4-315100811b6c";
 			};
 			name = Debug;
 		};
@@ -824,14 +836,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
 				INFOPLIST_FILE = FlickrPublish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dandekar.flickrpublish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "911cf2b0-68d5-4031-ad4b-ed13ee7ba212";
+				PROVISIONING_PROFILE = "a8b4e6de-7659-4d9f-8ca4-315100811b6c";
 			};
 			name = Release;
 		};

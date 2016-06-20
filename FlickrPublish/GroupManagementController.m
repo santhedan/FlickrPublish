@@ -152,7 +152,7 @@
     {
         GroupPoolPhotoDisplayController* ctrl = (GroupPoolPhotoDisplayController*)segue.destinationViewController;
         ctrl.group = self.selGroup;
-        ctrl.showGroupPhotos = YES;
+        ctrl.photoListType = GROUP;
     }
 }
 

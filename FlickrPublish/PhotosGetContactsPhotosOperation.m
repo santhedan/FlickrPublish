@@ -1,45 +1,30 @@
 //
-//  GroupsPoolsGetPhotosOperation.m
+//  PhotosGetContactsPhotosOperation.m
 //  FlickrPublish
 //
-//  Created by Sanjay Dandekar on 04/08/15.
-//  Copyright (c) 2015 Sanjay Dandekar. All rights reserved.
+//  Created by Sanjay Dandekar on 20/06/16.
+//  Copyright © 2016 Sanjay Dandekar. All rights reserved.
 //
 
-#import "GroupsPoolsGetPhotosOperation.h"
+#import "PhotosGetContactsPhotosOperation.h"
 #import "Photo.h"
 
-@interface GroupsPoolsGetPhotosOperation()
+@interface PhotosGetContactsPhotosOperation()
 
-@property (nonatomic, strong) GroupsPoolsGetPhotos *request;
+@property (nonatomic, strong) PhotosGetContactsPhotos* request;
 
-@property (nonatomic, strong) InterestingnessGetList *intRequest;
-
-@property (nonatomic, strong) id<GroupsPoolsGetPhotosOperationDelegate> delegate;
+@property (nonatomic, strong) id<PhotosGetContactsPhotosOperationDelegate> delegate;
 
 @end
 
-@implementation GroupsPoolsGetPhotosOperation
+@implementation PhotosGetContactsPhotosOperation
 
-- (instancetype) initWithRequest: (GroupsPoolsGetPhotos *) request Delegate:(id<GroupsPoolsGetPhotosOperationDelegate>) delegate
+- (instancetype) initWithRequest: (PhotosGetContactsPhotos *) request Delegate:(id<PhotosGetContactsPhotosOperationDelegate>) delegate;
 {
     self = [super init];
     if (self)
     {
         self.request = request;
-        self.intRequest = nil;
-        self.delegate = delegate;
-    }
-    return self;
-}
-
-- (instancetype) initWithIntRequest: (InterestingnessGetList *) request Delegate:(id<GroupsPoolsGetPhotosOperationDelegate>) delegate
-{
-    self = [super init];
-    if (self)
-    {
-        self.intRequest = request;
-        self.request = nil;
         self.delegate = delegate;
     }
     return self;
@@ -48,15 +33,7 @@
 - (void) main
 {
     // Create a NSURL from the request
-    NSURL *url = nil;
-    if (self.request != nil)
-    {
-        url = [NSURL URLWithString:[self.request getUrl]];
-    }
-    else if (self.intRequest != nil)
-    {
-        url = [NSURL URLWithString:[self.intRequest getUrl]];
-    }
+    NSURL *url = [NSURL URLWithString:[self.request getUrl]];
     //
     NSData* response = [NSData dataWithContentsOfURL:url];
     // Create empty return value

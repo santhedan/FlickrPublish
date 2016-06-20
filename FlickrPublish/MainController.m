@@ -14,10 +14,13 @@
 #import "PhotoSet.h"
 #import "PhotoCollectionController.h"
 #import "GroupPoolPhotoDisplayController.h"
+#import "WebPageController.h"
 
 @interface MainController ()
 {
     UIImage* placeHolderImage;
+    
+    UIBarButtonItem* menuItem;
 }
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -50,8 +53,8 @@
     UIBarButtonItem* groupItem = [[UIBarButtonItem alloc] initWithTitle:@"Groups" style:UIBarButtonItemStylePlain target:self action:@selector(showGroups)];
     self.navigationItem.rightBarButtonItem = groupItem;
     //
-    UIBarButtonItem* exploreItem = [[UIBarButtonItem alloc] initWithTitle:@"Explore" style:UIBarButtonItemStylePlain target:self action:@selector(showExplore)];
-    self.navigationItem.leftBarButtonItem = exploreItem;
+    menuItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
+    self.navigationItem.leftBarButtonItem = menuItem;
     //
     [delegate enqueueOperation:op];
     //
@@ -74,9 +77,49 @@
 
 #pragma mark UIBarButtonHandler
 
+- (void) showMenu
+{
+    UIAlertController* ctrl = [UIAlertController alertControllerWithTitle:@"Select Option" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    // Show explore photos
+    UIAlertAction* exploreAction = [UIAlertAction actionWithTitle:@"Explore" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){[self showExplore];}];
+    // Show recent uploads of people you follow
+    UIAlertAction* followAction = [UIAlertAction actionWithTitle:@"People you follow" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){[self followHandler];}];
+    // Show recent uploads of people you follow
+    UIAlertAction* recentActivityAction = [UIAlertAction actionWithTitle:@"Activity on my photos" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){[self activityHandler];}];
+    // Cancel
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction* action){[self dismissViewControllerAnimated:YES completion:nil];}];
+    // Add the action to controller
+    [ctrl addAction: exploreAction];
+    [ctrl addAction: followAction];
+    [ctrl addAction: recentActivityAction];
+    [ctrl addAction: cancelAction];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        ctrl.popoverPresentationController.barButtonItem = menuItem;
+        [self presentViewController:ctrl animated:YES completion:nil];
+    }
+    else
+    {
+        // Now show the alert
+        [self presentViewController:ctrl animated:YES completion:nil];
+    }
+}
+
 - (void)showGroups
 {
     [self performSegueWithIdentifier:@"ManageGroups" sender:self];
+}
+
+#pragma mark alert actions
+
+- (void) followHandler
+{
+    [self performSegueWithIdentifier:@"ShowContactPhotos" sender:self];
+}
+
+- (void) activityHandler
+{
+    [self performSegueWithIdentifier:@"ShowActivityOnMyPhotos" sender:self];
 }
 
 - (void)showExplore
@@ -110,8 +153,18 @@
     else if ([segue.identifier isEqualToString:@"ShowExplore"])
     {
         GroupPoolPhotoDisplayController* ctrl = segue.destinationViewController;
-        ctrl.showExplorePhotos = YES;
-        ctrl.showGroupPhotos = NO;
+        ctrl.photoListType = EXPLORE;
+    }
+    else if ([segue.identifier isEqualToString:@"ShowContactPhotos"])
+    {
+        GroupPoolPhotoDisplayController* ctrl = segue.destinationViewController;
+        ctrl.photoListType = CONTACTS;
+    }
+    else if ([segue.identifier isEqualToString:@"ShowActivityOnMyPhotos"])
+    {
+        WebPageController* ctrl = segue.destinationViewController;
+        ctrl.titleOfWebCtrl = @"Activity";
+        ctrl.urlToLoad = @"https://www.flickr.com/activity/photostream/";
     }
 }
 

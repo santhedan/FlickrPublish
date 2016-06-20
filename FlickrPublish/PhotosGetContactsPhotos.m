@@ -1,17 +1,17 @@
 //
-//  PeopleGetPublicPhotos.m
+//  PhotosGetContactsPhotos.m
 //  FlickrPublish
 //
-//  Created by Sanjay Dandekar on 20/08/15.
-//  Copyright (c) 2015 Sanjay Dandekar. All rights reserved.
+//  Created by Sanjay Dandekar on 20/06/16.
+//  Copyright © 2016 Sanjay Dandekar. All rights reserved.
 //
 
-#import "PeopleGetPublicPhotos.h"
+#import "PhotosGetContactsPhotos.h"
 #import "OFUtilities.h"
 
-@implementation PeopleGetPublicPhotos
+@implementation PhotosGetContactsPhotos
 
-- (instancetype) initWithKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token UserID: (NSString *) userId PageNumber: (NSInteger) pageNumber
+- (instancetype) initWithKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token PageNumber: (NSInteger) pageNumber
 {
     self = [super init];
     if (self)
@@ -31,12 +31,10 @@
         //
         self.authToken = [NSString stringWithFormat:@"oauth_token=%@", token];
         //
-        self.userId = [NSString stringWithFormat:@"user_id=%@", userId];
-        //
-        self.method = @"method=flickr.people.getPublicPhotos";
+        self.method = @"method=flickr.photos.getContactsPhotos";
         self.nojsoncallback = @"nojsoncallback=1";
         self.format = @"format=json";
-        self.extras = @"extras=views,url_s,owner_name";
+        self.extras = @"extras=views%2Curl_s%2Cowner_name";
         self.perPage = @"per_page=50";
         self.pageNo = [NSString stringWithFormat:@"page=%ld", (long)pageNumber];
         //
@@ -53,12 +51,11 @@
     NSMutableArray* array = [[NSMutableArray alloc] init];
     // Add the values to array
     [array addObject:self.nojsoncallback];
-    [array addObject:self.format];
     [array addObject:self.version];
+    [array addObject:self.format];
     [array addObject:self.consumerKey];
     [array addObject:self.authToken];
     [array addObject:self.method];
-    [array addObject:self.userId];
     [array addObject:self.nonce];
     [array addObject:self.timeStamp];
     [array addObject:self.signatureMethod];
@@ -85,7 +82,7 @@
 
 - (NSString *) getUrl
 {
-    return [NSString stringWithFormat:@"%@?%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@", self.url, self.nojsoncallback, self.format, self.consumerKey, self.authToken, self.method, self.userId, self.signature, self.nonce, self.timeStamp, self.signatureMethod, self.version, self.extras, self.pageNo, self.perPage];
+    return [NSString stringWithFormat:@"%@?%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@", self.url, self.nojsoncallback, self.format, self.consumerKey, self.authToken, self.method, self.signature, self.nonce, self.timeStamp, self.signatureMethod, self.version, self.extras, self.pageNo, self.perPage];
 }
 
 @end
