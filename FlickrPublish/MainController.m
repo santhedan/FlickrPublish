@@ -10,7 +10,7 @@
 #import "PhotosetGetList.h"
 #import "Constants.h"
 #import "AppDelegate.h"
-#import "PhotosetCell.h"
+#import "PhotoSetCell.h"
 #import "PhotoSet.h"
 #import "PhotoCollectionController.h"
 #import "GroupPoolPhotoDisplayController.h"

@@ -568,7 +568,7 @@
 		067C2F2B1B4E927C004A7E55 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Sanjay Dandekar";
 				TargetAttributes = {
 					067C2F321B4E927C004A7E55 = {
@@ -746,8 +746,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
@@ -792,8 +794,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sanjay Dandekar (CBFUA7FHM5)";
@@ -823,12 +827,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
+				DEVELOPMENT_TEAM = CBFUA7FHM5;
 				INFOPLIST_FILE = FlickrPublish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dandekar.flickrpublish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8b4e6de-7659-4d9f-8ca4-315100811b6c";
+				PROVISIONING_PROFILE = "6b1cd920-f712-4e40-b7b7-8fd29d3437d3";
+				PROVISIONING_PROFILE_SPECIFIER = "FlickrPublish Development Profile";
 			};
 			name = Debug;
 		};
@@ -838,12 +845,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sanjay Dandekar (T9ET3EUC5U)";
+				DEVELOPMENT_TEAM = CBFUA7FHM5;
 				INFOPLIST_FILE = FlickrPublish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dandekar.flickrpublish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8b4e6de-7659-4d9f-8ca4-315100811b6c";
+				PROVISIONING_PROFILE = "6b1cd920-f712-4e40-b7b7-8fd29d3437d3";
+				PROVISIONING_PROFILE_SPECIFIER = "FlickrPublish Development Profile";
 			};
 			name = Release;
 		};

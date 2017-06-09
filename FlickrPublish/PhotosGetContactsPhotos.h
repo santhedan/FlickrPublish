@@ -24,6 +24,8 @@
 
 @property (nonatomic, strong) NSString* pageNo;
 
+@property (nonatomic, strong) NSString* safe_search;
+
 - (instancetype) initWithKey: (NSString *) key Secret: (NSString *) secret Token: (NSString *) token PageNumber: (NSInteger) pageNumber;
 
 - (NSString *) getUrl;

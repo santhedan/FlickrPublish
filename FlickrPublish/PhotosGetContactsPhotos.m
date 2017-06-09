@@ -36,6 +36,7 @@
         self.format = @"format=json";
         self.extras = @"extras=views%2Curl_s%2Cowner_name";
         self.perPage = @"per_page=50";
+        self.safe_search = @"safe_search=3";
         self.pageNo = [NSString stringWithFormat:@"page=%ld", (long)pageNumber];
         //
         NSString* signow = [self calculateSignature];
@@ -62,6 +63,7 @@
     [array addObject:self.extras];
     [array addObject:self.perPage];
     [array addObject:self.pageNo];
+    [array addObject:self.safe_search];
     // Sort the array
     NSArray* sortedArray = [array sortedArrayUsingSelector:@selector(compare:)];
     // Create string buffer
@@ -82,7 +84,7 @@
 
 - (NSString *) getUrl
 {
-    return [NSString stringWithFormat:@"%@?%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@", self.url, self.nojsoncallback, self.format, self.consumerKey, self.authToken, self.method, self.signature, self.nonce, self.timeStamp, self.signatureMethod, self.version, self.extras, self.pageNo, self.perPage];
+    return [NSString stringWithFormat:@"%@?%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@&%@", self.url, self.nojsoncallback, self.format, self.consumerKey, self.authToken, self.method, self.signature, self.nonce, self.timeStamp, self.signatureMethod, self.version, self.extras, self.pageNo, self.perPage, self.safe_search];
 }
 
 @end
