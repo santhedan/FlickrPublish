@@ -56,14 +56,17 @@
                     PhotoSet* pset = [[PhotoSet alloc] init];
                     pset.id = [set valueForKey:@"id"];
                     pset.photos = [NSString stringWithFormat:@"%@", [set valueForKey:@"photos"]];
-                    pset.videos = [NSString stringWithFormat:@"%@", [set valueForKey:@"videos"]];
-                    pset.views = [NSString stringWithFormat:@"%@", [set valueForKey:@"count_views"]];
-                    NSDictionary* nameDict = [set valueForKey:@"title"];
-                    pset.name = [nameDict valueForKey:@"_content"];
-                    NSDictionary* extraDict = [set valueForKey:@"primary_photo_extras"];
-                    NSString* thumbnailPath = [[extraDict valueForKey:@"url_s"] stringByReplacingOccurrencesOfString:@"_m.jpg" withString:@"_q.jpg"];
-                    pset.photosetPhotoUrl = thumbnailPath;
-                    [photosets addObject:pset];
+                    if (pset.photos > 0)
+                    {
+                        pset.videos = [NSString stringWithFormat:@"%@", [set valueForKey:@"videos"]];
+                        pset.views = [NSString stringWithFormat:@"%@", [set valueForKey:@"count_views"]];
+                        NSDictionary* nameDict = [set valueForKey:@"title"];
+                        pset.name = [nameDict valueForKey:@"_content"];
+                        NSDictionary* extraDict = [set valueForKey:@"primary_photo_extras"];
+                        NSString* thumbnailPath = [[extraDict valueForKey:@"url_s"] stringByReplacingOccurrencesOfString:@"_m.jpg" withString:@"_q.jpg"];
+                        pset.photosetPhotoUrl = thumbnailPath;
+                        [photosets addObject:pset];
+                    }
                     if (self.isCancelled)
                     {
                         // Break as we are cancelled
