@@ -65,9 +65,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [delegate cancelAllOperation];
     if (self.isMovingFromParentViewController || self.isBeingDismissed) {
+        // Cancel all operations
+        AppDelegate* delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate cancelAllOperation];
         // Do your stuff here
         self.groups = nil;
         self.filteredGroups = nil;
