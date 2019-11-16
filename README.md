@@ -1,3 +1,8 @@
+NOTE:
+=====
+
+Application is no longer available on App Store as shelling out $100 / year was expensive for me. You can still compile this application and sideload it on your device and use it. The Flickr API interface has not changed so the application will still function. Also the Flickr app now allows you to add your photos to multiple group - if you want to use that.
+
 # FlickrPublish
 
 An iOS App that makes adding your photos to Flickr group easier!
